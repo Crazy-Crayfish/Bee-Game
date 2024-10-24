@@ -53,22 +53,23 @@ public class Camera_Controller : MonoBehaviour
             newPosition += (transform.right * -movementSpeed);
         }
 
-        if(Input.GetKey(KeyCode.Z))
-        {
-            newPosition += (transform.forward * movementSpeed);
-        }
-        if(Input.GetKey(KeyCode.C))
-        {
-            newPosition += (transform.forward * -movementSpeed);
-        }
-        if(Input.GetKey(KeyCode.Q))
-        {
-            newRotation *= Quaternion.Euler(Vector3.forward * rotationAmount);
-        }
-        if(Input.GetKey(KeyCode.E))
-        {
-            newRotation *= Quaternion.Euler(Vector3.forward * -rotationAmount);
-        }
+        // //if(Input.GetKey(KeyCode.Z))
+        // {
+        //     newPosition += (transform.forward * movementSpeed);
+        // }
+        // if(Input.GetKey(KeyCode.C))
+        // {
+        //     newPosition += (transform.forward * -movementSpeed);
+        // }
+        // rotation
+        // if(Input.GetKey(KeyCode.Q))
+        // {
+        //     newRotation *= Quaternion.Euler(Vector3.forward * rotationAmount);
+        // }
+        // if(Input.GetKey(KeyCode.E))
+        // {
+        //     newRotation *= Quaternion.Euler(Vector3.forward * -rotationAmount);
+        // }
 
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
