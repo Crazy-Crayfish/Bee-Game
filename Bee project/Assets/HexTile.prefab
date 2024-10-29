@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8435232419870437581}
   - component: {fileID: 5370575464588380027}
-  - component: {fileID: 4360831282778566071}
+  - component: {fileID: 6672709892374027852}
   - component: {fileID: 4597239658678905926}
   m_Layer: 0
-  m_Name: Tile
+  m_Name: HexTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.28627452, g: 0.87843144, b: 0.21960786, a: 0}
+  m_Sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
+  m_Color: {r: 0.8962264, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4360831282778566071
+--- !u!114 &6672709892374027852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,11 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5739482659549349659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2b8ef01c244f6e43b7a51f62f0e92fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 52db909bbe67721419cf4f00835547a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseColor: {r: 0.2867935, g: 0.8773585, b: 0.22071905, a: 1}
-  alternateColor: {r: 0.24033563, g: 0.6981132, b: 0.18879785, a: 1}
+  baseColor: {r: 0.3679245, g: 0.111451164, b: 0, a: 1}
+  alternateColor: {r: 0.5372549, g: 0.13948733, b: 0.023529427, a: 1}
   renderer: {fileID: 5370575464588380027}
   highlight: {fileID: 8358203747809928708}
 --- !u!61 &4597239658678905926
@@ -118,7 +118,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 0.8828125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -198,7 +198,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.3529412}
   m_FlipX: 0
   m_FlipY: 0
