@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Camera_Controller : MonoBehaviour
 {
@@ -53,13 +52,6 @@ public class Camera_Controller : MonoBehaviour
         {
             newPosition += (transform.right * -movementSpeed);
         }
-
-        if(Input.GetKey(KeyCode.Space))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-
-        
 
         // //if(Input.GetKey(KeyCode.Z))
         // {
