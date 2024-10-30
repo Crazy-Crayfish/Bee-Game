@@ -220,7 +220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 9, z: -20}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -255,12 +255,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939aba5f180334f46bae41ea34c94cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 32
-  height: 18
+  width: 16
+  height: 9
   tilePreFab: {fileID: 4360831282778566071, guid: 504fcfe90a02b494e81658071e8c1d7e, type: 3}
   camera: {fileID: 519420032}
   hive: {fileID: 1542552756}
-  flowerTilePreFab: {fileID: 8151174603698930797, guid: 95a1fed7e476c1247b54fed66da6a133, type: 3}
 --- !u!4 &1232136664
 Transform:
   m_ObjectHideFlags: 0
@@ -351,7 +350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542552754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 9, z: 0}
+  m_LocalPosition: {x: -3.02, y: -0.09, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
