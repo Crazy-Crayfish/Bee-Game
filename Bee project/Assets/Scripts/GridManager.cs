@@ -39,7 +39,8 @@ public class GridManager : MonoBehaviour
    }
    void GenerateElements(int modifier){
     int flowerMod = modifier/100000;
-    if(flowerMod > 43 ) {flowerMod /= 2; }
+    // can be used to make game easier
+    // if(flowerMod > 43 ) {flowerMod /= 2; }
     GenerateFlowers(flowerMod);
 
 
@@ -51,11 +52,11 @@ public class GridManager : MonoBehaviour
     int area = height*width;
     int y = 0;
     Random rnd1 = new Random();
-    int rand = rnd1.Next(1, mod);
-    for(int x = 0; x<area; x+=rand) {
+    
+    for(int x = 0; x<area; x+=rnd1.Next(1, mod)) {
         int z = x%width;
         y = x/width;
-         var spawneTile = Instantiate(flowerTilePreFab, new Vector3(z+0.5f,y+0.5f), Quaternion.identity);
+         var spawneTile = Instantiate(flowerTilePreFab, new Vector3(z,y), Quaternion.identity);
             spawneTile.name = $"flowerTile {z} {y}";
 
 
