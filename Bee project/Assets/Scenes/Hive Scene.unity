@@ -523,7 +523,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1879666860}
-        m_TargetAssemblyTypeName: SceneSwapButton, Assembly-CSharp
+        m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -573,10 +573,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1879666856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58e1bcc769fc38042b31b37d327e80d1, type: 3}
+  m_Script: {fileID: 11500000, guid: a7ae031e0dc13c3459086c1971510329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newSceneName: World Scene
+  backward: 1
 --- !u!222 &1879666861
 CanvasRenderer:
   m_ObjectHideFlags: 0
