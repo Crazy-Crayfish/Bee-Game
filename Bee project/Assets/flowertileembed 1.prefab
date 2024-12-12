@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9062328689511496760}
   - component: {fileID: 710909701979745564}
   - component: {fileID: 2170187455436810809}
+  - component: {fileID: 2215972546881166588}
   m_Layer: 0
   m_Name: flowertileembed 1
   m_TagString: Untagged
@@ -90,7 +91,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6733876355084045552}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2b8ef01c244f6e43b7a51f62f0e92fa, type: 3}
   m_Name: 
@@ -99,3 +100,17 @@ MonoBehaviour:
   alternateColor: {r: 0, g: 0, b: 0, a: 0}
   renderer: {fileID: 710909701979745564}
   highlight: {fileID: 0}
+  value: 0
+  maxValue: 0
+--- !u!114 &2215972546881166588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6733876355084045552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c04eb16fc35024195c3e6a9bac5b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
