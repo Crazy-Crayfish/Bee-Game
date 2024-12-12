@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 1350fdf0e69532f46b10bfe5238fce42
+guid: 81edfcb0d755412479d22d420ace1dd4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - hexTilePreFab: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonScript : MonoBehaviour
+public class SceneButton : MonoBehaviour
 {
 
     // Start is called before the first frame update
