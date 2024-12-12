@@ -11,7 +11,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Tile tilePreFab;
     [SerializeField] private Transform camera;
     [SerializeField] private Transform hive;
-    [SerializeField] private Tile flowerTilePreFab;
+       [SerializeField] private Tile flowerTilePreFab;
 
     void Start() {
         GenerateGrid();

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2590691482218931978}
   - component: {fileID: 6741002087414346178}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: grass tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.06, y: 1.07}
+    oldSize: {x: 0.9085714, y: 0.91714287}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
