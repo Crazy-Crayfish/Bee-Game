@@ -14,6 +14,12 @@ public class Tile : MonoBehaviour
     
     void OnMouseEnter() {
         highlight.SetActive(true);
+<<<<<<< Updated upstream
+=======
+    }
+    void OnMouseOver() {
+        MenuManager.Instance.showSelectedRes(this);
+>>>>>>> Stashed changes
     }
     void OnMouseExit() {
         highlight.SetActive(false);
