@@ -16,8 +16,9 @@ public class MenuManager : MonoBehaviour
   void Awake(){
     Instance = this;
   }
-
-
+  public bool isTextActive() {
+    return lfVal.activeSelf;
+  }
   public void showSelectedRes(Tile tile) {
 
 
