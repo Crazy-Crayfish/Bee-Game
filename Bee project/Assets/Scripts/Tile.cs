@@ -9,6 +9,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject highlight;
     public int value;
     public int maxValue;
+    public string type;
     public void Init(bool isOffset){
         renderer.color = isOffset ? alternateColor : baseColor;
 
@@ -27,6 +28,10 @@ public class Tile : MonoBehaviour
     public void setVal(int x) {
         value = x;
         maxValue = x;
+    }
+
+    public void setType(string x) {
+        type = x;
     }
     public void OnMouseDown()
     {
