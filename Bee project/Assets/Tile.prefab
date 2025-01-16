@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5739482659549349659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2590691482218931978}
@@ -184,8 +184,6 @@ MonoBehaviour:
   alternateColor: {r: 0.24033563, g: 0.6981132, b: 0.18879785, a: 0}
   renderer: {fileID: 5370575464588380027}
   highlight: {fileID: 8358203747809928708}
-  value: 0
-  maxValue: 0
 --- !u!61 &4597239658678905926
 BoxCollider2D:
   m_ObjectHideFlags: 0

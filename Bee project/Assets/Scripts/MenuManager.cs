@@ -29,7 +29,7 @@ public class MenuManager : MonoBehaviour
     //     tile.setVal(10000);
     // } USE FOR TESTING 
 
-    lfVal.GetComponentInChildren<Text>().text = "Nectar "+tile.value.ToString()+"/" + tile.maxValue.ToString();
+    lfVal.GetComponentInChildren<Text>().text = "Resources "+tile.value.ToString()+"/" + tile.maxValue.ToString();
     lfVal.SetActive(true);
   }
 }
