@@ -15,8 +15,6 @@ public class UnitSelectionManager : MonoBehaviour
     // Lists of all units and active units
     public List<GameObject> allUnitsList = new List<GameObject>();
     public List<GameObject> unitsSelected = new List<GameObject>();
-    public List<GameObject> allEnemiesList = new List<GameObject>();
-    public List<GameObject> enemiesSelected = new List<GameObject>();
 
     public LayerMask ground;
     public LayerMask clickable;
@@ -71,7 +69,7 @@ public class UnitSelectionManager : MonoBehaviour
         }
 
 
-        // GROUND HIT
+        // GROUND MARKER
         if (unitsSelected.Count > 0 && Input.GetMouseButtonDown(1)) 
         {
             // Debug.Log ("right clicked");
@@ -83,14 +81,8 @@ public class UnitSelectionManager : MonoBehaviour
                 // Debug.Log ("right clicked on ground");
                 RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
                 groundMarker.transform.position = hit.collider.gameObject.transform.position;  
-                foreach (var unit in unitsSelected) 
-                {
-                    // if the unit is a worker bee
-                    if (unit.GetComponent<WorkerBeeLogic> () != null) 
-                    {
-                        unit.GetComponent<WorkerBeeLogic>().setDestinationTile(hit.collider.GetComponent<Tile>());
-                    } 
-                }
+                
+
                 groundMarker.SetActive(false);
                 groundMarker.SetActive(true);
             } 
@@ -136,7 +128,6 @@ public class UnitSelectionManager : MonoBehaviour
     private void SetUnitMovement(GameObject unit, bool shouldMove)   
     {
         unit.GetComponent<UnitMovement>().enabled = shouldMove;
-
     }
     
     private void TriggerSelectionIndicator(GameObject unit, bool isVisible)

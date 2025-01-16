@@ -15,13 +15,11 @@ public class SceneSwapButton : MonoBehaviour
     }
     void OnMouseDown()
     {
-        Debug.Log("change scene");
         ChangeScene();
     }
 
     public void ChangeScene()
     {
-        
         SceneManager.LoadScene(newSceneName);
 
     }

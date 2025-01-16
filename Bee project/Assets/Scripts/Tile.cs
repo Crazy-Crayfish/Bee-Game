@@ -18,7 +18,7 @@ public class Tile : MonoBehaviour
         gameObject.layer = 6;
     }
     
-    void OnMouseOver() {
+    void OnMouseEnter() {
         highlight.SetActive(true);
         MenuManager.Instance.showSelectedRes(this);
         

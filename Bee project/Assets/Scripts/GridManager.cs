@@ -36,7 +36,7 @@ public class GridManager : MonoBehaviour
     }
    
    camera.transform.position = new Vector3((float)width/2 -0.5f, (float)height / 2 -0.5f,-20);
-   hive.transform.parent.transform.position = new Vector3((float)width/2 -0.5f, (float)height / 2 -0.5f,-10);
+   hive.transform.position = new Vector3((float)width/2 -0.5f, (float)height / 2 -0.5f,-10);
     Random rnd = new Random();
     int seed = rnd.Next(1111111,9999999);
 
