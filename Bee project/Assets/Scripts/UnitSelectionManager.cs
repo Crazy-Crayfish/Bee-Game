@@ -39,7 +39,7 @@ public class UnitSelectionManager : MonoBehaviour
 
     void Update()
     {
-        // SELECTION
+        // If LMB pressed
         if (Input.GetMouseButtonDown(0)) 
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -69,7 +69,7 @@ public class UnitSelectionManager : MonoBehaviour
         }
 
 
-        // GROUND MARKER
+
         if (unitsSelected.Count > 0 && Input.GetMouseButtonDown(1)) 
         {
             // Debug.Log ("right clicked");
@@ -122,7 +122,6 @@ public class UnitSelectionManager : MonoBehaviour
 
         }
         unitsSelected.Clear();
-        groundMarker.SetActive(false);
     }
 
     private void SetUnitMovement(GameObject unit, bool shouldMove)   
