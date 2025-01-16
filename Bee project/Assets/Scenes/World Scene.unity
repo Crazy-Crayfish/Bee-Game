@@ -482,8 +482,6 @@ MonoBehaviour:
   movementSpeed: 0.01
   movementTime: 5
   rotationAmount: 0
-  newPosition: {x: 0, y: 0, z: 0}
-  newRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -870,6 +868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newSceneName: Hive Scene
+  mode: Additive
 --- !u!61 &1129263808
 BoxCollider2D:
   m_ObjectHideFlags: 0
