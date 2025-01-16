@@ -22,13 +22,8 @@ public class UnitMovement : MonoBehaviour {
     }
     
     void SetDestinationToMousePosition() {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        // if (Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, ground)) 
-        // {
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-        // RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         agent.destination = hit.collider.gameObject.transform.position;  
-        // }
         // var target = cam.ScreenToWorldPoint(Input.mousePosition);
         // target.z = 0;
         // agent.destination = target;

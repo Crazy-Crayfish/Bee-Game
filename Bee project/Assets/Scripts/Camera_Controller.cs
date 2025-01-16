@@ -10,8 +10,8 @@ public class Camera_Controller : MonoBehaviour
     public float movementTime;
     public float rotationAmount;
 
-    private Vector3 newPosition;
-    private Quaternion newRotation;
+    public Vector3 newPosition;
+    public Quaternion newRotation;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class Camera_Controller : MonoBehaviour
 
     void HandleMovementInput()
     {
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (Input.GetKey(KeyCode.LeftShift) ||Input.GetKey(KeyCode.RightShift))
         {
             movementSpeed = fastSpeed;
         }
@@ -53,17 +53,15 @@ public class Camera_Controller : MonoBehaviour
             newPosition += (transform.right * -movementSpeed);
         }
 
-        if(Input.GetKey(KeyCode.Z) && GetComponent<Camera>().orthographicSize > 0.01)
-        {
-            // newPosition += (transform.forward * movementSpeed);
-            GetComponent<Camera>().orthographicSize -= 0.01f;
-        }
-        if(Input.GetKey(KeyCode.C))
-        {
-            GetComponent<Camera>().orthographicSize += 0.01f;
-            // newPosition += (transform.forward * -movementSpeed);
-        }
-        //rotation
+        // //if(Input.GetKey(KeyCode.Z))
+        // {
+        //     newPosition += (transform.forward * movementSpeed);
+        // }
+        // if(Input.GetKey(KeyCode.C))
+        // {
+        //     newPosition += (transform.forward * -movementSpeed);
+        // }
+        // rotation
         // if(Input.GetKey(KeyCode.Q))
         // {
         //     newRotation *= Quaternion.Euler(Vector3.forward * rotationAmount);
