@@ -11,7 +11,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Tile tilePreFab;
     [SerializeField] private Transform camera;
     [SerializeField] private Transform hive;
-    [SerializeField] private Tile flowerTilePreFab;
+       [SerializeField] private Tile flowerTilePreFab;
 
     void Start() {
         GenerateGrid();
@@ -23,9 +23,9 @@ public class GridManager : MonoBehaviour
             
             var spawnedTile = Instantiate(tilePreFab, new Vector3(x,y), Quaternion.identity);
             spawnedTile.name = $"Tile {x} {y}";
+            
             var isOffSet = (x % 2 == 0 && y%2 !=0) || (y%2 == 0 && x%2 != 0);
             spawnedTile.Init(isOffSet);
-
         }
     }
    

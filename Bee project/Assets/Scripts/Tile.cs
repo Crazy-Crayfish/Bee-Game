@@ -13,10 +13,6 @@ public class Tile : MonoBehaviour
         renderer.color = isOffset ? alternateColor : baseColor;
 
     }
-    void Start()
-    {
-        gameObject.layer = 6;
-    }
     
     void OnMouseEnter() {
         highlight.SetActive(true);
