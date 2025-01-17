@@ -930,11 +930,12 @@ MonoBehaviour:
   tilePreFab: {fileID: 4360831282778566071, guid: 504fcfe90a02b494e81658071e8c1d7e, type: 3}
   camera: {fileID: 519420032}
   hive: {fileID: 2002405636}
-  flowerTilePreFab: {fileID: 2215972546881166588, guid: 52605b7d94289b6409fa34be6699ba34, type: 3}
+  flowerTilePreFab: {fileID: 0}
   pinkFlower: {fileID: 6442639070993052873, guid: 3e5b6f8fdeb647848b7639a5c54ccb19, type: 3}
   blueFlower: {fileID: 8630365118118436266, guid: ea56c7a696fd8d54db6d7c07ae6b1ce9, type: 3}
   sunFlower: {fileID: 1759562542228995313, guid: 54db3ddf9f26a484e83b3b412202bcba, type: 3}
   redFlower: {fileID: 1526075114479547931, guid: 88c6b946e2d7b1845acd24a6e05d1334, type: 3}
+  treeTile: {fileID: 2170187455436810809, guid: 52605b7d94289b6409fa34be6699ba34, type: 3}
 --- !u!4 &1232136664
 Transform:
   m_ObjectHideFlags: 0
