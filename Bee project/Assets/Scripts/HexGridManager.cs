@@ -19,11 +19,11 @@ public class HexGridManager : MonoBehaviour
             // WIP: scalar does nothing right now, 
             // want to eventually make it so the grid appearence supports different hex sizes
            // float scalar = (float)hexTilePreFab.GetComponent<Renderer>().transform.localScale.sqrMagnitude;
-            float scalar = (float)1.0;
-            float tempX = (float)x * (float)1.5 * scalar;
-            float tempY = (float)y * (float)0.4 * scalar;
+            float scalar = (float)41.0;
+            float tempX = (float)x * (float) 1.3 * scalar;
+            float tempY = (float)y * (float) 0.35 * scalar;
             if (isOffSet) {
-                tempX += (float)0.75;
+                tempX += (float)0.65 * scalar;
             }
             var spawnedTile = Instantiate(hexTilePreFab, new Vector3(tempX,tempY), Quaternion.identity);
             spawnedTile.Init(isOffSet);
