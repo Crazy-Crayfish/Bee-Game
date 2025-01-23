@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class ResourceCounter : MonoBehaviour 
 {
@@ -15,6 +15,7 @@ public class ResourceCounter : MonoBehaviour
     
     private int hiveLevel;
 
+    [SerializeField] private Text ResourcesText;
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -32,6 +33,7 @@ public class ResourceCounter : MonoBehaviour
         nectar = 0;
         wax = 0;
         dna = 0;
+        UpdateResText();
         InvokeRepeating("UpdateResText", 1.0f, 1.0f);
         // InvokeRepeating("LoseHoney", 3.0f, 3.0f);
     }
@@ -45,7 +47,8 @@ public class ResourceCounter : MonoBehaviour
     {
         // Not implemented yet, but will tie to a text object on screen
         // temp:
-        Debug.Log("RESOURCES: \nNectar: " + getNectar() + "   Honey: " + getHoney() + "   Wax: " + getWax() + "   DNA: " + getDna() + "\n");
+        ResourcesText.text = ("RESOURCES:   Nectar: " + getNectar() + "   Honey: " + getHoney() + "   Wax: " + getWax() + "   DNA: " + getDna() );
+        // Debug.Log("RESOURCES: \nNectar: " + getNectar() + "   Honey: " + getHoney() + "   Wax: " + getWax() + "   DNA: " + getDna() + "\n");
     }
 
     // nectar

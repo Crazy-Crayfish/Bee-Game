@@ -10,6 +10,7 @@ public class ChamberConstruct : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     private bool selected;
     private Collision2D currentTile;
     [SerializeField] private GameObject chamberRef;
+    [SerializeField] private GameObject buildingPreFab;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +40,7 @@ public class ChamberConstruct : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     public void OnEndDrag(PointerEventData data)
     {
         selected = false;
+        HexGridManager.Instance.buildOnHoveredTile(buildingPreFab);
     }
 
     

@@ -20,6 +20,7 @@ public class HexTile : MonoBehaviour
 
     void OnMouseEnter() {
         highlight.SetActive(true);
+        HexGridManager.Instance.HoveredTile = this.gameObject;
     }
     void OnMouseExit() {
         highlight.SetActive(false);

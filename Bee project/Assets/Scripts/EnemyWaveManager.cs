@@ -10,7 +10,8 @@ public class EnemyWaveManager : MonoBehaviour
     [SerializeField] private GameObject enemyPreFab;
     public float totalWaveTimer;
     public float currentWaveTimer;
-
+    private int enemyCount;
+    private int waveNum;
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -24,7 +25,9 @@ public class EnemyWaveManager : MonoBehaviour
     void Start()
     {
         totalWaveTimer = 30.0f;
-        currentWaveTimer = 30.0f;
+        currentWaveTimer = totalWaveTimer;
+        enemyCount = 1;
+        waveNum = 0;
     }
 
     // Update is called once per frame
@@ -35,8 +38,14 @@ public class EnemyWaveManager : MonoBehaviour
 
         if (currentWaveTimer <= 0.0f)
         {
+            waveNum++;
+            if (waveNum % 3 == 0)
+            {
+                enemyCount++;
+            }
             SummonWave(hive.transform.position + new Vector3(0, 0, -hive.transform.position.z));
             currentWaveTimer = totalWaveTimer;
+
         }
         
     }
@@ -55,7 +64,7 @@ public class EnemyWaveManager : MonoBehaviour
         Vector3 randomDirection = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0);
         randomDirection.Normalize();
         randomDirection = randomDirection * 20; // random direction, magnitude 20. purpose is to start them a distance away
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < enemyCount; i++)
         {
             Vector3 offset = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), 0);
             var newEnemy = Instantiate(enemyPreFab, (center + randomDirection) + offset, Quaternion.identity);

@@ -4,8 +4,6 @@ using System.Linq;
 
 public class SceneSwapButton : MonoBehaviour
 {
-    [SerializeField] private string newSceneName;
-    [SerializeField] private string mode;
     [SerializeField] private Transform Cam;
     
     // Start is called before the first frame update
@@ -16,16 +14,17 @@ public class SceneSwapButton : MonoBehaviour
 
     void OnMouseDown()
     {
+        ChangeScene();
+    }
+    public void ChangeScene()
+    {
         Debug.Log("change scene");
         Camera_Controller cameraController = Cam.gameObject.GetComponent<Camera_Controller>();
-        cameraController.noMovement();
-        // Cam.transform.position = new Vector3(0, 0, -20);
+        // cameraController.noMovement();
+        // Camera.main.gameObject.transform.position = new Vector3(4000, 0, -20);
         ScreenManager.Instance.newState();
-        cameraController.normalMovement();
-    
-
+        //cameraController.normalMovement();
     }
-
     // public void ChangeScene()
     // {
     //     // if (mode == "Additive")

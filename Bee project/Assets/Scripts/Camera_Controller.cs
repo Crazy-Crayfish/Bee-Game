@@ -16,8 +16,7 @@ public class Camera_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        newPosition = transform.position;
-        newRotation = transform.rotation;
+        newPosition = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -31,6 +30,7 @@ public class Camera_Controller : MonoBehaviour
     // Skip movement updates if movementSpeed is 0
     if (movementSpeed == 0)
     {
+        Debug.Log("0");
         return;
     }
 
@@ -45,6 +45,7 @@ public class Camera_Controller : MonoBehaviour
 
     if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
     {
+        
         newPosition += (transform.up * movementSpeed);
     }
     if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
@@ -70,21 +71,23 @@ public class Camera_Controller : MonoBehaviour
 
     // Moving without infinite momentum
     transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
-    transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
 }
 
-
+    public void teleport(Vector3 dest)
+    {
+        newPosition = dest; 
+    }
     // Method to stop camera movement completely
     public void noMovement()
     {   
         Debug.Log("trying");
-        newPosition = transform.position; 
-        newRotation = transform.rotation; 
-        movementSpeed = 0; 
+        // newPosition = transform.position + new Vector3(4000,0,0); 
+
+        // movementSpeed = 0; 
     }
 
     public void normalMovement() 
     {
-        movementSpeed = 0.01;
+        movementSpeed = 0.01f;
     }
 }

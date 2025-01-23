@@ -16,7 +16,8 @@ public class EnemyAntLogic : MonoBehaviour
 		agent.updateUpAxis = false;
         agent.speed = 1.7f;
         this.GetComponent<EnemyUnit>().health = 150;
-        hive = FindObjectOfType<SceneSwapButton>().gameObject.transform.GetChild(0).gameObject;
+        hive = GameObject.Find("Hive");
+        // hive = FindObjectOfType<SceneSwapButton>().gameObject;
 	}
     // Update is called once per frame
     void Update()
@@ -78,7 +79,7 @@ public class EnemyAntLogic : MonoBehaviour
             {
                 
                 target = unit;
-                Debug.Log ("Attacking!! " + target.transform.position);
+                // Debug.Log ("Attacking!! " + target.transform.position);
             }
         }
         

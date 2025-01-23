@@ -27,13 +27,7 @@ public class SceneButton : MonoBehaviour
 
     public void ChangeScene()
     {
-        if (!backward)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
+        SceneManager.LoadScene(1);
+
     }
 }
