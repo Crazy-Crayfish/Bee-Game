@@ -28,10 +28,15 @@ public class HexGridManager : MonoBehaviour
         // Debug.Log("building");
         if (HoveredTile != null)
         {
-            var newBuilding = Instantiate(building, 
-            new Vector3(HoveredTile.transform.position.x,HoveredTile.transform.position.y, -5), 
-            Quaternion.identity);
+            if (building.GetComponent<Structure>().cost <= ResourceCounter.Instance.getWax())
+            {
+                var newBuilding = Instantiate(building, 
+                        new Vector3(HoveredTile.transform.position.x,HoveredTile.transform.position.y, -5), 
+                                            Quaternion.identity);
+                ResourceCounter.Instance.changeWax(-building.GetComponent<Structure>().cost);
+            }
         }
+
     }
 
    void GenerateGrid(){

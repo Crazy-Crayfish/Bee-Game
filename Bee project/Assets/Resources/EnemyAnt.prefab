@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -795190978256311555}
   - component: {fileID: 6486925088015970760}
   - component: {fileID: 4700403180965050080}
+  - component: {fileID: 4031009941531973283}
   m_Layer: 0
   m_Name: EnemyAnt
   m_TagString: Untagged
@@ -152,3 +153,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &4031009941531973283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896820176378235156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.43, y: 1.49, z: 0.2}
+  m_Center: {x: 0, y: -0.2, z: 0}

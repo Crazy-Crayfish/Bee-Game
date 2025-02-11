@@ -8,8 +8,7 @@ public class EnemyWaveManager : MonoBehaviour
     public static EnemyWaveManager Instance { get; set; }
     [SerializeField] private GameObject hive;
     [SerializeField] private GameObject enemyPreFab;
-    public float totalWaveTimer;
-    public float currentWaveTimer;
+    public float waveCooldown;
     private int enemyCount;
     private int waveNum;
     private void Awake() 
@@ -24,46 +23,39 @@ public class EnemyWaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        totalWaveTimer = 30.0f;
-        currentWaveTimer = totalWaveTimer;
+        //// CHANGE THESE TO ADJUST DIFFICULTY 
+        waveCooldown = 60.0f;
+        float timeUntilFirstWave = 60.0f;
         enemyCount = 1;
+        ////
+
+        // Make waves start spawning regularly
         waveNum = 0;
+        InvokeRepeating("TriggerWave", timeUntilFirstWave, waveCooldown);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void TriggerWave()
     {
-        
-        currentWaveTimer -= Time.deltaTime;
-
-        if (currentWaveTimer <= 0.0f)
+        waveNum++;
+        // Increase enemies by 1 every 3 waves
+        if (waveNum % 3 == 0)
         {
-            waveNum++;
-            if (waveNum % 3 == 0)
-            {
-                enemyCount++;
-            }
-            SummonWave(hive.transform.position + new Vector3(0, 0, -hive.transform.position.z));
-            currentWaveTimer = totalWaveTimer;
-
+            enemyCount++;
         }
-        
+        // Spawn enemies
+        SummonWave(hive.transform.position + new Vector3(0, 0, -hive.transform.position.z));
     }
+
     private void SummonWave(Vector3 center)
     {
-        // Random RNG = new Random();
-        // int side = RNG.Next(0,4); // 0 = top, 1 = right, 2 = down, 3 = left
-        // for (int i = 0; i < 4; i++)
-        // {
-        //     Vector3 offset = (RNG.Next(-10,11),RNG.Next(-10,11),0);
-        //     var newEnemy = Instantiate(enemyPreFab, (location * Quaternion.Euler(0, 0, side * 90)) + offset, Quaternion.identity);
-        //     newEnemy.AddComponent<EnemyWaspLogic>();
-        // }
-        
-        //int side = RNG.Next(0,4); // 0 = top, 1 = right, 2 = down, 3 = left
+        // Make a random direction vector
         Vector3 randomDirection = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0);
+        
+        // Extend it by 20 units (CHANGE THIS TO CHANGE HOW FAR AWAY ENEMIES SPAWN ON AVERAGE)
         randomDirection.Normalize();
-        randomDirection = randomDirection * 20; // random direction, magnitude 20. purpose is to start them a distance away
+        randomDirection = randomDirection * 20; 
+
+        // For each enemy needed, create a new enemy instance offset by a slight random value
         for (int i = 0; i < enemyCount; i++)
         {
             Vector3 offset = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), 0);

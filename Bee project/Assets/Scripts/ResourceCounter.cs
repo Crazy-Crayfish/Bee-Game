@@ -31,24 +31,24 @@ public class ResourceCounter : MonoBehaviour
 
         honey = 50;
         nectar = 0;
-        wax = 0;
+        wax = 50;
         dna = 0;
         UpdateResText();
         InvokeRepeating("UpdateResText", 1.0f, 1.0f);
         // InvokeRepeating("LoseHoney", 3.0f, 3.0f);
     }
 
+
     // passively lose honey based on hive level (currently never changes)
     private void LoseHoney()
     {
         changeHoney(-1 * hiveLevel);
     }
+
+    //Update text 
     private void UpdateResText()
     {
-        // Not implemented yet, but will tie to a text object on screen
-        // temp:
         ResourcesText.text = ("RESOURCES:   Nectar: " + getNectar() + "   Honey: " + getHoney() + "   Wax: " + getWax() + "   DNA: " + getDna() );
-        // Debug.Log("RESOURCES: \nNectar: " + getNectar() + "   Honey: " + getHoney() + "   Wax: " + getWax() + "   DNA: " + getDna() + "\n");
     }
 
     // nectar
