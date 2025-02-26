@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine;
+using UnityEngine.UI;
 // using UnityEngine.Random;
 
 public class EnemyWaveManager : MonoBehaviour
@@ -11,6 +13,9 @@ public class EnemyWaveManager : MonoBehaviour
     public float waveCooldown;
     private int enemyCount;
     private int waveNum;
+
+    [SerializeField] private Text waveTimerText;
+    private float timeUntilNextWave;
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -29,9 +34,24 @@ public class EnemyWaveManager : MonoBehaviour
         enemyCount = 1;
         ////
 
+        timeUntilNextWave = timeUntilFirstWave;
+
         // Make waves start spawning regularly
         waveNum = 0;
         InvokeRepeating("TriggerWave", timeUntilFirstWave, waveCooldown);
+    }
+    
+    void Update()
+    {
+        if (timeUntilNextWave > 0)
+        {
+            timeUntilNextWave -= Time.deltaTime;
+        }
+        else
+        {
+            timeUntilNextWave = 0; // Ensure timer doesn't go negative
+        }
+        waveTimerText.text = "Next wave in: " + Mathf.Ceil(timeUntilNextWave).ToString() + "s";
     }
 
     private void TriggerWave()
@@ -44,6 +64,8 @@ public class EnemyWaveManager : MonoBehaviour
         }
         // Spawn enemies
         SummonWave(hive.transform.position + new Vector3(0, 0, -hive.transform.position.z));
+
+        timeUntilNextWave = waveCooldown;
     }
 
     private void SummonWave(Vector3 center)
