@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Structure : MonoBehaviour
+public class Chamber : MonoBehaviour
 {
     [SerializeField] public int cost;
     [SerializeField] public string type;

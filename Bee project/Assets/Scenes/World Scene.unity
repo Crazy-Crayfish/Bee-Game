@@ -519,11 +519,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 366842742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5af13e30e950c4dbbc1b341d18af5e, type: 3}
+  m_Script: {fileID: 11500000, guid: bdbf077b865411a4b954ec717fd9f800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chamberRef: {fileID: 1647318868}
-  buildingPreFab: {fileID: 0}
+  structRef: {fileID: 1647318868}
+  buildingPreFab: {fileID: 3067200303475469739, guid: d3e62248ca9187c40a3a3b679c169d8f, type: 3}
 --- !u!114 &366842745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,10 +711,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 460509374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5af13e30e950c4dbbc1b341d18af5e, type: 3}
+  m_Script: {fileID: 11500000, guid: bdbf077b865411a4b954ec717fd9f800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chamberRef: {fileID: 472075518}
+  structRef: {fileID: 472075518}
   buildingPreFab: {fileID: 0}
 --- !u!114 &460509377
 MonoBehaviour:
@@ -879,8 +879,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5af13e30e950c4dbbc1b341d18af5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: 0
   chamberRef: {fileID: 1625145071}
-  buildingPreFab: {fileID: 0}
+  chamberPreFab: {fileID: 7269017609962043221, guid: 1a8a22fc3818b21429bb6a9280f4e294, type: 3}
 --- !u!114 &497743991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,6 +1159,7 @@ MonoBehaviour:
   height: 30
   hexTilePreFab: {fileID: 6672709892374027852, guid: b97f176be8a77ac4b98bb8102aae6793, type: 3}
   HoveredTile: {fileID: 0}
+  DraggedTile: {fileID: 0}
 --- !u!4 &587652038
 Transform:
   m_ObjectHideFlags: 0
@@ -1345,8 +1347,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5af13e30e950c4dbbc1b341d18af5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: 0
   chamberRef: {fileID: 2143788157}
-  buildingPreFab: {fileID: 0}
+  chamberPreFab: {fileID: 0}
 --- !u!114 &607446776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1435,8 +1438,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5af13e30e950c4dbbc1b341d18af5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: 0
   chamberRef: {fileID: 1548506172}
-  buildingPreFab: {fileID: 0}
+  chamberPreFab: {fileID: 0}
 --- !u!114 &648518155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1522,10 +1526,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 684260979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5af13e30e950c4dbbc1b341d18af5e, type: 3}
+  m_Script: {fileID: 11500000, guid: bdbf077b865411a4b954ec717fd9f800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chamberRef: {fileID: 70503861}
+  structRef: {fileID: 70503861}
   buildingPreFab: {fileID: 2091692415839605462, guid: 659b68a48853e9e4a87fcbf05dbbab79, type: 3}
 --- !u!114 &684260982
 MonoBehaviour:
@@ -1691,8 +1695,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5af13e30e950c4dbbc1b341d18af5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: 0
   chamberRef: {fileID: 1987335997}
-  buildingPreFab: {fileID: 0}
+  chamberPreFab: {fileID: 0}
 --- !u!114 &814518952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,8 +1861,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5af13e30e950c4dbbc1b341d18af5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: 0
   chamberRef: {fileID: 985341548}
-  buildingPreFab: {fileID: 0}
+  chamberPreFab: {fileID: 9219642017968138821, guid: a68f449b4e8daa942bdf4eb815360263, type: 3}
 --- !u!114 &844815716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2780,8 +2786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5af13e30e950c4dbbc1b341d18af5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: 0
   chamberRef: {fileID: 517914631}
-  buildingPreFab: {fileID: 0}
+  chamberPreFab: {fileID: 5457257678260854985, guid: 3798830a317901641a3268ad4634b114, type: 3}
 --- !u!114 &1160323999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2802,7 +2809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f2ca16cf1163b44418cb74ca743506f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae6b1f8918522e545a0a417440c0c3dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2938,7 +2945,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 832941886}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.7375643
+  m_Size: 0.73756427
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3121,8 +3128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hive: {fileID: 2002405634}
   enemyPreFab: {fileID: 2896820176378235156, guid: ebca50f9be878b240a306df5c08e2f4a, type: 3}
-  totalWaveTimer: 0
-  currentWaveTimer: 0
+  waveCooldown: 0
 --- !u!1 &1497880315
 GameObject:
   m_ObjectHideFlags: 0
@@ -4269,8 +4275,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5af13e30e950c4dbbc1b341d18af5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: 0
   chamberRef: {fileID: 1303210513}
-  buildingPreFab: {fileID: 0}
+  chamberPreFab: {fileID: 0}
 --- !u!114 &2106007560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4291,7 +4298,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ae6b1f8918522e545a0a417440c0c3dd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2ca16cf1163b44418cb74ca743506f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
