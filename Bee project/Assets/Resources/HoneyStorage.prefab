@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e6872b6ac05d84dbe4176d84fcb7c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waxCost: 10
+  type: storage
+  waxCost: 12
   honeyCost: 0
 --- !u!114 &759923401851292037
 MonoBehaviour:

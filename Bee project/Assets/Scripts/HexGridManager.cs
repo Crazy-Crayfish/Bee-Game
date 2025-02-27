@@ -97,7 +97,7 @@ public class HexGridManager : MonoBehaviour
         // Debug.Log("building");
         if (HoveredTile != null)
         {
-            if (building.GetComponent<Structure>().cost <= ResourceCounter.Instance.getWax() && building.GetComponent<Structure>().type == HoveredTile.GetComponent<HexTile>().tileType 
+            if (building.GetComponent<Structure>().type == HoveredTile.GetComponent<HexTile>().tileType 
             && building.GetComponent<Structure>().waxCost <= ResourceCounter.Instance.getWax()
             && building.GetComponent<Structure>().honeyCost <= ResourceCounter.Instance.getHoney())
             {

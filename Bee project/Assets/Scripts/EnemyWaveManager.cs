@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 // using UnityEngine.Random;
 
 public class EnemyWaveManager : MonoBehaviour
@@ -8,7 +9,13 @@ public class EnemyWaveManager : MonoBehaviour
     public static EnemyWaveManager Instance { get; set; }
     [SerializeField] private GameObject hive;
     [SerializeField] private GameObject enemyPreFab;
-    public float waveCooldown;
+    [SerializeField] public float waveCooldown;
+    [SerializeField] private float timeUntilFirstWave;
+    [SerializeField] private Text waveTimerText;
+    [SerializeField] private Text waveAlertText;
+
+    private float timeUntilNextWave;
+
     private int enemyCount;
     private int waveNum;
     private void Awake() 
@@ -24,15 +31,47 @@ public class EnemyWaveManager : MonoBehaviour
     void Start()
     {
         //// CHANGE THESE TO ADJUST DIFFICULTY 
-        waveCooldown = 60.0f;
-        float timeUntilFirstWave = 5.0f;
+        // waveCooldown = 60.0f;
+        // float timeUntilFirstWave = 150.0f; // 2:30
         enemyCount = 1;
         ////
-
+        timeUntilNextWave = timeUntilFirstWave;
+        waveAlertText.gameObject.SetActive(false);
         // Make waves start spawning regularly
         waveNum = 0;
         InvokeRepeating("TriggerWave", timeUntilFirstWave, waveCooldown);
     }
+
+    void Update()
+    {
+        if (timeUntilNextWave > 0)
+        {
+            if (timeUntilNextWave < waveCooldown - 8.0f && waveAlertText.gameObject.activeSelf == true)
+            {
+                waveAlertText.gameObject.SetActive(false);
+            }
+            timeUntilNextWave -= Time.deltaTime;
+        }
+        else
+        {
+            // ShowWaveAlert();
+            waveAlertText.gameObject.SetActive(true);
+            timeUntilNextWave = waveCooldown; // Ensure timer doesn't go negative
+        }
+        waveTimerText.text = "Next wave in: " + Mathf.Ceil(timeUntilNextWave).ToString() + "s";
+    }
+    
+    // private void ShowWaveAlert()
+    // {
+    //     waveAlertText.gameObject.SetActive(true);
+    //     float timeToVanish = 8.0f;
+    //     float timePassed = 0.0f;
+    //     while (timePassed < timeToVanish)
+    //     {
+    //         timePassed += Time.deltaTime;
+    //     }
+    //     waveAlertText.gameObject.SetActive(false);
+    // }
 
     private void TriggerWave()
     {
@@ -40,11 +79,14 @@ public class EnemyWaveManager : MonoBehaviour
         BackgroundMusicController.Instance.WaveMusicOn();
         // waveNum increment
         waveNum++;
-        // Increase enemies by 1 every 3 waves
-        if (waveNum % 3 == 0)
+        GridManager.Instance.growMap();
+        // Increase enemies by 1 every 2 waves
+        if (waveNum % 2 == 0)
         {
             enemyCount++;
+            GridManager.Instance.regenRes();
         }
+
         // Spawn enemies
         SummonWave(hive.transform.position + new Vector3(0, 0, -hive.transform.position.z));
     }

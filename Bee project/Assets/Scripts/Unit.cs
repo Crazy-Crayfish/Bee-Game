@@ -16,6 +16,11 @@ public class Unit : MonoBehaviour
     void Awake()
     {
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        // if (UnitSelectionManager.Instance.allUnitsList.Count > 0)
+        // {
+        //     agent.avoidancePriority = UnitSelectionManager.Instance.allUnitsList[UnitSelectionManager.Instance.allUnitsList.Count - 1].GetComponent<NavMeshAgent>().avoidancePriority + 1;
+        // }
+
         agent.updateRotation = false;
 		agent.updateUpAxis = false;
         UnitSelectionManager.Instance.allUnitsList.Add(gameObject);
