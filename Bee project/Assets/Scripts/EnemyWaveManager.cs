@@ -25,7 +25,7 @@ public class EnemyWaveManager : MonoBehaviour
     {
         //// CHANGE THESE TO ADJUST DIFFICULTY 
         waveCooldown = 60.0f;
-        float timeUntilFirstWave = 60.0f;
+        float timeUntilFirstWave = 5.0f;
         enemyCount = 1;
         ////
 
@@ -36,6 +36,9 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void TriggerWave()
     {
+        // Wave music
+        BackgroundMusicController.Instance.WaveMusicOn();
+        // waveNum increment
         waveNum++;
         // Increase enemies by 1 every 3 waves
         if (waveNum % 3 == 0)

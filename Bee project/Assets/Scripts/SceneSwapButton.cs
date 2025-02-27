@@ -18,7 +18,7 @@ public class SceneSwapButton : MonoBehaviour
     }
     public void ChangeScene()
     {
-        Debug.Log("change scene");
+        // Debug.Log("change scene");
         Camera_Controller cameraController = Cam.gameObject.GetComponent<Camera_Controller>();
         // cameraController.noMovement();
         // Camera.main.gameObject.transform.position = new Vector3(4000, 0, -20);

@@ -21,9 +21,13 @@ public class EnemyUnit : MonoBehaviour
     {
         if (this.health <= 0 && this.health != -1)
         {
-            
+
             this.gameObject.SetActive(false);
             Destroy(this);
+            if (UnitSelectionManager.Instance.allEnemiesList.Count == 1)
+            {
+                BackgroundMusicController.Instance.WaveMusicOff();
+            }
         }
     }
     void OnDestroy()

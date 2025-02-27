@@ -120,6 +120,16 @@ public class UnitSelectionManager : MonoBehaviour
             unitsSelected.Remove(unit);
         }
     }
+    
+    internal void DragSelect(GameObject unit)
+    {
+        if (unitsSelected.Contains(unit) == false)
+        {
+            unitsSelected.Add(unit);
+            TriggerSelectionIndicator(unit, true);
+            SetUnitMovement(unit, true);
+        }
+    }
 
     private void DeselectAll() 
     {

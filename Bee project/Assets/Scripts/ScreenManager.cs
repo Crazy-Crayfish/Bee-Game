@@ -45,6 +45,7 @@ public class ScreenManager : MonoBehaviour
         Camera.main.gameObject.GetComponent<Camera_Controller>().teleport(new Vector3(25,25,-20));
         // Camera.main.gameObject.GetComponent<Camera_Controller>().enabled = true;
 
+        BackgroundMusicController.Instance.HiveToWorld();
 
     }
     public void hive()
@@ -63,6 +64,7 @@ public class ScreenManager : MonoBehaviour
         // Camera.main..gameObject.GetComponent<Camera>.Size = 132f;
         // Camera.main.gameObject.GetComponent<Camera_Controller>().enabled = true;
 
+        BackgroundMusicController.Instance.WorldToHive();
     }
     // Update is called once per frame
 
