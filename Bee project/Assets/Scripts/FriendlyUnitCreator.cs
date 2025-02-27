@@ -30,9 +30,19 @@ public class FriendlyUnitCreator : MonoBehaviour
             CreateWorker(hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
         }
     }
-    private void CreateWorker(Vector3 location)
+    public void CreateWorker(Vector3 location)
     {
         var newWorker = Instantiate(workerBeePreFab, location, Quaternion.identity);
+        // Debug.Log("made worker at " + (newWorker.transform.position));
+        newWorker.GetComponent<Unit>().health = 100;
+        // newWorker.AddComponent<WorkerBeeLogic>();
+        // newWorker.AddComponent<Unit>();
+        // newWorker.AddComponent<UnitMovement>();
+    }
+    // If you don't have a specified location, spawn at hive
+    public void CreateWorker()
+    {
+        var newWorker = Instantiate(workerBeePreFab, (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z)), Quaternion.identity);
         // Debug.Log("made worker at " + (newWorker.transform.position));
         newWorker.GetComponent<Unit>().health = 100;
         // newWorker.AddComponent<WorkerBeeLogic>();
