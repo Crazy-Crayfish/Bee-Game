@@ -30,9 +30,21 @@ public class Tile : MonoBehaviour
         maxValue = x;
     }
 
+<<<<<<< Updated upstream
     public void setType(string x) {
         type = x;
     }
+=======
+    public void decrement() {
+        value--;
+        if(value == 0) {
+            this.gameObject.SetActive(false);
+            Destroy(this);
+        }
+    }
+
+    
+>>>>>>> Stashed changes
     public void OnMouseDown()
     {
         if (value > 9) {
