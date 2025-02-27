@@ -11,7 +11,11 @@ public class ResourceCounter : MonoBehaviour
     private int nectar;
     private int honey;
     private int wax;
-    private int dna;
+    private int DNA;
+    private int maxNectar;
+    private int maxHoney;
+    private int maxWax;
+    private int maxDNA;
     
     private int hiveLevel;
 
@@ -32,7 +36,11 @@ public class ResourceCounter : MonoBehaviour
         honey = 50;
         nectar = 0;
         wax = 50;
-        dna = 0;
+        DNA = 0;
+        maxHoney = 100;
+        maxNectar = 100;
+        maxWax = 100;
+        maxDNA = 100;
         UpdateResText();
         InvokeRepeating("UpdateResText", 1.0f, 1.0f);
         // InvokeRepeating("LoseHoney", 3.0f, 3.0f);
@@ -48,8 +56,9 @@ public class ResourceCounter : MonoBehaviour
     //Update text 
     private void UpdateResText()
     {
-        ResourcesText.text = ("RESOURCES:   Nectar: " + getNectar() + "   Honey: " + getHoney() + "   Wax: " + getWax() + "   DNA: " + getDna() );
+        ResourcesText.text = ("RESOURCES:   Nectar: " + getNectar() + "/" + getMaxNectar() + "   Honey: " + getHoney() + "/" + getMaxHoney() + "   Wax: " + getWax() + "/" + getMaxWax() + "   DNA: " + getDNA() +  "/" + getMaxDNA());
     }
+
 
     // nectar
     public int getNectar() {
@@ -93,17 +102,72 @@ public class ResourceCounter : MonoBehaviour
         }
     }
 
-    // dna
-    public int getDna() {
-        return dna;
+    // DNA
+    public int getDNA() {
+        return DNA;
     }
-    public void setDna(int setTo) {
-        dna = setTo;
+    public void setDNA(int setTo) {
+        DNA = setTo;
     }
-    public void changeDna(int plusBy) {
-        if (dna + plusBy >= 0)
+    public void changeDNA(int plusBy) {
+        if (DNA + plusBy >= 0)
         {
-            dna += plusBy;
+            DNA += plusBy;
+        }
+    }
+    // maxNectar
+    public int getMaxNectar() {
+        return maxNectar;
+    }
+    public void setMaxNectar(int setTo) {
+        maxNectar = setTo;
+    }
+    public void changeMaxNectar(int plusBy) {
+        if (maxNectar + plusBy >= 0)
+        {
+            maxNectar += plusBy;
+        }
+    }
+
+    // maxHoney 
+    public int getMaxHoney() {
+        return maxHoney;
+    }
+    public void setMaxHoney(int setTo) {
+        maxHoney = setTo;
+    }
+    public void changeMaxHoney(int plusBy) {
+        if (maxHoney + plusBy >= 0)
+        {
+            maxHoney += plusBy;
+        }
+    }
+
+    // maxWax
+    public int getMaxWax() {
+        return maxWax;
+    }
+    public void setMaxWax(int setTo) {
+        maxWax = setTo;
+    }
+    public void changeMaxWax(int plusBy) {
+        if (maxWax + plusBy >= 0)
+        {
+            maxWax += plusBy;
+        }
+    }
+
+    // maxDNA
+    public int getMaxDNA() {
+        return maxDNA;
+    }
+    public void setMaxDNA(int setTo) {
+        maxDNA = setTo;
+    }
+    public void changeMaxDNA(int plusBy) {
+        if (maxDNA + plusBy >= 0)
+        {
+            maxDNA += plusBy;
         }
     }
 }

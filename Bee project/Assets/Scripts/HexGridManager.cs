@@ -28,12 +28,14 @@ public class HexGridManager : MonoBehaviour
         // Debug.Log("building");
         if (HoveredTile != null)
         {
-            if (building.GetComponent<Structure>().cost <= ResourceCounter.Instance.getWax())
+            if (building.GetComponent<Structure>().waxCost <= ResourceCounter.Instance.getWax()
+            && building.GetComponent<Structure>().honeyCost <= ResourceCounter.Instance.getHoney())
             {
                 var newBuilding = Instantiate(building, 
                         new Vector3(HoveredTile.transform.position.x,HoveredTile.transform.position.y, -5), 
                                             Quaternion.identity);
-                ResourceCounter.Instance.changeWax(-building.GetComponent<Structure>().cost);
+                ResourceCounter.Instance.changeWax(-building.GetComponent<Structure>().waxCost);
+                ResourceCounter.Instance.changeHoney(-building.GetComponent<Structure>().honeyCost);
             }
         }
 

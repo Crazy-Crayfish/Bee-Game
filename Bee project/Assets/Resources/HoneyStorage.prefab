@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3178844757367125600}
   - component: {fileID: 773653725890807705}
-  - component: {fileID: 7111630847352782670}
-  - component: {fileID: 825441484765889659}
+  - component: {fileID: 4718026073152999256}
+  - component: {fileID: 759923401851292037}
   m_Layer: 0
-  m_Name: HoneyRefinery
+  m_Name: HoneyStorage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 9670b5fe7a05a794d808ac18c8aa7309, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34df0d57d7c114344a386cbfee3dea9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,19 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7111630847352782670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091692415839605462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c016c74c40e9c7542bd5a1a6144de042, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &825441484765889659
+--- !u!114 &4718026073152999256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,3 +98,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waxCost: 10
   honeyCost: 0
+--- !u!114 &759923401851292037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091692415839605462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3a81f075494be46bc7c9b2a368b8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
