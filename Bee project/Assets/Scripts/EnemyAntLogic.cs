@@ -33,10 +33,17 @@ public class EnemyAntLogic : MonoBehaviour
         if (currentTarget != null && Vector3.Distance(currentTarget.transform.position, this.transform.position) < 1.5) 
         {   
             Attack(currentTarget);
+            GetComponent<Animator>().SetBool("antAttacking", true);
         }   
-        else 
+        // else if (attacking == true)
+        // {   
+        //     moveTowards(currentTarget);
+        //     GetComponent<Animator>().setBool("attacking", false)
+        // }   
+        else
         {   
             moveTowards(currentTarget);
+            GetComponent<Animator>().SetBool("antAttacking", false);
         }   
             
 

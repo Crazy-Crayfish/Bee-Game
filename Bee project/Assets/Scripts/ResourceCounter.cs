@@ -45,10 +45,10 @@ public class ResourceCounter : MonoBehaviour
         changeHoney(-1 * hiveLevel);
     }
 
-    //Update text 
+    //Update text resource display
     private void UpdateResText()
     {
-        ResourcesText.text = ("RESOURCES:   Nectar: " + getNectar() + "   Honey: " + getHoney() + "   Wax: " + getWax() + "   DNA: " + getDna() );
+        ResourcesText.text = ("Nectar:" + getNectar() + " Honey:" + getHoney() + " Wax:" + getWax() + " DNA:" + getDna() );
     }
 
     // nectar

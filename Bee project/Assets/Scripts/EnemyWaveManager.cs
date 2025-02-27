@@ -25,7 +25,7 @@ public class EnemyWaveManager : MonoBehaviour
     {
         //// CHANGE THESE TO ADJUST DIFFICULTY 
         waveCooldown = 60.0f;
-        float timeUntilFirstWave = 60.0f;
+        float timeUntilFirstWave = 1.0f;
         enemyCount = 1;
         ////
 

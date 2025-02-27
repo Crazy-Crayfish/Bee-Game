@@ -38,6 +38,11 @@ public class WorkerBeeLogic : MonoBehaviour {
         {
             // Debug.Log("Attacking an enemy");
             TaskAttacking(targetEnemy);
+            GetComponent<Animator>().SetBool("beeAttacking", true);
+        }
+        else 
+        {
+        GetComponent<Animator>().SetBool("beeAttacking", false);
         }
         if (currentTask == "moving") 
         {
