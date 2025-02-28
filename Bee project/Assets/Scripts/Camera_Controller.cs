@@ -17,6 +17,7 @@ public class Camera_Controller : MonoBehaviour
     void Start()
     {
         newPosition = gameObject.transform.position;
+        teleport(new Vector3(25,25,-20));
     }
 
     // Update is called once per frame
@@ -60,13 +61,13 @@ public class Camera_Controller : MonoBehaviour
     {
         newPosition += (transform.right * -movementSpeed);
     }
-    if (Input.GetKey(KeyCode.Z) && GetComponent<Camera>().orthographicSize > 0.01)
+    if (Input.GetKey(KeyCode.Z) && GetComponent<Camera>().orthographicSize > 0.05)
     {
-        GetComponent<Camera>().orthographicSize -= 0.01f;
+        GetComponent<Camera>().orthographicSize -= 0.05f;
     }
     if (Input.GetKey(KeyCode.C))
     {
-        GetComponent<Camera>().orthographicSize += 0.01f;
+        GetComponent<Camera>().orthographicSize += 0.05f;
     }
 
     // Moving without infinite momentum

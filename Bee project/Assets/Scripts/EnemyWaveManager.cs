@@ -58,7 +58,7 @@ public class EnemyWaveManager : MonoBehaviour
             waveAlertText.gameObject.SetActive(true);
             timeUntilNextWave = waveCooldown; // Ensure timer doesn't go negative
         }
-        waveTimerText.text = "Next wave in: " + Mathf.Ceil(timeUntilNextWave).ToString() + "s";
+        waveTimerText.text = "Enemy wave " + (waveNum + 1) + " in: " + Mathf.Ceil(timeUntilNextWave).ToString() + "s";
     }
     
     // private void ShowWaveAlert()

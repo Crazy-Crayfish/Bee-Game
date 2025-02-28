@@ -56,7 +56,7 @@ public class ResourceCounter : MonoBehaviour
     //Update text resource display
     private void UpdateResText()
     {
-        ResourcesText.text = ("RESOURCES:   Nectar: " + getNectar() + "/" + getMaxNectar() + "   Honey: " + getHoney() + "/" + getMaxHoney() + "   Wax: " + getWax() + "/" + getMaxWax() + "   DNA: " + getDNA() +  "/" + getMaxDNA());
+        ResourcesText.text = ("Nectar: " + getNectar() + "/" + getMaxNectar() + "   Honey: " + getHoney() + "/" + getMaxHoney() + "\n   Wax: " + getWax() + "/" + getMaxWax() + "   DNA: " + getDNA() +  "/" + getMaxDNA());
     }
 
 

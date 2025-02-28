@@ -7,7 +7,7 @@ public class HexGridManager : MonoBehaviour
     
     public static HexGridManager Instance { get; set; }
     // Start is called before the first frame update
-    [SerializeField] private int width, height;
+    [SerializeField] public int width, height;
     [SerializeField] private HexTile hexTilePreFab;
     public GameObject[,] tileList;
     public GameObject HoveredTile;

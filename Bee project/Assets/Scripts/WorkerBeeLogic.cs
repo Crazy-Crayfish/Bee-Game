@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class WorkerBeeLogic : MonoBehaviour {
     Camera cam;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     private SpriteRenderer renderer;
     private Animator animator;
     private string currentTask;
@@ -95,8 +95,11 @@ public class WorkerBeeLogic : MonoBehaviour {
         MovementAnimationUpdate();
         if (Vector3.Distance(target.transform.position, this.transform.position) < 1.5)
         {
+            // attackTimer = attackTimer + 1f * Time.deltaTime;
+            // attackTimer = Mathf.Clamp(attackTimer, 0f, attackCooldown);
+
             // deal damage
-            if (target.GetComponent<EnemyUnit>().health > 0 && Time.frameCount % 60 == 0)
+            if (target.GetComponent<EnemyUnit>().health > 0 && Time.frameCount % 60 == 0) // bad time shortcut
             {
                 target.GetComponent<EnemyUnit>().health = target.GetComponent<EnemyUnit>().health - 20;
                 // Debug.Log ("damaging enemy to " + target.GetComponent<EnemyUnit>().health);
@@ -117,12 +120,13 @@ public class WorkerBeeLogic : MonoBehaviour {
                              this.gameObject.transform.position) < 0.05)
         {
             // Debug.Log("collecting!!");
-            if (destinationTile.value > 0 && Time.frameCount % 60 == 0)
+            if (destinationTile.value > 0 && Time.frameCount % 60 == 0) // bad time shortcut
             {
                 destinationTile.value = destinationTile.value - 1;
                 ResourceCounter.Instance.changeNectar(1);
             }
         }
+        // maybe make it auto seek out more flowers?
         
     }
     private void TaskMoving() 

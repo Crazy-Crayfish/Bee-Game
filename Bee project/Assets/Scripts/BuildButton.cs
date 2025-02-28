@@ -28,7 +28,7 @@ public class BuildButton : MonoBehaviour
         }
         else
         {
-            popUpMenu.transform.position = new Vector3(125, 235, 0);
+            popUpMenu.transform.position = new Vector3(125, 260, 0);
             popUpOpen = true;
         }
     }

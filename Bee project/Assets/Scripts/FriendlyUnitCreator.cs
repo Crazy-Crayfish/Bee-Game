@@ -22,14 +22,14 @@ public class FriendlyUnitCreator : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.B) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
-        {
-            ResourceCounter.Instance.changeHoney(-15);
-            CreateWorker(hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
-        }
-    }
+    // void Update()
+    // {
+    //     if(Input.GetKeyDown(KeyCode.B) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
+    //     {
+    //         ResourceCounter.Instance.changeHoney(-15);
+    //         CreateWorker();
+    //     }
+    // }
     public void CreateWorker(Vector3 location)
     {
         var newWorker = Instantiate(workerBeePreFab, location, Quaternion.identity);
@@ -42,9 +42,13 @@ public class FriendlyUnitCreator : MonoBehaviour
     // If you don't have a specified location, spawn at hive
     public void CreateWorker()
     {
-        var newWorker = Instantiate(workerBeePreFab, (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z)), Quaternion.identity);
+        Vector3 pos = (hive.transform.position + new Vector3(0, -1, -hive.transform.position.z));
+        
+        var newWorker = Instantiate(workerBeePreFab, pos, Quaternion.identity);
+        
         // Debug.Log("made worker at " + (newWorker.transform.position));
         newWorker.GetComponent<Unit>().health = 100;
+        newWorker.GetComponent<WorkerBeeLogic>().agent.destination = (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
         // newWorker.AddComponent<WorkerBeeLogic>();
         // newWorker.AddComponent<Unit>();
         // newWorker.AddComponent<UnitMovement>();

@@ -650,7 +650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a420e3366692d749a10690862ee4e9e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 488d1324a6e42b343a99d3e23c98f6e9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1291,9 +1291,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93916cbe96780445a9471cd816de9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 0.01
-  fastSpeed: 0.03
-  movementSpeed: 0.01
+  normalSpeed: 0.08
+  fastSpeed: 0.3
+  movementSpeed: 0.1
   movementTime: 5
   rotationAmount: 0
 --- !u!20 &519420031
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   width: 40
-  height: 30
+  height: 50
   hexTilePreFab: {fileID: 6672709892374027852, guid: b97f176be8a77ac4b98bb8102aae6793, type: 3}
   HoveredTile: {fileID: 0}
   DraggedTile: {fileID: 0}
@@ -2758,7 +2758,7 @@ GameObject:
   - component: {fileID: 983210265}
   - component: {fileID: 983210264}
   m_Layer: 0
-  m_Name: EventSystem (1)
+  m_Name: HiveEventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2996,7 +2996,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a420e3366692d749a10690862ee4e9e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 488d1324a6e42b343a99d3e23c98f6e9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3116,7 +3116,7 @@ GameObject:
   - component: {fileID: 1054334858}
   - component: {fileID: 1054334857}
   m_Layer: 5
-  m_Name: Wave Text
+  m_Name: Wave Timer Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3162,12 +3162,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: 0e496a2f8dfc45d4ebfecd3f03c0674b, type: 3}
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 54
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3442,7 +3442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5754717, g: 0.17065713, b: 0, a: 0.90588236}
+  m_Color: {r: 0.8490566, g: 0.2541394, b: 0, a: 0.90588236}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3663,7 +3663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46226418, g: 0.059444845, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.060020924, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3671,7 +3671,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 0e496a2f8dfc45d4ebfecd3f03c0674b, type: 3}
     m_FontSize: 49
     m_FontStyle: 0
     m_BestFit: 0
@@ -3754,8 +3754,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 832941888}
   m_HandleRect: {fileID: 832941886}
   m_Direction: 2
-  m_Value: 0.50000036
-  m_Size: 0.74547136
+  m_Value: 0.5000001
+  m_Size: 0.7454715
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3965,7 +3965,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 34df0d57d7c114344a386cbfee3dea9f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 790a61f21c73c6e45bf2c21d56550e37, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4029,7 +4029,7 @@ MonoBehaviour:
   hive: {fileID: 2002405634}
   enemyPreFab: {fileID: 2896820176378235156, guid: ebca50f9be878b240a306df5c08e2f4a, type: 3}
   waveCooldown: 90
-  timeUntilFirstWave: 20
+  timeUntilFirstWave: 120
   waveTimerText: {fileID: 1054334857}
   waveAlertText: {fileID: 1269279024}
 --- !u!1 &1497880315
@@ -4091,7 +4091,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0e496a2f8dfc45d4ebfecd3f03c0674b, type: 3}
-    m_FontSize: 28
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -4675,7 +4675,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 34df0d57d7c114344a386cbfee3dea9f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 790a61f21c73c6e45bf2c21d56550e37, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5228,7 +5228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 5c448a28ad690cc4e9ef452d05bfd5d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

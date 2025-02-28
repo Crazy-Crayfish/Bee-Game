@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-guid: 2876a5d1f378dcc48b741987163dd547
+guid: 790a61f21c73c6e45bf2c21d56550e37
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -4375180948910553571
-    second: bee moving sprite sheet_0
-  - first:
-      213: -3112439631215264736
-    second: bee moving sprite sheet_1
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -47,12 +41,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1000
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,49 +113,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: bee moving sprite sheet_0
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 116
-        width: 1329
-        height: 1448
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d1641209b1c3843c0800000000000000
-      internalID: -4375180948910553571
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bee moving sprite sheet_1
-      rect:
-        serializedVersion: 2
-        x: 1674
-        y: 116
-        width: 1332
-        height: 1448
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02cf09455a46ec4d0800000000000000
-      internalID: -3112439631215264736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

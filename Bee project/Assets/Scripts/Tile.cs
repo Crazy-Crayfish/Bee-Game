@@ -81,10 +81,17 @@ public class Tile : MonoBehaviour
         MenuManager.Instance.showSelectedRes(null);
     }
 
+    void OnMouseOver() {
+        // highlight.SetActive(true);
+        MenuManager.Instance.showSelectedRes(this);
+        
+    }
+    
     public void setVal(int x) {
         value = x;
         maxValue = x;
     }
+
 
     public void decrement() {
         value--;
@@ -95,19 +102,19 @@ public class Tile : MonoBehaviour
     }
 
     
-    public void OnMouseDown()
-    {
-        if (value > 9) {
-            value -= 10;
-            MenuManager.Instance.showSelectedRes(this);
+    // public void OnMouseDown()
+    // {
+    //     if (value > 9) {
+    //         value -= 10;
+    //         MenuManager.Instance.showSelectedRes(this);
 
-        }
-        else if(value > 0) {
-            value = 0;
-            MenuManager.Instance.showSelectedRes(this);
-        }
-        else{
-            return;
-            }
-    }
+    //     }
+    //     else if(value > 0) {
+    //         value = 0;
+    //         MenuManager.Instance.showSelectedRes(this);
+    //     }
+    //     else{
+    //         return;
+    //         }
+    // }
 }

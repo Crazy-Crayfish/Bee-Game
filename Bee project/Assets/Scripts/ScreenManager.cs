@@ -60,7 +60,7 @@ public class ScreenManager : MonoBehaviour
         // Camera.main.gameObject.GetComponent<Camera_Controller>().enabled = false;
         // Camera.main.gameObject.transform.position = new Vector3(4020, 20, -20);
         
-        Camera.main.gameObject.GetComponent<Camera_Controller>().teleport(new Vector3(4020,5,-20));
+        Camera.main.gameObject.GetComponent<Camera_Controller>().teleport(new Vector3(4027,7,-20));
         // Camera.main..gameObject.GetComponent<Camera>.Size = 132f;
         // Camera.main.gameObject.GetComponent<Camera_Controller>().enabled = true;
 
