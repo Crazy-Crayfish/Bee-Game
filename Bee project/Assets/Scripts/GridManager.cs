@@ -175,10 +175,12 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Tile redFlower;
     [SerializeField] private Tile treeTile;
     private int bottom, west = 0;
+    public KdTree2D kdTree;
     // Not a real difficultyModifier Yet
 
     void Start() {
         Instance = this;
+        kdTree = new KdTree2D();
         GenerateGrid();
     }
 
@@ -240,13 +242,18 @@ public class GridManager : MonoBehaviour
             flowtemp = flowSeed;
         }
         
+        // REMOVE UPON MERGE
+        // WILL ADD FLOWERS TO KD TREE
+        kdTree.Insert(z,y);
 
-    flowerType(zzz, z, y);
-    tempSeed = tempSeed / 100;
-    if(tempSeed == 0) {
-        mod = mod *2;
-        tempSeed = mod;
-    }
+        flowerType(zzz, z, y);
+
+
+        tempSeed = tempSeed / 100;
+        if(tempSeed == 0) {
+            mod = mod *2;
+            tempSeed = mod;
+        }
     
     }
    }

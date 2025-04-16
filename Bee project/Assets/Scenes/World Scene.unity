@@ -4788,6 +4788,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hive: {fileID: 2002405634}
   workerBeePreFab: {fileID: 8322931174489636132, guid: 69661b5ddce6a5541a226ac10123826f, type: 3}
+  soldierBeePreFab: {fileID: 8322931174489636132, guid: ef043fbf637ff8a4c9b551648d30db83, type: 3}
+  honeyBeePreFab: {fileID: 8322931174489636132, guid: a95360fe33951424fb5fc3c5a750ed73, type: 3}
 --- !u!1 &1899711546
 GameObject:
   m_ObjectHideFlags: 0
