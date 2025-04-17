@@ -127,7 +127,9 @@ public class EnemyWaveManager : MonoBehaviour
 {
     public static EnemyWaveManager Instance { get; set; }
     [SerializeField] private GameObject hive;
-    [SerializeField] private GameObject enemyPreFab;
+    [SerializeField] private GameObject enemyAntPreFab;
+    [SerializeField] private GameObject enemySpiderPreFab;
+    [SerializeField] private GameObject enemyBadgerPreFab;
     [SerializeField] public float waveCooldown;
     [SerializeField] private float timeUntilFirstWave;
     [SerializeField] private Text waveTimerText;
@@ -165,7 +167,7 @@ public class EnemyWaveManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.L)) // Debug wave summoner
         {
-            SummonWave(hive.transform.position + new Vector3(0, 0, -hive.transform.position.z));
+            TriggerWave();
         }
         
         if (timeUntilNextWave > 0)
@@ -232,8 +234,20 @@ public class EnemyWaveManager : MonoBehaviour
         for (int i = 0; i < enemyCount; i++)
         {
             Vector3 offset = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), 0);
-            var newEnemy = Instantiate(enemyPreFab, (center + randomDirection) + offset, Quaternion.identity);
-            newEnemy.GetComponent<EnemyUnit>().health = 150;
+            
+            //var newAnt = Instantiate(enemyAntPreFab, (center + randomDirection) + offset, Quaternion.identity);
+            
+            var newSpider = Instantiate(enemySpiderPreFab, (center + randomDirection) + offset, Quaternion.identity);
+            
+            //var newBadger = Instantiate(enemyBadgerPreFab, (center + randomDirection) + offset, Quaternion.identity);
+
+            //newAnt.GetComponent<EnemyUnit>().health = 150;
+
+            // SPIDERS HAVE 2/3X HEALTH BUT 1.5X SPEED
+            newSpider.GetComponent<EnemyUnit>().health = 100;
+
+            // BADGERS HAVE 3X HEALTH BUT 0.5X SPEED
+            //newBadger.GetComponent<EnemyUnit>().health = 450;
         }
 
     }

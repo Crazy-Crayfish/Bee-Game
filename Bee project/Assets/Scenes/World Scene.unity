@@ -4775,7 +4775,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hive: {fileID: 2002405634}
-  enemyPreFab: {fileID: 2896820176378235156, guid: ebca50f9be878b240a306df5c08e2f4a, type: 3}
+  enemyAntPreFab: {fileID: 2896820176378235156, guid: ebca50f9be878b240a306df5c08e2f4a, type: 3}
+  enemySpiderPreFab: {fileID: 2896820176378235156, guid: a65339d86124f034a9a77b188abd1226, type: 3}
   waveCooldown: 90
   timeUntilFirstWave: 120
   waveTimerText: {fileID: 1054334857}
