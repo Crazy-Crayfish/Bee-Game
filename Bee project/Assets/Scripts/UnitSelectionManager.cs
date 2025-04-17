@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class UnitSelectionManager : MonoBehaviour
 {
@@ -91,11 +92,13 @@ public class UnitSelectionManager : MonoBehaviour
                 {
                     // Debug.Log(destinationVector.ToString());
                     unit.GetComponent<WorkerBeeLogic>().setDestinationTile(destination.collider.gameObject);
+                    unit.GetComponent<NavMeshAgent>().destination = destination.collider.gameObject.transform.position;
                 } 
                 // if the unit is a honey bee
                 if (unit.GetComponent<HoneyBeeLogic> () != null) 
                 {
                     unit.GetComponent<HoneyBeeLogic>().setDestinationTile(destination.collider.gameObject);
+                    unit.GetComponent<NavMeshAgent>().destination = destination.collider.gameObject.transform.position;
                 }   
             }
         }

@@ -66,7 +66,7 @@ public class FriendlyUnitCreator : MonoBehaviour
     public GameObject CreateBee(GameObject beePrefab)
     {
         // Spawn at hive
-        Vector3 hivePos = (hive.transform.position + new Vector3(0, -1, -hive.transform.position.z));
+        Vector3 hivePos = (hive.transform.position + new Vector3(0, -3, -hive.transform.position.z));
         
         return CreateBee(beePrefab, hivePos);
     }

@@ -24,10 +24,11 @@ public class EnemyBadgerLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (agent.destination.x < gameObject.transform.position.x && GetComponent<SpriteRenderer>().flipX)
+        if (agent.destination.x > gameObject.transform.position.x && GetComponent<SpriteRenderer>().flipX)
         {
+            // Debug.Log("flip badger");
             GetComponent<SpriteRenderer>().flipX = false;
-        } else if (agent.destination.x > gameObject.transform.position.x && !GetComponent<SpriteRenderer>().flipX) {
+        } else if (agent.destination.x < gameObject.transform.position.x && !GetComponent<SpriteRenderer>().flipX) {
             GetComponent<SpriteRenderer>().flipX = true;       
         }
 
@@ -35,7 +36,7 @@ public class EnemyBadgerLogic : MonoBehaviour
         if (currentTarget != null && Vector3.Distance(currentTarget.transform.position, this.transform.position) < 1.5) 
         {   
             Attack(currentTarget);
-            GetComponent<Animator>().SetBool("antAttacking", true);
+            // GetComponent<Animator>().SetBool("antAttacking", true);
         }   
         // else if (attacking == true)
         // {   
@@ -45,7 +46,7 @@ public class EnemyBadgerLogic : MonoBehaviour
         else
         {   
             moveTowards(currentTarget);
-            GetComponent<Animator>().SetBool("antAttacking", false);
+            // GetComponent<Animator>().SetBool("antAttacking", false);
         }   
             
 

@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2896820176378235156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,17 +45,17 @@ NavMeshAgent:
   m_GameObject: {fileID: 2896820176378235156}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 0
+  m_Radius: 2.15
+  m_Speed: 0.8
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 3
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
+  m_Height: 1.51
+  m_BaseOffset: 1.46
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!212 &3440935017028380309
@@ -98,8 +98,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 431a827f2b0853548b834f8dac41579a, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -4041213111258022983, guid: 6dc5223e459f2074a956e6423ff813e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -132,7 +132,7 @@ Animator:
   m_GameObject: {fileID: 2896820176378235156}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9995feb3962761c4285279675e667c94, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3af9f950cbc81714e8d1fad4e7ae1844, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -152,8 +152,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.43, y: 1.49, z: 0.2}
-  m_Center: {x: 0, y: -0.2, z: 0}
+  m_Size: {x: 4.58, y: 1.72, z: 0.2}
+  m_Center: {x: 0, y: -0.75, z: 0}
 --- !u!114 &2475854417942262369
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ public class EnemySpiderLogic : MonoBehaviour
         if (currentTarget != null && Vector3.Distance(currentTarget.transform.position, this.transform.position) < 1.5) 
         {   
             Attack(currentTarget);
-            GetComponent<Animator>().SetBool("antAttacking", true);
+            // GetComponent<Animator>().SetBool("antAttacking", true);
         }   
         // else if (attacking == true)
         // {   
@@ -44,7 +44,7 @@ public class EnemySpiderLogic : MonoBehaviour
         else
         {   
             moveTowards(currentTarget);
-            GetComponent<Animator>().SetBool("antAttacking", false);
+            // GetComponent<Animator>().SetBool("antAttacking", false);
         }   
             
 

@@ -4777,8 +4777,9 @@ MonoBehaviour:
   hive: {fileID: 2002405634}
   enemyAntPreFab: {fileID: 2896820176378235156, guid: ebca50f9be878b240a306df5c08e2f4a, type: 3}
   enemySpiderPreFab: {fileID: 2896820176378235156, guid: a65339d86124f034a9a77b188abd1226, type: 3}
+  enemyBadgerPreFab: {fileID: 2896820176378235156, guid: e830e790f07b8c049985ccb5fd54df40, type: 3}
   waveCooldown: 90
-  timeUntilFirstWave: 120
+  timeUntilFirstWave: 5
   waveTimerText: {fileID: 1054334857}
   waveAlertText: {fileID: 1269279024}
 --- !u!1 &1427189179
