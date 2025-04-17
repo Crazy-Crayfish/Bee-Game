@@ -6,8 +6,7 @@ public class UnitSelectionBox : MonoBehaviour
 {
     Camera myCam;
  
-    [SerializeField]
-    RectTransform boxVisual;
+    [SerializeField] RectTransform boxVisual;
  
     Rect selectionBox;
  
