@@ -12,7 +12,8 @@ public class HexGridManager : MonoBehaviour
     public GameObject[,] tileList;
     public GameObject HoveredTile;
     public GameObject DraggedTile;
-        private void Awake() 
+    public GameObject GridQueen;
+    private void Awake() 
     {
         if (Instance != null && Instance != this) {
             Destroy(gameObject);
@@ -24,6 +25,49 @@ public class HexGridManager : MonoBehaviour
         GenerateGrid();
         HoveredTile = null;
     }
+
+    public bool[] getEggList()
+    {
+        //Debug.Log(GridQueen.GetComponent<Queen>().eggPositions.Length);
+        return GridQueen.GetComponent<Queen>().eggPositions;
+    }
+    
+    public GameObject getEggAtPos(int pos)
+    {
+        // Debug.Log("HexGridManager thinks eggPos length is: " + GridQueen.GetComponent<Queen>().eggPositions.Length);
+        // Debug.Log("HexGridManager thinks eggPos is: " + GridQueen.GetComponent<Queen>().eggPositions);
+        // string a = "HexGridManager thinks eggPos is: ";
+        // foreach(bool b in GridQueen.GetComponent<Queen>().eggPositions)
+        // {
+        //     a += b + " ";
+        // }
+        // Debug.Log(a);
+
+        return GridQueen.GetComponent<Queen>().eggObjects[pos];
+    }
+
+    public void removeEggAtPos(int pos)
+    {
+        bool[] newList = new bool[GridQueen.GetComponent<Queen>().eggPositions.Length];
+        for (int i = 0; i < GridQueen.GetComponent<Queen>().eggPositions.Length; i++)
+        {
+            if (i == pos)
+            {
+                newList[i] = false;
+            }
+            else
+            {
+                newList[i] = GridQueen.GetComponent<Queen>().eggPositions[i];
+            }
+        }
+        GridQueen.GetComponent<Queen>().eggPositions = newList;
+        GridQueen.GetComponent<Queen>().eggObjects[pos].SetActive(false);
+        Destroy(GridQueen.GetComponent<Queen>().eggObjects[pos]);
+        GridQueen.GetComponent<Queen>().eggObjects[pos] = null;
+
+    }
+    
+
 
     // EXAMPLE OF HOW POSITIONS WORK:
     /*   0
@@ -98,12 +142,16 @@ public class HexGridManager : MonoBehaviour
         if (HoveredTile != null)
         {
             if (building.GetComponent<Structure>().type == HoveredTile.GetComponent<HexTile>().tileType 
+            && HoveredTile.GetComponent<HexTile>().isBuiltOn == false
             && building.GetComponent<Structure>().waxCost <= ResourceCounter.Instance.getWax()
             && building.GetComponent<Structure>().honeyCost <= ResourceCounter.Instance.getHoney())
             {
                 var newBuilding = Instantiate(building, 
                         new Vector3(HoveredTile.transform.position.x,HoveredTile.transform.position.y, -5), 
                                             Quaternion.identity);
+                
+                HoveredTile.GetComponent<HexTile>().isBuiltOn = true;
+                HoveredTile.GetComponent<HexTile>().structure = newBuilding;
                 ResourceCounter.Instance.changeWax(-building.GetComponent<Structure>().waxCost);
                 ResourceCounter.Instance.changeHoney(-building.GetComponent<Structure>().honeyCost);
             }
@@ -125,7 +173,8 @@ public class HexGridManager : MonoBehaviour
             if (isOffSet) {
                 tempX += (float)0.65 * scalar;
             }
-            var spawnedTile = Instantiate(hexTilePreFab, new Vector3(this.gameObject.transform.position.x + tempX,tempY), Quaternion.identity);
+            var spawnedTile = Instantiate(hexTilePreFab, new Vector3(tempX,tempY), Quaternion.identity); //this.gameObject.transform.position.x + 
+            spawnedTile.transform.SetParent(this.gameObject.transform, false);
             spawnedTile.Init(isOffSet, x, y);
             tileList[x, y] = spawnedTile.gameObject;
             spawnedTile.name = $"HexTile {x} {y}";
@@ -134,20 +183,26 @@ public class HexGridManager : MonoBehaviour
         }
     }
     GameObject centerTile = tileList[width / 2, height / 2];
-    Debug.Log(centerTile.GetComponent<HexTile>().gridX + ", " + centerTile.GetComponent<HexTile>().gridY);
+    // Debug.Log(centerTile.GetComponent<HexTile>().gridX + ", " + centerTile.GetComponent<HexTile>().gridY);
     // GameObject queenTile = (GameObject)Resources.Load("Rsources/QueenTile",typeOf(GameObject));
     GameObject queenTile = Resources.Load("QueenTile", typeof(GameObject)) as GameObject;
     GameObject queen = Resources.Load("Queen", typeof(GameObject)) as GameObject;
     centerTile.GetComponent<HexTile>().changeType(queenTile);
-    Instantiate(queen, 
+    GameObject queenInstance = Instantiate(queen, 
                 new Vector3(centerTile.transform.position.x, centerTile.transform.position.y, -5), 
                 Quaternion.identity);
+    GridQueen = queenInstance;
     getNeighborAtPos(centerTile, 0).GetComponent<HexTile>().changeType(queenTile);
     getNeighborAtPos(centerTile, 1).GetComponent<HexTile>().changeType(queenTile);
     getNeighborAtPos(centerTile, 2).GetComponent<HexTile>().changeType(queenTile);
     getNeighborAtPos(centerTile, 3).GetComponent<HexTile>().changeType(queenTile);
     getNeighborAtPos(centerTile, 4).GetComponent<HexTile>().changeType(queenTile);
     getNeighborAtPos(centerTile, 5).GetComponent<HexTile>().changeType(queenTile);
+
+    // make starter workers  
+    FriendlyUnitCreator.Instance.CreateWorker();
+    FriendlyUnitCreator.Instance.CreateWorker();
+    FriendlyUnitCreator.Instance.CreateWorker();
    }
    
 }

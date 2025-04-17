@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9082655854655584082}
   - component: {fileID: 8863240417792890459}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tile image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,8 +92,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8435232419870437581}
   - component: {fileID: 6672709892374027852}
-  - component: {fileID: 2337818961741254175}
-  m_Layer: 0
+  - component: {fileID: 5281421368204077433}
+  m_Layer: 6
   m_Name: HexTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,19 +133,33 @@ MonoBehaviour:
   gridX: 0
   gridY: 0
   tileType: 
---- !u!135 &2337818961741254175
-SphereCollider:
+  isBuiltOn: 0
+--- !u!61 &5281421368204077433
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5739482659549349659}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 24, y: 24}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.4
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &8358203747809928708
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6298808350645229060}
   - component: {fileID: 718033266192145615}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

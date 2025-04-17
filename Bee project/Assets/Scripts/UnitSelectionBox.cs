@@ -24,8 +24,7 @@ public class UnitSelectionBox : MonoBehaviour
  
     private void Update()
     {
-        if (ScreenManager.Instance.inHive == false)
-        {
+
             // When Clicked
             if (Input.GetMouseButtonDown(0))
             {
@@ -38,23 +37,26 @@ public class UnitSelectionBox : MonoBehaviour
             // When Dragging
             if (Input.GetMouseButton(0))
             {
-                endPosition = Input.mousePosition;
-                DrawVisual();
-                DrawSelection();
+                if (HexGridManager.Instance.DraggedTile == null)
+                {
+                    endPosition = Input.mousePosition;
+                    DrawVisual();
+                    DrawSelection();
+                }
             }
-        }
+        
 
     
-            // When Releasing
-            if (Input.GetMouseButtonUp(0))
-            {
-                SelectUnits();
-    
-                startPosition = Vector2.zero;
-                endPosition = Vector2.zero;
-                DrawVisual();
-            }
+        // When Releasing
+        if (Input.GetMouseButtonUp(0))
+        {
+            SelectUnits();
+
+            startPosition = Vector2.zero;
+            endPosition = Vector2.zero;
+            DrawVisual();
         }
+    }
  
     void DrawVisual()
     {

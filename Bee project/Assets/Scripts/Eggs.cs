@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Eggs : MonoBehaviour
 {
-    private float targetTime = 15.0f;
+    // private float targetTime = 15.0f;
     // Start is called before the first frame update
     void Start()
     {   
@@ -13,17 +13,17 @@ public class Eggs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        targetTime -= Time.deltaTime;
+        // targetTime -= Time.deltaTime;
 
-        if (targetTime <= 0.0f)
-        {
-            spawnBees();
-        }
+        // if (targetTime <= 0.0f)
+        // {
+        //     spawnBees();
+        // }
     }
 
-    void spawnBees()
-    {
-        FriendlyUnitCreator.Instance.CreateWorker();
-        Destroy(gameObject);
-    }
+    // void spawnBees()
+    // {
+    //     FriendlyUnitCreator.Instance.CreateWorker();
+    //     Destroy(gameObject);
+    // }
 }

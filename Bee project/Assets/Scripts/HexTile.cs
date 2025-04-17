@@ -11,12 +11,16 @@ public class HexTile : MonoBehaviour
     public int gridX;
     public int gridY;
     public string tileType; // "empty", "queen", "storage", "production", "nursery"
-    
+    public bool isBuiltOn;
+    public GameObject structure;
+
     public void Init(bool isOffset, int x, int y){
        // renderer.color = isOffset ? alternateColor : baseColor;
        tileType = "empty";
+       isBuiltOn = false;
        gridX = x;
        gridY = y;
+       structure = null;
     }
 
     // public void changeSprite(Sprite newSprite) {

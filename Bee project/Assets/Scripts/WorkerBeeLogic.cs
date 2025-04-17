@@ -9,8 +9,11 @@ public class WorkerBeeLogic : MonoBehaviour {
     private SpriteRenderer renderer;
     private Animator animator;
     private string currentTask;
-    private Tile destinationTile;
+    private GameObject destinationTile; // maybe should be changed to account for hexTiles
     private GameObject targetEnemy;
+    private GameObject hive;
+    private GameObject queen;
+    public string carriedObject;
     void Awake() 
     {
         animator = GetComponent<Animator>();
@@ -21,6 +24,8 @@ public class WorkerBeeLogic : MonoBehaviour {
         destinationTile = null;
         this.GetComponent<Unit>().health = 100;
         targetEnemy = null;
+        hive = FriendlyUnitCreator.Instance.hive;
+        queen = HexGridManager.Instance.GridQueen;
 	}
 
     // Update is called once per frame
@@ -32,7 +37,40 @@ public class WorkerBeeLogic : MonoBehaviour {
             currentTask = FindTask();
             // Debug.Log("currentTask is " + currentTask);
         }
-
+        // if selected (highlight active)                                    
+        if (gameObject.transform.GetChild(0).gameObject.activeSelf) // && currentTask == "moving" || currentTask == "idle")
+        {
+            if (ScreenManager.Instance.inHive)
+            {
+                // press H to leave hive
+                if(Input.GetKeyDown(KeyCode.H))
+                {
+                    // GameObject hive = FriendlyUnitCreator.Instance.hive;
+                    agent.enabled = (false);
+                    gameObject.transform.position = (hive.transform.position + new Vector3(0, -1, -hive.transform.position.z));
+                    agent.enabled = (true);
+                    agent.destination = (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
+                }
+            }
+            else
+            {
+                
+                // if close to hive object tp to queen                      ///moved to hive object and 
+                if (Vector2.Distance(hive.transform.position, this.transform.position) < 1.5
+                 && Vector2.Distance(hive.transform.position, agent.destination) < 1)
+                {
+                    
+                    agent.enabled = (false);
+                    gameObject.transform.position = (queen.transform.position + new Vector3(0, -1, -queen.transform.position.z));
+                    agent.enabled = (true);
+                    agent.destination = (queen.transform.position + new Vector3(0, -2, -queen.transform.position.z));                    
+                }
+                // else
+                // {
+                //     Debug.Log(Vector2.Distance(hive.transform.position, this.transform.position));
+                // }
+            }
+        }
         // Execute task
         if (currentTask == "attacking")
         {
@@ -52,11 +90,21 @@ public class WorkerBeeLogic : MonoBehaviour {
         {
             TaskCollectNectar(destinationTile);
         } 
+        else if (currentTask == "moveEgg")
+        {
+            GameObject incubator = destinationTile.GetComponent<HexTile>().structure;// HiveGridManager.Instance.tileList[destinationTile.]
+
+            TaskMoveEgg(incubator);
+        }
 
     }
-    public void setDestinationTile(Tile tile) {
+
+    public void setDestinationTile(GameObject tile) {
         destinationTile = tile;
     }
+    
+    
+    
     private string FindTask()
     {
         if (UnitSelectionManager.Instance.allEnemiesList.Count > 0) // if any enemies exist, 
@@ -76,13 +124,16 @@ public class WorkerBeeLogic : MonoBehaviour {
                 }
             }
         }
-        // else if (targetEnemy != null) // clear targetEnemy if no enemies exist and targetEnemy still has a value
-        // {
-        //     targetEnemy = null;
-        // }
-        if (destinationTile != null && destinationTile.value > 0) {
+        if (destinationTile != null && destinationTile.GetComponent<Tile>() != null && destinationTile.GetComponent<Tile>().value > 0) {
             // Debug.Log("getting nectar from " + destinationTile.value);
             return "collectNectar";
+        }
+        else if (destinationTile != null 
+              && destinationTile.GetComponent<HexTile>() != null 
+              && destinationTile.GetComponent<HexTile>().isBuiltOn 
+              && destinationTile.GetComponent<HexTile>().tileType == "nursery")
+        {
+            return "moveEgg";
         }
         else if (agent.hasPath) {
             // Debug.Log("normal move");
@@ -90,6 +141,68 @@ public class WorkerBeeLogic : MonoBehaviour {
         }
         else return "idle";
     }
+
+    private void TaskMoveEgg(GameObject targetIncubator)
+    {
+        MovementAnimationUpdate();
+        // if we dont have egg
+        if (carriedObject != "egg")
+        {
+            //determine target egg and target egg position
+            GameObject targetEgg = null;
+            int targetEggPos = 0;
+            bool[] eggList = HexGridManager.Instance.getEggList();
+            // Debug.Log(eggList.Length);
+            for (int i = 0; i < eggList.Length; i++)
+            {
+                //Debug.Log(eggList[i]);
+                if (eggList[i])
+                {
+                    targetEggPos = i;
+                }
+            }
+            targetEgg = HexGridManager.Instance.getEggAtPos(targetEggPos);
+
+            // pick up egg if close
+            // If bee xy is close to egg xy
+            if (targetEgg != null)
+            {
+                if (Vector2.Distance(targetEgg.transform.position, 
+                                    this.gameObject.transform.position) < 0.05)
+                {
+                    // pick up egg
+                    // Debug.Log("picking up egg");
+                    HexGridManager.Instance.removeEggAtPos(targetEggPos);   
+                    carriedObject = "egg";
+                }
+                else // if far from egg go closer
+                {
+                    agent.destination = targetEgg.transform.position - new Vector3(0,0,targetEgg.transform.position.z);
+                }                
+            }
+
+        }
+        else // if we DO have egg
+        {
+            Debug.Log(targetIncubator.GetComponent<WorkerIncubator>());//.hasEgg == false);
+            // drop egg if close to incubator
+            if (targetIncubator.GetComponent<WorkerIncubator>().hasEgg == false
+                && Vector2.Distance(targetIncubator.transform.position, 
+                                 this.gameObject.transform.position) < 0.05)
+            {
+                // drop egg
+                // Debug.Log("dropping egg");
+                carriedObject = "";
+                targetIncubator.GetComponent<WorkerIncubator>().startIncubation();
+            }
+            else // if far from incubator go closer
+            {
+                agent.destination = targetIncubator.transform.position - new Vector3(0,0,targetIncubator.transform.position.z);
+            }
+        }
+
+    }
+
     private void TaskAttacking(GameObject target)
     {
         MovementAnimationUpdate();
@@ -112,7 +225,7 @@ public class WorkerBeeLogic : MonoBehaviour {
         }  
 
     }
-    private void TaskCollectNectar(Tile tile)
+    private void TaskCollectNectar(GameObject tile)
     {
         MovementAnimationUpdate();
         // If bee xy is close to tile xy
@@ -120,9 +233,9 @@ public class WorkerBeeLogic : MonoBehaviour {
                              this.gameObject.transform.position) < 0.05)
         {
             // Debug.Log("collecting!!");
-            if (destinationTile.value > 0 && Time.frameCount % 60 == 0) // bad time shortcut
+            if (destinationTile.GetComponent<Tile>() != null && destinationTile.GetComponent<Tile>().value > 0 && Time.frameCount % 60 == 0) // bad time shortcut
             {
-                destinationTile.value = destinationTile.value - 1;
+                destinationTile.GetComponent<Tile>().value = destinationTile.GetComponent<Tile>().value - 1;
                 ResourceCounter.Instance.changeNectar(1);
             }
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class StructureConstruct : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class StructureConstruct : MonoBehaviour, IPointerDownHandler //, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private bool selected;
     private Collision2D currentTile;
@@ -23,24 +23,44 @@ public class StructureConstruct : MonoBehaviour, IBeginDragHandler, IDragHandler
         {
             this.transform.position = structRef.transform.position;
         }
+        else
+        {
+            this.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+        }
     }
-
-    public void OnBeginDrag(PointerEventData data)
+    public void OnPointerDown(PointerEventData eventData)//(PointerEventData data)
     {
-        selected = true;
+        Debug.Log("pressed");
+        if (!selected)
+        {
+            selected = true;
+        }
+        else
+        {
+            if (!Input.GetKey(KeyCode.LeftControl))
+            {
+                selected = false;
+            }
+            
+            HexGridManager.Instance.buildOnHoveredTile(buildingPreFab);
+        }
     }
+    // public void OnBeginDrag(PointerEventData data)
+    // {
+    //     selected = true;
+    // }
 
-    public void OnDrag(PointerEventData data)
-    {
-        this.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-    }
+    // public void OnDrag(PointerEventData data)
+    // {
+    //     this.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+    // }
 
 
-    public void OnEndDrag(PointerEventData data)
-    {
-        selected = false;
-        HexGridManager.Instance.buildOnHoveredTile(buildingPreFab);
-    }
+    // public void OnEndDrag(PointerEventData data)
+    // {
+    //     selected = false;
+    //     HexGridManager.Instance.buildOnHoveredTile(buildingPreFab);
+    // }
 
     
     

@@ -7,7 +7,6 @@ public class ScreenManager : MonoBehaviour
     public List<GameObject> hiveUiList = new List<GameObject>();
     public static ScreenManager Instance { get; set; }
     public bool inHive;
-
     // Start is called before the first frame update
     void Awake()
     {

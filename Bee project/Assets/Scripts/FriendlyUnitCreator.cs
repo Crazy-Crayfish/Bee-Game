@@ -5,7 +5,7 @@ using UnityEngine;
 public class FriendlyUnitCreator : MonoBehaviour
 {
     public static FriendlyUnitCreator Instance { get; set; }
-    [SerializeField] private GameObject hive;
+    [SerializeField] public GameObject hive;
     [SerializeField] private GameObject workerBeePreFab;
     private void Awake() 
     {
@@ -18,18 +18,26 @@ public class FriendlyUnitCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // make starter workers  
+        // FriendlyUnitCreator.Instance.CreateWorker();
+        // FriendlyUnitCreator.Instance.CreateWorker();
+        // FriendlyUnitCreator.Instance.CreateWorker();
+        CreateWorker();
+        CreateWorker();
+        CreateWorker();
     }
 
     // Update is called once per frame
-    // void Update()
-    // {
-    //     if(Input.GetKeyDown(KeyCode.B) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
-    //     {
-    //         ResourceCounter.Instance.changeHoney(-15);
-    //         CreateWorker();
-    //     }
-    // }
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.B) && ResourceCounter.Instance.getHoney() >= 15)
+        {
+            Vector3 pos = (hive.transform.position + new Vector3(4000, -10, -hive.transform.position.z));
+
+            ResourceCounter.Instance.changeHoney(-15);
+            CreateWorker(pos);
+        }
+    }
     public void CreateWorker(Vector3 location)
     {
         var newWorker = Instantiate(workerBeePreFab, location, Quaternion.identity);
@@ -42,6 +50,7 @@ public class FriendlyUnitCreator : MonoBehaviour
     // If you don't have a specified location, spawn at hive
     public void CreateWorker()
     {
+
         Vector3 pos = (hive.transform.position + new Vector3(0, -1, -hive.transform.position.z));
         
         var newWorker = Instantiate(workerBeePreFab, pos, Quaternion.identity);

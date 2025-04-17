@@ -88,7 +88,15 @@ public class UnitSelectionManager : MonoBehaviour
                     // if the unit is a worker bee
                     if (unit.GetComponent<WorkerBeeLogic> () != null) 
                     {
-                        unit.GetComponent<WorkerBeeLogic>().setDestinationTile(hit.collider.GetComponent<Tile>());
+                        // if (hit.collider.GetComponent<HexTile>() != null)
+                        // {
+                        //     unit.GetComponent<WorkerBeeLogic>().setDestinationTile(hit.collider.GetComponent<HexTile>());
+                        // }
+                        // else
+                        // {
+                        //     unit.GetComponent<WorkerBeeLogic>().setDestinationTile(hit.collider.GetComponent<Tile>());
+                        // }
+                        unit.GetComponent<WorkerBeeLogic>().setDestinationTile(hit.collider.gameObject);
                     } 
                 }
                 groundMarker.SetActive(false);
