@@ -70,6 +70,30 @@ public class UnitSelectionManager : MonoBehaviour
              
         }
 
+        if (unitsSelected.Count > 0 && Input.GetKeyDown(KeyCode.Space)) 
+        {
+
+            int k = allUnitsList.Count;
+            List<Vector3> takenFlowers = new List<Vector3>();
+            foreach (var unit in unitsSelected)
+            {
+                List<Vector3> destinations = GridManager.Instance.kdTree.KNearestNeighbors(unit.transform.position.x, unit.transform.position.y, k);
+                int i = 0;
+                while (takenFlowers.Contains(destinations[i]))
+                {
+                    i++;
+                }
+                Vector3 destinationVector = destinations[i];
+                takenFlowers.Add(destinationVector);
+                RaycastHit2D destination = Physics2D.Raycast(destinationVector, Vector2.zero);
+                // if the unit is a worker bee
+                if (unit.GetComponent<WorkerBeeLogic> () != null) 
+                {
+                    Debug.Log(destinationVector.ToString());
+                    unit.GetComponent<WorkerBeeLogic>().setDestinationTile(destination.collider.GetComponent<Tile>());
+                } 
+            }
+        }
 
         // GROUND HIT
         if (unitsSelected.Count > 0 && Input.GetMouseButtonDown(1)) 

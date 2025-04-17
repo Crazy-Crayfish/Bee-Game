@@ -44,6 +44,12 @@ public class EnemyWaveManager : MonoBehaviour
 
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            SummonWave(hive.transform.position + new Vector3(0, 0, -hive.transform.position.z));
+        }
+
         if (timeUntilNextWave > 0)
         {
             if (timeUntilNextWave < waveCooldown - 8.0f && waveAlertText.gameObject.activeSelf == true)
