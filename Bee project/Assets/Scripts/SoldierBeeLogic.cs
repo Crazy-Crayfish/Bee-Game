@@ -9,8 +9,11 @@ public class SoldierBeeLogic : MonoBehaviour {
     private SpriteRenderer renderer;
     private Animator animator;
     private string currentTask;
-    private Tile destinationTile;
+    private GameObject destinationTile; 
     private GameObject targetEnemy;
+    private GameObject hive;
+    private GameObject queen;
+
     void Awake() 
     {
         animator = GetComponent<Animator>();
@@ -21,6 +24,8 @@ public class SoldierBeeLogic : MonoBehaviour {
         destinationTile = null;
         this.GetComponent<Unit>().health = 100;
         targetEnemy = null;
+        hive = FriendlyUnitCreator.Instance.hive;
+        queen = HexGridManager.Instance.GridQueen;
 	}
 
     // Update is called once per frame
@@ -32,7 +37,40 @@ public class SoldierBeeLogic : MonoBehaviour {
             currentTask = FindTask();
             // Debug.Log("currentTask is " + currentTask);
         }
-
+                // if selected (highlight active)                                    
+        if (gameObject.transform.GetChild(0).gameObject.activeSelf) // && currentTask == "moving" || currentTask == "idle")
+        {
+            if (ScreenManager.Instance.inHive)
+            {
+                // press H to leave hive
+                if(Input.GetKeyDown(KeyCode.H))
+                {
+                    // GameObject hive = FriendlyUnitCreator.Instance.hive;
+                    agent.enabled = (false);
+                    gameObject.transform.position = (hive.transform.position + new Vector3(0, -1, -hive.transform.position.z));
+                    agent.enabled = (true);
+                    agent.destination = (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
+                }
+            }
+            else
+            {
+                
+                // if close to hive object tp to queen                      ///moved to hive object and 
+                if (Vector2.Distance(hive.transform.position, this.transform.position) < 1.5
+                 && Vector2.Distance(hive.transform.position, agent.destination) < 1)
+                {
+                    
+                    agent.enabled = (false);
+                    gameObject.transform.position = (queen.transform.position + new Vector3(0, -1, -queen.transform.position.z));
+                    agent.enabled = (true);
+                    agent.destination = (queen.transform.position + new Vector3(0, -2, -queen.transform.position.z));                    
+                }
+                // else
+                // {
+                //     Debug.Log(Vector2.Distance(hive.transform.position, this.transform.position));
+                // }
+            }
+        }
         // Execute task
         if (currentTask == "attacking")
         {
@@ -56,7 +94,7 @@ public class SoldierBeeLogic : MonoBehaviour {
         */
 
     }
-    public void setDestinationTile(Tile tile) {
+    public void setDestinationTile(GameObject tile) {
         destinationTile = tile;
     }
     private string FindTask()
@@ -92,7 +130,7 @@ public class SoldierBeeLogic : MonoBehaviour {
             // Debug.Log("normal move");
             return "moving";
         }
-        else return "idle";
+        return "idle";
     }
     private void TaskAttacking(GameObject target)
     {
@@ -143,6 +181,7 @@ public class SoldierBeeLogic : MonoBehaviour {
     {
         MovementAnimationUpdate();
     }
+
     private void MovementAnimationUpdate() 
     {
         if (agent.destination.x < gameObject.transform.position.x && renderer.flipX)
@@ -155,7 +194,7 @@ public class SoldierBeeLogic : MonoBehaviour {
         if (agent.velocity.magnitude > 2 && !animator.GetBool("isMoving")) 
         {
             animator.SetBool("isMoving", true);
-           // Debug.Log ("moving");
+            // Debug.Log (gameObject + " is moving");
         }
         else if (agent.velocity.magnitude < 1 && animator.GetBool("isMoving"))
         {

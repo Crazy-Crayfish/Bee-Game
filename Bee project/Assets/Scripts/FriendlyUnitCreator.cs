@@ -25,15 +25,15 @@ public class FriendlyUnitCreator : MonoBehaviour
         // FriendlyUnitCreator.Instance.CreateWorker();
         // FriendlyUnitCreator.Instance.CreateWorker();
         CreateWorker();
-        CreateWorker();
-        CreateWorker();
+        CreateHoney();
+        CreateSoldier();
     }
 
     // Update is called once per frame
      void Update()
      {
         // Honey Bee Hotkey
-         if(Input.GetKeyDown(KeyCode.H) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
+         if(Input.GetKeyDown(KeyCode.N) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
          {
              ResourceCounter.Instance.changeHoney(-15);
              CreateHoney();
@@ -45,7 +45,7 @@ public class FriendlyUnitCreator : MonoBehaviour
              CreateWorker();
          }
          // Soldier Bee Hotkey
-         if(Input.GetKeyDown(KeyCode.X) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
+         if(Input.GetKeyDown(KeyCode.M) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
          {
              ResourceCounter.Instance.changeHoney(-15);
              CreateSoldier();

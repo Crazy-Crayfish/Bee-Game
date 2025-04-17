@@ -32,6 +32,7 @@ public class UnitMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
         
         agent.destination = hit.collider.gameObject.transform.position;  
+        // Debug.Log(gameObject + "is given destination: " + hit.collider.gameObject.transform.position);
     }
 
 }

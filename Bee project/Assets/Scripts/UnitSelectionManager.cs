@@ -89,9 +89,14 @@ public class UnitSelectionManager : MonoBehaviour
                 // if the unit is a worker bee
                 if (unit.GetComponent<WorkerBeeLogic> () != null) 
                 {
-                    Debug.Log(destinationVector.ToString());
-                    unit.GetComponent<WorkerBeeLogic>().setDestinationTile(destination.collider.GetComponent<Tile>());
+                    // Debug.Log(destinationVector.ToString());
+                    unit.GetComponent<WorkerBeeLogic>().setDestinationTile(destination.collider.gameObject);
                 } 
+                // if the unit is a honey bee
+                if (unit.GetComponent<HoneyBeeLogic> () != null) 
+                {
+                    unit.GetComponent<HoneyBeeLogic>().setDestinationTile(destination.collider.gameObject);
+                }   
             }
         }
 
@@ -112,16 +117,19 @@ public class UnitSelectionManager : MonoBehaviour
                     // if the unit is a worker bee
                     if (unit.GetComponent<WorkerBeeLogic> () != null) 
                     {
-                        // if (hit.collider.GetComponent<HexTile>() != null)
-                        // {
-                        //     unit.GetComponent<WorkerBeeLogic>().setDestinationTile(hit.collider.GetComponent<HexTile>());
-                        // }
-                        // else
-                        // {
-                        //     unit.GetComponent<WorkerBeeLogic>().setDestinationTile(hit.collider.GetComponent<Tile>());
-                        // }
                         unit.GetComponent<WorkerBeeLogic>().setDestinationTile(hit.collider.gameObject);
                     } 
+                    // if the unit is a soldier bee
+                    if (unit.GetComponent<SoldierBeeLogic> () != null) 
+                    {
+                        unit.GetComponent<SoldierBeeLogic>().setDestinationTile(hit.collider.gameObject);
+                    } 
+                    // if the unit is a honey bee
+                    if (unit.GetComponent<HoneyBeeLogic> () != null) 
+                    {
+                        unit.GetComponent<HoneyBeeLogic>().setDestinationTile(hit.collider.gameObject);
+                    }                     
+
                 }
                 groundMarker.SetActive(false);
                 groundMarker.SetActive(true);

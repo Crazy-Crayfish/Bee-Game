@@ -9,7 +9,7 @@ public class WorkerBeeLogic : MonoBehaviour {
     private SpriteRenderer renderer;
     private Animator animator;
     private string currentTask;
-    private GameObject destinationTile; // maybe should be changed to account for hexTiles
+    private GameObject destinationTile; 
     private GameObject targetEnemy;
     private GameObject hive;
     private GameObject queen;
@@ -63,7 +63,8 @@ public class WorkerBeeLogic : MonoBehaviour {
                     agent.enabled = (false);
                     gameObject.transform.position = (queen.transform.position + new Vector3(0, -1, -queen.transform.position.z));
                     agent.enabled = (true);
-                    agent.destination = (queen.transform.position + new Vector3(0, -2, -queen.transform.position.z));                    
+                    agent.destination = (queen.transform.position + new Vector3(0, -2, -queen.transform.position.z));
+                    Debug.Log(gameObject.transform.position);                    
                 }
                 // else
                 // {
@@ -184,16 +185,31 @@ public class WorkerBeeLogic : MonoBehaviour {
         }
         else // if we DO have egg
         {
-            Debug.Log(targetIncubator.GetComponent<WorkerIncubator>());//.hasEgg == false);
+            // Debug.Log(targetIncubator.GetComponent<WorkerIncubator>());//.hasEgg == false);
             // drop egg if close to incubator
-            if (targetIncubator.GetComponent<WorkerIncubator>().hasEgg == false
+            
+            
+            if (((targetIncubator.GetComponent<WorkerIncubator>() != null && targetIncubator.GetComponent<WorkerIncubator>().hasEgg == false)
+              || (targetIncubator.GetComponent<SoldierIncubator>() != null && targetIncubator.GetComponent<SoldierIncubator>().hasEgg == false)
+              || (targetIncubator.GetComponent<HoneyBeeIncubator>() != null && targetIncubator.GetComponent<HoneyBeeIncubator>().hasEgg == false))
                 && Vector2.Distance(targetIncubator.transform.position, 
                                  this.gameObject.transform.position) < 0.05)
             {
                 // drop egg
                 // Debug.Log("dropping egg");
                 carriedObject = "";
-                targetIncubator.GetComponent<WorkerIncubator>().startIncubation();
+                if (targetIncubator.GetComponent<WorkerIncubator>() != null)
+                {
+                    targetIncubator.GetComponent<WorkerIncubator>().startIncubation();
+                }
+                else if (targetIncubator.GetComponent<SoldierIncubator>() != null)
+                {
+                    targetIncubator.GetComponent<SoldierIncubator>().startIncubation();
+                }
+                else if (targetIncubator.GetComponent<HoneyBeeIncubator>() != null)
+                {
+                    targetIncubator.GetComponent<HoneyBeeIncubator>().startIncubation();
+                }
             }
             else // if far from incubator go closer
             {
@@ -258,7 +274,7 @@ public class WorkerBeeLogic : MonoBehaviour {
         if (agent.velocity.magnitude > 2 && !animator.GetBool("isMoving")) 
         {
             animator.SetBool("isMoving", true);
-           // Debug.Log ("moving");
+            // Debug.Log (gameObject + " is moving");
         }
         else if (agent.velocity.magnitude < 1 && animator.GetBool("isMoving"))
         {

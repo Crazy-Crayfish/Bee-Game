@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
+  carriedObject: 
 --- !u!114 &4006419709805064610
 MonoBehaviour:
   m_ObjectHideFlags: 0

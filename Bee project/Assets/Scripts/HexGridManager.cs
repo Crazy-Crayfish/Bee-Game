@@ -199,10 +199,7 @@ public class HexGridManager : MonoBehaviour
     getNeighborAtPos(centerTile, 4).GetComponent<HexTile>().changeType(queenTile);
     getNeighborAtPos(centerTile, 5).GetComponent<HexTile>().changeType(queenTile);
 
-    // make starter workers  
-    FriendlyUnitCreator.Instance.CreateWorker();
-    FriendlyUnitCreator.Instance.CreateWorker();
-    FriendlyUnitCreator.Instance.CreateWorker();
+
    }
    
 }

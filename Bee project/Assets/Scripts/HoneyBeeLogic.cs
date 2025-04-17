@@ -9,8 +9,11 @@ public class HoneyBeeLogic : MonoBehaviour {
     private SpriteRenderer renderer;
     private Animator animator;
     private string currentTask;
-    private Tile destinationTile;
-    private GameObject targetEnemy;
+    private GameObject destinationTile; 
+    // private GameObject targetEnemy;
+    private GameObject hive;
+    private GameObject queen;
+
     void Awake() 
     {
         animator = GetComponent<Animator>();
@@ -20,7 +23,9 @@ public class HoneyBeeLogic : MonoBehaviour {
         currentTask = "idle";
         destinationTile = null;
         this.GetComponent<Unit>().health = 100;
-        targetEnemy = null;
+        // targetEnemy = null;
+        hive = FriendlyUnitCreator.Instance.hive;
+        queen = HexGridManager.Instance.GridQueen;
 	}
 
     // Update is called once per frame
@@ -33,6 +38,40 @@ public class HoneyBeeLogic : MonoBehaviour {
             // Debug.Log("currentTask is " + currentTask);
         }
 
+        // if selected (highlight active)                                    
+        if (gameObject.transform.GetChild(0).gameObject.activeSelf) // && currentTask == "moving" || currentTask == "idle")
+        {
+            if (ScreenManager.Instance.inHive)
+            {
+                // press H to leave hive
+                if(Input.GetKeyDown(KeyCode.H))
+                {
+                    // GameObject hive = FriendlyUnitCreator.Instance.hive;
+                    agent.enabled = (false);
+                    gameObject.transform.position = (hive.transform.position + new Vector3(0, -1, -hive.transform.position.z));
+                    agent.enabled = (true);
+                    agent.destination = (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
+                }
+            }
+            else
+            {
+                
+                // if close to hive object tp to queen                      ///moved to hive object and 
+                if (Vector2.Distance(hive.transform.position, this.transform.position) < 1.5
+                 && Vector2.Distance(hive.transform.position, agent.destination) < 1)
+                {
+                    
+                    agent.enabled = (false);
+                    gameObject.transform.position = (queen.transform.position + new Vector3(0, -1, -queen.transform.position.z));
+                    agent.enabled = (true);
+                    agent.destination = (queen.transform.position + new Vector3(0, -2, -queen.transform.position.z));                    
+                }
+                // else
+                // {
+                //     Debug.Log(Vector2.Distance(hive.transform.position, this.transform.position));
+                // }
+            }
+        }
 /* HONEY BEES DON'T ATTACK
 
         // Execute task
@@ -59,7 +98,8 @@ public class HoneyBeeLogic : MonoBehaviour {
         } 
 
     }
-    public void setDestinationTile(Tile tile) {
+
+    public void setDestinationTile(GameObject tile) {
         destinationTile = tile;
     }
     private string FindTask()
@@ -91,7 +131,7 @@ public class HoneyBeeLogic : MonoBehaviour {
         // {
         //     targetEnemy = null;
         // }
-        if (destinationTile != null && destinationTile.value > 0) {
+        if (destinationTile != null && destinationTile.GetComponent<Tile>() != null && destinationTile.GetComponent<Tile>().value > 0) {
             // Debug.Log("getting nectar from " + destinationTile.value);
             return "collectNectar";
         }
@@ -128,7 +168,7 @@ public class HoneyBeeLogic : MonoBehaviour {
 
 */
 
-    private void TaskCollectNectar(Tile tile)
+    private void TaskCollectNectar(GameObject tile)
     {
         MovementAnimationUpdate();
         // If bee xy is close to tile xy
@@ -136,19 +176,19 @@ public class HoneyBeeLogic : MonoBehaviour {
                              this.gameObject.transform.position) < 0.05)
         {
             // Debug.Log("collecting!!");
-            if (destinationTile.value > 0 && Time.frameCount % 60 == 0) // bad time shortcut
+            if (destinationTile.GetComponent<Tile>() != null && destinationTile.GetComponent<Tile>().value > 0 && Time.frameCount % 60 == 0) // bad time shortcut
             {
                 // FINISH FLOWER
-                if (destinationTile.value < 3)
+                if (destinationTile.GetComponent<Tile>().value < 3)
                 {
-                    ResourceCounter.Instance.changeNectar(destinationTile.value);
-                    destinationTile.value = 0;
+                    ResourceCounter.Instance.changeNectar(destinationTile.GetComponent<Tile>().value);
+                    destinationTile.GetComponent<Tile>().value = 0;
                 }
                 
                 else
                 {
                     // HONEY BEES COLLECT AT 3X SPEED
-                    destinationTile.value = destinationTile.value - 3;
+                    destinationTile.GetComponent<Tile>().value = destinationTile.GetComponent<Tile>().value - 3;
                     ResourceCounter.Instance.changeNectar(3);
                 }
             }

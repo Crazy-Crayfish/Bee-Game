@@ -7,10 +7,14 @@ public class WorkerIncubator : MonoBehaviour
     public bool hasEgg;
     private float incubationTime = 20f;
     private float timeLeft = 20f;
+    [SerializeField] private Sprite NoEggSprite;
+    [SerializeField] private Sprite YesEggSprite;
+
     // Start is called before the first frame update
     void Awake()
     {
         hasEgg = false;
+        GetComponent<SpriteRenderer>().sprite = NoEggSprite;
     }
     
     // Update is called once per frame
@@ -18,10 +22,15 @@ public class WorkerIncubator : MonoBehaviour
     {
         if (hasEgg)
         {
+            if (GetComponent<SpriteRenderer>().sprite != YesEggSprite)
+            {
+                GetComponent<SpriteRenderer>().sprite = YesEggSprite;
+            }
             timeLeft -= Time.deltaTime;
 
             if (timeLeft <= 0.0f)
             {
+                GetComponent<SpriteRenderer>().sprite = NoEggSprite;
                 spawnBee();
                 hasEgg = false;
             }
