@@ -99,6 +99,7 @@ public class WorkerBeeLogic : MonoBehaviour {
             if (target.GetComponent<EnemyUnit>().health > 0 && Time.frameCount % 60 == 0)
             {
                 target.GetComponent<EnemyUnit>().health = target.GetComponent<EnemyUnit>().health - 20;
+                sfxManager.Instance.playWorkerAttackSound();
                 // Debug.Log ("damaging enemy to " + target.GetComponent<EnemyUnit>().health);
             }
         } 
@@ -120,6 +121,7 @@ public class WorkerBeeLogic : MonoBehaviour {
             if (destinationTile.value > 0 && Time.frameCount % 60 == 0)
             {
                 destinationTile.value = destinationTile.value - 1;
+                sfxManager.Instance.playSlurpSound();
                 ResourceCounter.Instance.changeNectar(1);
             }
         }
@@ -135,13 +137,15 @@ public class WorkerBeeLogic : MonoBehaviour {
         {
             renderer.flipX = false;
         } else if (agent.destination.x > gameObject.transform.position.x && !renderer.flipX) {
-            renderer.flipX = true;       
+            renderer.flipX = true;
+            //sfxManager.Instance.playBuzzSound();       
         }
 
         if (agent.velocity.magnitude > 2 && !animator.GetBool("isMoving")) 
         {
             animator.SetBool("isMoving", true);
-           // Debug.Log ("moving");
+            sfxManager.Instance.playBuzzSound();
+            // Debug.Log ("moving");
         }
         else if (agent.velocity.magnitude < 1 && animator.GetBool("isMoving"))
         {
@@ -152,5 +156,9 @@ public class WorkerBeeLogic : MonoBehaviour {
     private void TaskIdle() 
     {
 
+    }
+
+    private string task() {
+        return currentTask;
     }
 }
