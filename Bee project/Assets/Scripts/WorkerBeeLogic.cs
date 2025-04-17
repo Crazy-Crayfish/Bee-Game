@@ -270,7 +270,14 @@ public class WorkerBeeLogic : MonoBehaviour {
         } else if (agent.destination.x > gameObject.transform.position.x && !renderer.flipX) {
             renderer.flipX = true;       
         }
-
+        if (carriedObject == "egg" && !animator.GetBool("holdingEgg")) 
+        {
+            animator.SetBool("holdingEgg", true);
+        }
+        else if (carriedObject != "egg" && animator.GetBool("holdingEgg")) 
+        {
+            animator.SetBool("holdingEgg", false);
+        }      
         if (agent.velocity.magnitude > 2 && !animator.GetBool("isMoving")) 
         {
             animator.SetBool("isMoving", true);

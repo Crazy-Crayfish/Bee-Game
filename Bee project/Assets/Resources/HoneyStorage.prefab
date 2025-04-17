@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 773653725890807705}
   - component: {fileID: 4718026073152999256}
   - component: {fileID: 759923401851292037}
+  - component: {fileID: 2777017470839022370}
+  - component: {fileID: -1546253440509298590}
   m_Layer: 0
   m_Name: HoneyStorage
   m_TagString: Untagged
@@ -111,3 +113,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3a81f075494be46bc7c9b2a368b8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2777017470839022370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091692415839605462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ceb1ff52f1b514f851c508050c5e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Honey Storage
+--- !u!65 &-1546253440509298590
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091692415839605462}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 24, y: 24, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}

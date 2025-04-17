@@ -3,9 +3,7 @@ guid: c5cd182f3904700418a107dfa0263e28
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - popupPanel: {fileID: 7752304682603333355, guid: 6859271490e6abc458f3d53f335d5364, type: 3}
-  - popupText: {fileID: 125422833159433067, guid: 974e7be41f828774bbc093dd343a7602, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

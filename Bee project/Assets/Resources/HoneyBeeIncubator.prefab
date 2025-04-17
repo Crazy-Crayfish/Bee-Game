@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: -4639642917805757149}
   - component: {fileID: 6300022591292000350}
   - component: {fileID: -5859250821356085796}
+  - component: {fileID: 3141352283282402819}
+  - component: {fileID: -7479765990994852594}
   m_Layer: 0
   m_Name: HoneyBeeIncubator
   m_TagString: Untagged
@@ -114,3 +116,29 @@ MonoBehaviour:
   hasEgg: 0
   NoEggSprite: {fileID: 21300000, guid: e28382cb98f34ee498e9ea8db2998124, type: 3}
   YesEggSprite: {fileID: 21300000, guid: bbd04381299ec7c459b84343a37db17c, type: 3}
+--- !u!114 &3141352283282402819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4100675291205417749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ceb1ff52f1b514f851c508050c5e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Honey Bee Incubator
+--- !u!65 &-7479765990994852594
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4100675291205417749}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.7999997, y: 4.7999997, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
