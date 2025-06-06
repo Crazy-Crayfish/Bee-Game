@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class SoldierBeeLogic : MonoBehaviour {
-    Camera cam;
+    public Camera cam;
     public NavMeshAgent agent;
     private SpriteRenderer renderer;
     private Animator animator;
