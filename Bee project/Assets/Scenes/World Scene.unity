@@ -3365,7 +3365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &891308281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3373,16 +3373,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891308280}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.9999995, w: -0.0009666964}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1703972928}
   m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180.111}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 197.94, y: -99.95}
+  m_AnchoredPosition: {x: 223, y: -125}
   m_SizeDelta: {x: 33.9, y: 33.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &891308282
@@ -3405,7 +3405,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f48be5e5f738a1342b6da1bc17dc6a8f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f27b841dff1464244b0fd21d017799d1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3430,13 +3430,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891308280}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47794f5be2e994e42a84237e56973073, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c5e29e9a5af4784da3a913248850d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 1
+  anim: {fileID: 966616782}
+  targetObject: {fileID: 1703972927}
+  baseHeight: 0.8
+  amplitude: 0.2
+  frequency: 4
 --- !u!1 &893412631
 GameObject:
   m_ObjectHideFlags: 0
@@ -3645,6 +3648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 966616781}
   - component: {fileID: 966616782}
+  - component: {fileID: 966616783}
   m_Layer: 5
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -3692,6 +3696,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &966616783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966616780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db00c6e30d2477439f745832621273c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 966616782}
+  arrow: {fileID: 891308280}
 --- !u!1 &974832101
 GameObject:
   m_ObjectHideFlags: 0
@@ -4995,7 +5013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1186479883
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6759,12 +6777,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703972927}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a68a56ecdbf2dc4686e2d56c8f07d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numFramesInAnim: 4
+  numFramesInAnim: 5
   anim: {fileID: 966616782}
   animName: Welcome
 --- !u!1 &1781858031
@@ -7059,6 +7077,7 @@ MonoBehaviour:
   workerBeePreFab: {fileID: 8322931174489636132, guid: 69661b5ddce6a5541a226ac10123826f, type: 3}
   soldierBeePreFab: {fileID: 8322931174489636132, guid: ef043fbf637ff8a4c9b551648d30db83, type: 3}
   honeyBeePreFab: {fileID: 8322931174489636132, guid: a95360fe33951424fb5fc3c5a750ed73, type: 3}
+  firstBee: {fileID: 0}
 --- !u!1 &1899711546
 GameObject:
   m_ObjectHideFlags: 0

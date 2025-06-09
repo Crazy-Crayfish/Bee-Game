@@ -9,6 +9,9 @@ public class FriendlyUnitCreator : MonoBehaviour
     [SerializeField] private GameObject workerBeePreFab;
     [SerializeField] private GameObject soldierBeePreFab;
     [SerializeField] private GameObject honeyBeePreFab;
+
+    public GameObject firstBee;
+
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -24,7 +27,7 @@ public class FriendlyUnitCreator : MonoBehaviour
         // FriendlyUnitCreator.Instance.CreateWorker();
         // FriendlyUnitCreator.Instance.CreateWorker();
         // FriendlyUnitCreator.Instance.CreateWorker();
-        CreateWorker();
+        firstBee = CreateWorker();
         CreateHoney();
         CreateSoldier();
     }
@@ -91,42 +94,46 @@ public class FriendlyUnitCreator : MonoBehaviour
 
     */
 
-    public void CreateWorker(Vector3 location)
+    public GameObject CreateWorker(Vector3 location)
     {
-        CreateBee(workerBeePreFab, location);
+        return CreateBee(workerBeePreFab, location);
     }
-    public void CreateWorker()
+    public GameObject CreateWorker()
     {
-        CreateBee(workerBeePreFab);
+        return CreateBee(workerBeePreFab);
     }
 
-    public void CreateSoldier(Vector3 location)
+    public GameObject CreateSoldier(Vector3 location)
     {
         var newBee = CreateBee(soldierBeePreFab, location);
         // HP is currently set to 1.5x worker bee (150 hardcoded)
         newBee.GetComponent<Unit>().health = 150;
         // Speed in navMesh is set to 2x (7.0 hardcoded currently)
+        return newBee;
     }
-    public void CreateSoldier()
+    public GameObject CreateSoldier()
     {
         var newBee = CreateBee(soldierBeePreFab);
         // HP is currently set to 1.5x worker bee (150 hardcoded)
         newBee.GetComponent<Unit>().health = 150;
         // Speed in navMesh is set to 2x (7.0 hardcoded currently)
+        return newBee;
     }
 
-    public void CreateHoney(Vector3 location)
+    public GameObject CreateHoney(Vector3 location)
     {
         var newBee = CreateBee(honeyBeePreFab, location);
         // HP is currently set to 1.0x worker bee (100 hardcoded)
         newBee.GetComponent<Unit>().health = 100;
         // Speed in navMesh is set to 2x (7.0 hardcoded currently)
+        return newBee;
     }
-    public void CreateHoney()
+    public GameObject CreateHoney()
     {
         var newBee = CreateBee(honeyBeePreFab);
         // HP is currently set to 1.0x worker bee (100 hardcoded)
         newBee.GetComponent<Unit>().health = 100;
         // Speed in navMesh is set to 2x (7.0 hardcoded currently)
+        return newBee;
     }
 }
