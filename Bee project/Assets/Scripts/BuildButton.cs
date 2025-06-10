@@ -7,10 +7,12 @@ public class BuildButton : MonoBehaviour
 {
     private bool popUpOpen;
     [SerializeField] GameObject popUpMenu;
+    private Vector3 pos;
     // Start is called before the first frame update
     void Start()
     {
         popUpOpen = false;
+        pos = popUpMenu.transform.position;
     }
 
     // Update is called once per frame
@@ -28,7 +30,8 @@ public class BuildButton : MonoBehaviour
         }
         else
         {
-            popUpMenu.transform.position = new Vector3(125, 260, 0);
+            // popUpMenu.transform.position = new Vector3(125, 260, 0);
+            popUpMenu.transform.position = pos;
             popUpOpen = true;
         }
     }

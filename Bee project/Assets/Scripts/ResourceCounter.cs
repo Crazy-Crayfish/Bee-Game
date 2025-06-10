@@ -33,9 +33,9 @@ public class ResourceCounter : MonoBehaviour
     {
         hiveLevel = 1;
 
-        honey = 50;
+        honey = 5000;
         nectar = 0;
-        wax = 50;
+        wax = 5000;
         DNA = 0;
         maxHoney = 100;
         maxNectar = 100;
