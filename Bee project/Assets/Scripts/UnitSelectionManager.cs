@@ -23,7 +23,7 @@ public class UnitSelectionManager : MonoBehaviour
     public LayerMask clickable;
     public GameObject groundMarker;
 
-    private Camera cam;
+    public Camera cam;
 
     // More Singleton stuff, destroy extras
     private void Awake() 

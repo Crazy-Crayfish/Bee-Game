@@ -38,19 +38,19 @@ public class FriendlyUnitCreator : MonoBehaviour
         // Honey Bee Hotkey
          if(Input.GetKeyDown(KeyCode.N) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
          {
-             ResourceCounter.Instance.changeHoney(-15);
+             // ResourceCounter.Instance.changeHoney(-15);
              CreateHoney();
          }
          // Worker Bee Hotkey
          if(Input.GetKeyDown(KeyCode.B) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
          {
-             ResourceCounter.Instance.changeHoney(-15);
+             // ResourceCounter.Instance.changeHoney(-15);
              CreateWorker();
          }
          // Soldier Bee Hotkey
          if(Input.GetKeyDown(KeyCode.M) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
          {
-             ResourceCounter.Instance.changeHoney(-15);
+             // ResourceCounter.Instance.changeHoney(-15);
              CreateSoldier();
          }
     }
