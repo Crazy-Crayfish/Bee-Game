@@ -9,9 +9,6 @@ public class FriendlyUnitCreator : MonoBehaviour
     [SerializeField] private GameObject workerBeePreFab;
     [SerializeField] private GameObject soldierBeePreFab;
     [SerializeField] private GameObject honeyBeePreFab;
-
-    public GameObject firstBee;
-
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -24,10 +21,7 @@ public class FriendlyUnitCreator : MonoBehaviour
     void Start()
     {
         // make starter workers  
-        // FriendlyUnitCreator.Instance.CreateWorker();
-        // FriendlyUnitCreator.Instance.CreateWorker();
-        // FriendlyUnitCreator.Instance.CreateWorker();
-        firstBee = CreateWorker();
+        CreateWorker();
         CreateHoney();
         CreateSoldier();
     }
@@ -38,19 +32,19 @@ public class FriendlyUnitCreator : MonoBehaviour
         // Honey Bee Hotkey
          if(Input.GetKeyDown(KeyCode.N) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
          {
-             ResourceCounter.Instance.changeHoney(-15);
+             // ResourceCounter.Instance.changeHoney(-15);
              CreateHoney();
          }
          // Worker Bee Hotkey
          if(Input.GetKeyDown(KeyCode.B) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
          {
-             ResourceCounter.Instance.changeHoney(-15);
+             // ResourceCounter.Instance.changeHoney(-15);
              CreateWorker();
          }
          // Soldier Bee Hotkey
          if(Input.GetKeyDown(KeyCode.M) && ResourceCounter.Instance.getHoney() >= 15) // Will require resources at some point
          {
-             ResourceCounter.Instance.changeHoney(-15);
+             // ResourceCounter.Instance.changeHoney(-15);
              CreateSoldier();
          }
     }
@@ -94,46 +88,42 @@ public class FriendlyUnitCreator : MonoBehaviour
 
     */
 
-    public GameObject CreateWorker(Vector3 location)
+    public void CreateWorker(Vector3 location)
     {
-        return CreateBee(workerBeePreFab, location);
+        CreateBee(workerBeePreFab, location);
     }
-    public GameObject CreateWorker()
+    public void CreateWorker()
     {
-        return CreateBee(workerBeePreFab);
+        CreateBee(workerBeePreFab);
     }
 
-    public GameObject CreateSoldier(Vector3 location)
+    public void CreateSoldier(Vector3 location)
     {
         var newBee = CreateBee(soldierBeePreFab, location);
         // HP is currently set to 1.5x worker bee (150 hardcoded)
         newBee.GetComponent<Unit>().health = 150;
         // Speed in navMesh is set to 2x (7.0 hardcoded currently)
-        return newBee;
     }
-    public GameObject CreateSoldier()
+    public void CreateSoldier()
     {
         var newBee = CreateBee(soldierBeePreFab);
         // HP is currently set to 1.5x worker bee (150 hardcoded)
         newBee.GetComponent<Unit>().health = 150;
         // Speed in navMesh is set to 2x (7.0 hardcoded currently)
-        return newBee;
     }
 
-    public GameObject CreateHoney(Vector3 location)
+    public void CreateHoney(Vector3 location)
     {
         var newBee = CreateBee(honeyBeePreFab, location);
         // HP is currently set to 1.0x worker bee (100 hardcoded)
         newBee.GetComponent<Unit>().health = 100;
         // Speed in navMesh is set to 2x (7.0 hardcoded currently)
-        return newBee;
     }
-    public GameObject CreateHoney()
+    public void CreateHoney()
     {
         var newBee = CreateBee(honeyBeePreFab);
         // HP is currently set to 1.0x worker bee (100 hardcoded)
         newBee.GetComponent<Unit>().health = 100;
         // Speed in navMesh is set to 2x (7.0 hardcoded currently)
-        return newBee;
     }
 }

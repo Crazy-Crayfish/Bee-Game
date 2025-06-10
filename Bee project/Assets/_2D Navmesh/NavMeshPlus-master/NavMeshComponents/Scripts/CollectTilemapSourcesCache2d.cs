@@ -27,30 +27,30 @@ namespace NavMeshPlus.Extensions
             base.Awake();
         }
 
-        private void OnTilemapTileChanged(Tilemap tilemap, Tilemap.SyncTile[] syncTiles)
-        {
-            if (tilemap == _tilemap)
-            {
-                foreach (Tilemap.SyncTile syncTile in syncTiles)
-                {
-                    Vector3Int position = syncTile.position;
-                    if (syncTile.tile != null && _modifierMap.TryGetValue(syncTile.tile, out NavMeshModifierTilemap.TileModifier tileModifier))
-                    {
-                        int i = _lookup[position];
-                        NavMeshBuildSource source = _sources[i];
-                        source.area = tileModifier.area;
-                        _sources[i] = source;
-                    }
-                    else if (_modifier.overrideArea)
-                    {
-                        int i = _lookup[position];
-                        NavMeshBuildSource source = _sources[i];
-                        source.area = _modifier.area;
-                        _sources[i] = source;
-                    }
-                }
-            }
-        }
+        // private void OnTilemapTileChanged(Tilemap tilemap, Tilemap.SyncTile[] syncTiles)
+        // {
+        //     if (tilemap == _tilemap)
+        //     {
+        //         foreach (Tilemap.SyncTile syncTile in syncTiles)
+        //         {
+        //             Vector3Int position = syncTile.position;
+        //             if (syncTile.tile != null && _modifierMap.TryGetValue(syncTile.tile, out NavMeshModifierTilemap.TileModifier tileModifier))
+        //             {
+        //                 int i = _lookup[position];
+        //                 NavMeshBuildSource source = _sources[i];
+        //                 source.area = tileModifier.area;
+        //                 _sources[i] = source;
+        //             }
+        //             else if (_modifier.overrideArea)
+        //             {
+        //                 int i = _lookup[position];
+        //                 NavMeshBuildSource source = _sources[i];
+        //                 source.area = _modifier.area;
+        //                 _sources[i] = source;
+        //             }
+        //         }
+        //     }
+        // }
 
         public AsyncOperation UpdateNavMesh(NavMeshData data)
         {
@@ -76,13 +76,13 @@ namespace NavMeshPlus.Extensions
                     _lookup[cellPosition] = i;
                 }
             }
-            Tilemap.tilemapTileChanged -= OnTilemapTileChanged;
-            Tilemap.tilemapTileChanged += OnTilemapTileChanged;
+            // Tilemap.tilemapTileChanged -= OnTilemapTileChanged;
+            // Tilemap.tilemapTileChanged += OnTilemapTileChanged;
         }
 
         protected override void OnDestroy()
         {
-            Tilemap.tilemapTileChanged -= OnTilemapTileChanged;
+            // Tilemap.tilemapTileChanged -= OnTilemapTileChanged;
             base.OnDestroy();
         }
     }
