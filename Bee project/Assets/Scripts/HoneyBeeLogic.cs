@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class HoneyBeeLogic : MonoBehaviour {
-    public Camera cam;
+    Camera cam;
     public NavMeshAgent agent;
     private SpriteRenderer renderer;
     private Animator animator;

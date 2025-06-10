@@ -17,7 +17,7 @@ public class Camera_Controller : MonoBehaviour
     void Start()
     {
         newPosition = gameObject.transform.position;
-        // teleport(new Vector3(25,25,-20));
+        teleport(new Vector3(25,25,-20));
     }
 
     // Update is called once per frame
@@ -76,7 +76,6 @@ public class Camera_Controller : MonoBehaviour
 
     public void teleport(Vector3 dest)
     {
-        gameObject.transform.position = dest;
         newPosition = dest; 
     }
     // Method to stop camera movement completely

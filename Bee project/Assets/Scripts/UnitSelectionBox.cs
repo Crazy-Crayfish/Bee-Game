@@ -4,7 +4,7 @@ using UnityEngine;
  
 public class UnitSelectionBox : MonoBehaviour
 {
-    public Camera cam;
+    Camera myCam;
  
     [SerializeField] RectTransform boxVisual;
  
@@ -15,7 +15,7 @@ public class UnitSelectionBox : MonoBehaviour
  
     private void Start()
     {
-        cam = Camera.main;
+        myCam = Camera.main;
         startPosition = Vector2.zero;
         endPosition = Vector2.zero;
         DrawVisual();
@@ -106,7 +106,7 @@ public class UnitSelectionBox : MonoBehaviour
     {
         foreach (var unit in UnitSelectionManager.Instance.allUnitsList)
         {
-            if (selectionBox.Contains(cam.WorldToScreenPoint(unit.transform.position)))
+            if (selectionBox.Contains(myCam.WorldToScreenPoint(unit.transform.position)))
             {
                 UnitSelectionManager.Instance.DragSelect(unit);
             }

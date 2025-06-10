@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class UnitMovement : MonoBehaviour 
 {
-    public Camera cam;
+    Camera cam;
     NavMeshAgent agent;
     void Awake() 
     {
