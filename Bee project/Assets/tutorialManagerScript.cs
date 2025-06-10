@@ -48,6 +48,23 @@ public class tutorialManagerScript : MonoBehaviour
                 changeAnimation();
             }
         }
+        // Wait for nectar collection
+        else if (anim.GetInteger("Change") == 7)
+        {
+            if (ResourceCounter.Instance.getNectar() >= 50)
+            {
+                Debug.Log("COLLECTED!");
+                changeAnimation();
+            }
+        }
+        // Wait for hive enter
+        else if (anim.GetInteger("Change") == 10)
+        {
+            if (ScreenManager.Instance.inHive)
+            {
+                changeAnimation();
+            }
+        }
         else 
         {
             if ((Input.GetKeyDown("space")))
