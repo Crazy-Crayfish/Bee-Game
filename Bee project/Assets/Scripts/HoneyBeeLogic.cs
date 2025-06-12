@@ -13,6 +13,7 @@ public class HoneyBeeLogic : MonoBehaviour {
     // private GameObject targetEnemy;
     private GameObject hive;
     private GameObject queen;
+    public bool inHive;
 
     void Awake() 
     {
@@ -26,6 +27,7 @@ public class HoneyBeeLogic : MonoBehaviour {
         // targetEnemy = null;
         hive = FriendlyUnitCreator.Instance.hive;
         queen = HexGridManager.Instance.GridQueen;
+        inHive = false;
 	}
 
     // Update is called once per frame
@@ -51,6 +53,7 @@ public class HoneyBeeLogic : MonoBehaviour {
                     gameObject.transform.position = (hive.transform.position + new Vector3(0, -1, -hive.transform.position.z));
                     agent.enabled = (true);
                     agent.destination = (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
+                    inHive = false;
                 }
             }
             else
@@ -65,6 +68,7 @@ public class HoneyBeeLogic : MonoBehaviour {
                     gameObject.transform.position = (queen.transform.position + new Vector3(0, -1, -queen.transform.position.z));
                     agent.enabled = (true);
                     agent.destination = (queen.transform.position + new Vector3(0, -2, -queen.transform.position.z));                    
+                    inHive = true;
                 }
                 // else
                 // {

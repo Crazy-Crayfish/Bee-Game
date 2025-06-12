@@ -71,13 +71,29 @@ public class UnitSelectionManager : MonoBehaviour
              
         }
 
-        if (unitsSelected.Count > 0 && Input.GetKeyDown(KeyCode.Space)) 
+        if (!ScreenManager.Instance.inHive && unitsSelected.Count > 0 && Input.GetKeyDown(KeyCode.Space)) 
         {
 
             int k = allUnitsList.Count;
             List<Vector3> takenFlowers = new List<Vector3>();
             foreach (var unit in unitsSelected)
             {
+                WorkerBeeLogic wbl = unit.GetComponent<WorkerBeeLogic>();
+                if (wbl != null)
+                {
+                    if (wbl.inHive)
+                    {
+                        continue;
+                    }
+                }
+                HoneyBeeLogic hbl = unit.GetComponent<HoneyBeeLogic>();
+                if (hbl != null)
+                {
+                    if (hbl.inHive)
+                    {
+                        continue;
+                    }
+                }
                 List<Vector3> destinations = GridManager.Instance.kdTree.KNearestNeighbors(unit.transform.position.x, unit.transform.position.y, k);
                 int i = 0;
                 while (takenFlowers.Contains(destinations[i]))

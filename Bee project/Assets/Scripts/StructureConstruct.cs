@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class StructureConstruct : MonoBehaviour, IPointerDownHandler //, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private bool selected;
+    public bool selected;
     private Collision2D currentTile;
     [SerializeField] private GameObject structRef;
     [SerializeField] private GameObject buildingPreFab;
