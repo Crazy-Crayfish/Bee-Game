@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ChamberConstruct : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private bool selected;
+    public bool selected;
     private Collision2D currentTile;
     public int rotation;
     [SerializeField] private GameObject chamberRef;
