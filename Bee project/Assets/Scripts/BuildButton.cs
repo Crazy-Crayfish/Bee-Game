@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BuildButton : MonoBehaviour
 {
-    private bool popUpOpen;
+    public bool popUpOpen;
     [SerializeField] GameObject popUpMenu;
     private Vector3 pos;
     // Start is called before the first frame update

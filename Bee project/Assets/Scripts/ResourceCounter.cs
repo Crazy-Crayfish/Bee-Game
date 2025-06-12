@@ -65,10 +65,9 @@ public class ResourceCounter : MonoBehaviour
         return nectar;
     }
     public void setNectar(int setTo) {
-        nectar = setTo;
     }
     public void changeNectar(int plusBy) {
-        if (nectar + plusBy >= 0)
+        if (nectar + plusBy >= 0 && nectar + plusBy <= maxNectar)
         {
             nectar += plusBy;
         }
@@ -82,7 +81,7 @@ public class ResourceCounter : MonoBehaviour
         honey = setTo;
     }
     public void changeHoney(int plusBy) {
-        if (honey + plusBy >= 0)
+        if (honey + plusBy >= 0 && honey + plusBy <= maxHoney)
         {
             honey += plusBy;
         }
@@ -96,7 +95,7 @@ public class ResourceCounter : MonoBehaviour
         wax = setTo;
     }
     public void changeWax(int plusBy) {
-        if (wax + plusBy >= 0)
+        if (wax + plusBy >=  0 && wax + plusBy <= maxWax)
         {
             wax += plusBy;
         }

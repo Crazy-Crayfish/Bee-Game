@@ -13,6 +13,8 @@ public class WorkerBeeLogic : MonoBehaviour {
     private GameObject targetEnemy;
     private GameObject hive;
     private GameObject queen;
+    public tutorialManagerScript TM;
+    public bool inHive;
     public string carriedObject;
     void Awake() 
     {
@@ -26,6 +28,7 @@ public class WorkerBeeLogic : MonoBehaviour {
         targetEnemy = null;
         hive = FriendlyUnitCreator.Instance.hive;
         queen = HexGridManager.Instance.GridQueen;
+        inHive = false;
 	}
 
     // Update is called once per frame
@@ -50,6 +53,8 @@ public class WorkerBeeLogic : MonoBehaviour {
                     gameObject.transform.position = (hive.transform.position + new Vector3(0, -1, -hive.transform.position.z));
                     agent.enabled = (true);
                     agent.destination = (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
+                    inHive = false;
+                    TM.beeLeftHive = true;
                 }
             }
             else
@@ -65,6 +70,8 @@ public class WorkerBeeLogic : MonoBehaviour {
                     agent.enabled = (true);
                     agent.destination = (queen.transform.position + new Vector3(0, -2, -queen.transform.position.z));
                     Debug.Log(gameObject.transform.position);                    
+                    TM.beeInHive = true;
+                    inHive = true;
                 }
                 // else
                 // {
@@ -94,7 +101,7 @@ public class WorkerBeeLogic : MonoBehaviour {
         else if (currentTask == "moveEgg")
         {
             GameObject incubator = destinationTile.GetComponent<HexTile>().structure;// HiveGridManager.Instance.tileList[destinationTile.]
-
+            TM.eggMoving = true;
             TaskMoveEgg(incubator);
         }
 
