@@ -10,6 +10,7 @@ public class ScreenManager : MonoBehaviour
     [SerializeField] private GameObject worldCam;
     [SerializeField] private GameObject hiveCam;
     [SerializeField] private GameObject unitBox;
+
     private Vector3 hiveCamStart;
     private Vector3 worldCamStart;
 

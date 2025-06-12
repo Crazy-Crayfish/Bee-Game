@@ -82,9 +82,17 @@ public class EnemySpiderLogic : MonoBehaviour
         foreach (var unit in UnitSelectionManager.Instance.allUnitsList) 
         {
             // SPIDERS ONLY ATTACK HONEY BEES
-            if (unit.GetComponent<HoneyBeeLogic> () && Vector3.Distance(unit.transform.position, this.transform.position) < 16 &&
+            if (unit.GetComponent<HoneyBeeLogic>() != null && Vector3.Distance(unit.transform.position, this.transform.position) < 16 &&
                 (target == null || Vector3.Distance(unit.transform.position, this.transform.position) < 
                 Vector3.Distance(target.transform.position, this.transform.position)))
+            {
+                
+                target = unit;
+                // Debug.Log ("Attacking!! " + target.transform.position);
+            }
+            else if (unit.GetComponent<WorkerBeeLogic>() != null && Vector3.Distance(unit.transform.position, this.transform.position) < 16 &&
+                    (target == null || Vector3.Distance(unit.transform.position, this.transform.position) < 
+                    Vector3.Distance(target.transform.position, this.transform.position)))
             {
                 
                 target = unit;

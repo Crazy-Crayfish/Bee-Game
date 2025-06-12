@@ -33,7 +33,7 @@ public class EnemyBadgerLogic : MonoBehaviour
         }
 
         GameObject currentTarget = getTarget();
-        if (currentTarget != null && Vector3.Distance(currentTarget.transform.position, this.transform.position) < 1.5) 
+        if (currentTarget != null && Vector3.Distance(currentTarget.transform.position, this.transform.position) < 3) 
         {   
             Attack(currentTarget);
             // GetComponent<Animator>().SetBool("antAttacking", true);
@@ -43,35 +43,42 @@ public class EnemyBadgerLogic : MonoBehaviour
         //     moveTowards(currentTarget);
         //     GetComponent<Animator>().setBool("attacking", false)
         // }   
-        else
-        {   
-            moveTowards(currentTarget);
-            // GetComponent<Animator>().SetBool("antAttacking", false);
-        }   
+        // else
+        // {   
             
+        //     // GetComponent<Animator>().SetBool("antAttacking", false);
+        // }   
+        moveTowards();
 
     }       
 
-    private void moveTowards(GameObject target)
+    private void moveTowards()//GameObject target)
     {       
 
-
-        if (target != null)
-        {
-            agent.destination = target.transform.position - new Vector3(0,0,target.transform.position.z);
-        }
-        else
-        {
-            // Debug.Log ("Going to hive " + hive.transform.position);
-            agent.destination = hive.transform.position - new Vector3(0,0,hive.transform.position.z);
-            // testing
-            // agent.destination = new Vector3(20,20,0);
-        }
+        agent.destination = hive.transform.position - new Vector3(0,0,hive.transform.position.z);
+        // if (target != null)
+        // {
+        //     agent.destination = target.transform.position - new Vector3(0,0,target.transform.position.z);
+        // }
+        // else
+        // {
+        //     // Debug.Log ("Going to hive " + hive.transform.position);
+        //     agent.destination = hive.transform.position - new Vector3(0,0,hive.transform.position.z);
+        //     // testing
+        //     // agent.destination = new Vector3(20,20,0);
+        // }
     }
 
     private void Attack(GameObject target)
     {
-        if (target.GetComponent<Unit>().health > 0 && Time.frameCount % 60 == 0)
+        if (target == hive)
+        {
+            if (Time.frameCount % 60 == 0) 
+            {
+                ResourceCounter.Instance.changeHealth(-100);
+            }
+        }
+        else if (target.GetComponent<Unit>().health > 0 && Time.frameCount % 60 == 0)
         {
             // ATTACKS ARE 2X AND THEY WILL CAUSE RECOIL
             target.GetComponent<Unit>().health = target.GetComponent<Unit>().health - 50;

@@ -34,17 +34,17 @@ public class EnemyAntLogic : MonoBehaviour
         {   
             Attack(currentTarget);
             GetComponent<Animator>().SetBool("antAttacking", true);
-        }   
-        // else if (attacking == true)
-        // {   
-        //     moveTowards(currentTarget);
-        //     GetComponent<Animator>().setBool("attacking", false)
-        // }   
-        else
+        }
+        else if (Vector2.Distance(hive.transform.position, this.transform.position)  > 1.5) 
         {   
             moveTowards(currentTarget);
             GetComponent<Animator>().SetBool("antAttacking", false);
         }   
+        else
+        {
+            Attack(hive);
+            GetComponent<Animator>().SetBool("antAttacking", true);
+        }
             
 
     }       
@@ -68,7 +68,14 @@ public class EnemyAntLogic : MonoBehaviour
 
     private void Attack(GameObject target)
     {
-        if (target.GetComponent<Unit>().health > 0 && Time.frameCount % 60 == 0)
+        if (target == hive)
+        {
+            if (Time.frameCount % 60 == 0) 
+            {
+                ResourceCounter.Instance.changeHealth(-25);
+            }
+        }
+        else if (target.GetComponent<Unit>().health > 0 && Time.frameCount % 60 == 0)
         {
             target.GetComponent<Unit>().health = target.GetComponent<Unit>().health - 25;
             // Debug.Log ("damaging to " + target.GetComponent<Unit>().health);

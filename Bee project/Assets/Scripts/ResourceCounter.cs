@@ -17,9 +17,14 @@ public class ResourceCounter : MonoBehaviour
     private int maxWax;
     private int maxDNA;
     
+    private int hiveHP;
+    private int hiveMaxHP;
+
     private int hiveLevel;
 
     [SerializeField] private Text ResourcesText;
+    [SerializeField] private Slider HealthBar;
+
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -32,6 +37,8 @@ public class ResourceCounter : MonoBehaviour
     public void Start()
     {
         hiveLevel = 1;
+        hiveHP = 500;
+        hiveMaxHP = 500;
 
         honey = 5000;
         nectar = 0;
@@ -46,6 +53,33 @@ public class ResourceCounter : MonoBehaviour
         // InvokeRepeating("LoseHoney", 3.0f, 3.0f);
     }
 
+    // health
+    public void changeHealth(int amt)
+    {
+        if (hiveHP + amt > 0)
+        {
+            if (hiveHP + amt <= hiveMaxHP) 
+            {
+
+                hiveHP += amt;
+                HealthBar.value += amt;
+            }
+            else
+            {
+            hiveHP = hiveMaxHP;
+            HealthBar.value = hiveMaxHP;
+            }
+        }
+        else 
+        {
+            hiveHP = 0;
+            HealthBar.value = 0;
+            // do loss stuff
+            PauseManager.Instance.GameOver();
+        }
+
+
+    }
 
     // passively lose honey based on hive level (currently never changes)
     private void LoseHoney()

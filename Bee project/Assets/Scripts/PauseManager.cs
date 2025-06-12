@@ -6,6 +6,8 @@ public class PauseManager : MonoBehaviour
     public static PauseManager Instance { get; set; }
 
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject GameOverScreen;
+
     public bool isPaused = false;
 
     private void Awake() 
@@ -21,6 +23,7 @@ public class PauseManager : MonoBehaviour
     void Start()
     {
         ResumeGame();
+        GameOverScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,6 +49,13 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
     }
 
+    public void GameOver()
+    {
+        GameOverScreen.SetActive(true);
+        Time.timeScale = 0;
+        isPaused = true;
+    }
+    
     public void goToMainMenu()
     {
         // maybe put a confirm check?
