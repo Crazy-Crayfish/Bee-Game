@@ -13,7 +13,11 @@ public class HexTile : MonoBehaviour
     public string tileType; // "empty", "queen", "storage", "production", "nursery"
     public bool isBuiltOn;
     public GameObject structure;
-
+    
+    void Awake() {
+        HexGridManager.Instance.hextiles.Add(gameObject);
+    }
+    
     public void Init(bool isOffset, int x, int y){
        // renderer.color = isOffset ? alternateColor : baseColor;
        tileType = "empty";
@@ -33,6 +37,7 @@ public class HexTile : MonoBehaviour
         // Debug.Log("x y" + this.gridX + "   " + this.gridY + "    Sprite: " + tileImage.gameObject.GetComponent<SpriteRenderer>().sprite);
 
         tileType =  newTilePreFab.GetComponent<Chamber>().type;
+        
     }
     
 

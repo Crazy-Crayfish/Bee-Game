@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FriendlyUnitCreator : MonoBehaviour
+public class FriendlyUnitCreator : MonoBehaviour, IDataPersistence
 {
     public static FriendlyUnitCreator Instance { get; set; }
     [SerializeField] public GameObject hive;
     [SerializeField] private GameObject workerBeePreFab;
     [SerializeField] private GameObject soldierBeePreFab;
     [SerializeField] private GameObject honeyBeePreFab;
+    
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -17,13 +18,81 @@ public class FriendlyUnitCreator : MonoBehaviour
             Instance = this;
         }
     }
-    // Start is called before the first frame update
-    void Start()
+
+
+ public void SaveData(ref GameData data)
     {
+        data.allFriendlyUnits = new List<UnitSaveData>();
+
+        foreach (GameObject unit in UnitSelectionManager.Instance.allUnitsList)
+        {
+            if (unit == null) continue;
+
+            Unit u = unit.GetComponent<Unit>();
+            if (u == null) continue;
+
+            string type = "";
+
+            if (unit.name.Contains("Worker")) type = "Worker";
+            else if (unit.name.Contains("Soldier")) type = "Soldier";
+            else if (unit.name.Contains("Honey")) type = "Honey";
+            else continue; // Unknown type
+
+            UnitSaveData unitData = new UnitSaveData {
+                x = unit.transform.position.x,
+                y = unit.transform.position.y,
+                z = unit.transform.position.z,
+                health = u.health,
+                unitType = type
+            };
+
+            data.allFriendlyUnits.Add(unitData);
+        }
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (data.allFriendlyUnits == null) return;
+
+        foreach (UnitSaveData unitData in data.allFriendlyUnits)
+        {
+            GameObject bee = null;
+            Vector3 pos = new Vector3(unitData.x, unitData.y, unitData.z);
+
+            switch (unitData.unitType)
+            {
+                case "Worker":
+                    bee = CreateBee(workerBeePreFab, pos);
+                    break;
+                case "Soldier":
+                    bee = CreateBee(soldierBeePreFab, pos);
+                    break;
+                case "Honey":
+                    bee = CreateBee(honeyBeePreFab, pos);
+                    break;
+            }
+
+            if (bee != null)
+            {
+                bee.GetComponent<Unit>().health = unitData.health;
+            }
+        }
+    }
+
+    // Start is called before the first frame update
+    public void Start()
+    {
+         if (DataPersistenceManager.instance == null || !DataPersistenceManager.instance.IsNewGame)
+    {
+        // It's a load operation — skip new unit creation
+        return;
+    }
+    
         // make starter workers  
         CreateWorker();
         CreateHoney();
         CreateSoldier();
+        
     }
 
     // Update is called once per frame
@@ -57,6 +126,14 @@ public class FriendlyUnitCreator : MonoBehaviour
         // newBee.AddComponent<WorkerBeeLogic>();
         // newBee.AddComponent<Unit>();
         // newBee.AddComponent<UnitMovement>();
+
+        // Set correct name based on prefab
+        if (beePrefab == workerBeePreFab) newBee.name = "Worker";
+        else if (beePrefab == soldierBeePreFab) newBee.name = "Soldier";
+        else if (beePrefab == honeyBeePreFab) newBee.name = "Honey";
+        else newBee.name = "Unknown";
+
+        
         return newBee;
     }
 
@@ -126,4 +203,13 @@ public class FriendlyUnitCreator : MonoBehaviour
         newBee.GetComponent<Unit>().health = 100;
         // Speed in navMesh is set to 2x (7.0 hardcoded currently)
     }
+
+
+}
+[System.Serializable]
+public class UnitSaveData
+{
+    public float x, y, z;
+    public int health;
+    public string unitType; // "Worker", "Soldier", "Honey"
 }

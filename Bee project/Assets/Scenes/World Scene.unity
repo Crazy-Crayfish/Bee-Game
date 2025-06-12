@@ -1088,6 +1088,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &452702034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 452702035}
+  - component: {fileID: 452702036}
+  m_Layer: 0
+  m_Name: DataPersistenceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &452702035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452702034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2082648466}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &452702036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452702034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d654328a60ca9b54b8ec1bc8d2a35fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: data
 --- !u!1 &460509374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,9 +1853,15 @@ MonoBehaviour:
   width: 40
   height: 50
   hexTilePreFab: {fileID: 6672709892374027852, guid: b97f176be8a77ac4b98bb8102aae6793, type: 3}
+  queen: {fileID: 0}
+  nursery: {fileID: 0}
+  production: {fileID: 0}
+  storage: {fileID: 0}
   HoveredTile: {fileID: 0}
   DraggedTile: {fileID: 0}
   GridQueen: {fileID: 0}
+  hextiles: []
+  buildings: []
 --- !u!4 &587652038
 Transform:
   m_ObjectHideFlags: 0
@@ -5223,6 +5273,7 @@ MonoBehaviour:
   redFlower: {fileID: 1526075114479547931, guid: 88c6b946e2d7b1845acd24a6e05d1334, type: 3}
   treeTile: {fileID: 2170187455436810809, guid: 52605b7d94289b6409fa34be6699ba34, type: 3}
   rockTile: {fileID: 0}
+  tileList: []
 --- !u!4 &1232136664
 Transform:
   m_ObjectHideFlags: 0
@@ -8844,7 +8895,7 @@ Transform:
   - {fileID: 1072460574}
   - {fileID: 1805408019}
   - {fileID: 1427189180}
-  - {fileID: 717967070}
+  - {fileID: 452702035}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ResourceCounter : MonoBehaviour 
+public class ResourceCounter : MonoBehaviour, IDataPersistence
 {
     public static ResourceCounter Instance { get; set; }
 
@@ -36,6 +36,11 @@ public class ResourceCounter : MonoBehaviour
     }
     public void Start()
     {
+         if (DataPersistenceManager.instance == null || !DataPersistenceManager.instance.IsNewGame)
+    {
+        // It's a load operation — skip new unit creation
+        return;
+    }
         hiveLevel = 1;
         hiveHP = 500;
         hiveMaxHP = 500;
@@ -80,6 +85,21 @@ public class ResourceCounter : MonoBehaviour
 
 
     }
+    public void SaveData(ref GameData data){
+        data.honey = this.honey;
+        data.wax = this.wax;
+        data.DNA = this.DNA;
+        data.nectar = this.nectar;
+    }
+
+    public void LoadData(GameData data){
+        this.honey = data.honey;
+        this.wax = data.wax;
+        this.DNA = data.DNA;
+        this.nectar = data.nectar;
+    }
+
+
 
     // passively lose honey based on hive level (currently never changes)
     private void LoseHoney()

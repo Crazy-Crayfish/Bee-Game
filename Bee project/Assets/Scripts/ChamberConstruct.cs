@@ -17,6 +17,7 @@ public class ChamberConstruct : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     void Start()
     {
         selected = false;
+
     }
 
     // Update is called once per frame

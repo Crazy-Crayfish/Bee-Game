@@ -1,120 +1,88 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-
-// public class Tile : MonoBehaviour
-// {
-//     [SerializeField] private Color baseColor, alternateColor;
-//     [SerializeField] private SpriteRenderer renderer;
-//     [SerializeField] private GameObject highlight;
-//     public int value;
-//     public int maxValue;
-//     public void Init(bool isOffset){
-//         renderer.color = isOffset ? alternateColor : baseColor;
-
-//     }
-//     void Start()
-//     {
-//         gameObject.layer = 6;
-//     }
-    
-//     void OnMouseOver() {
-//         highlight.SetActive(true);
-//         MenuManager.Instance.showSelectedRes(this);
-        
-//     }
-//     void OnMouseExit() {
-//         highlight.SetActive(false);
-//         MenuManager.Instance.showSelectedRes(null);
-//     }
-
-//     public void setVal(int x) {
-//         value = x;
-//         maxValue = x;
-//     }
-//     public void OnMouseDown()
-//     {
-//         if (value > 9) {
-//             value -= 10;
-//             MenuManager.Instance.showSelectedRes(this);
-
-//         }
-//         else if(value > 0) {
-//             value = 0;
-//             MenuManager.Instance.showSelectedRes(this);
-//         }
-//         else{
-//             return;
-//             }
-//     }
-// }
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
 
 public class Tile : MonoBehaviour
 {
     [SerializeField] private Color baseColor, alternateColor;
     [SerializeField] private SpriteRenderer renderer;
     [SerializeField] private GameObject highlight;
+
     public int value;
     public int maxValue;
     public string type;
-    
+
     void Start()
     {
-        gameObject.layer = 6;
+        if (GridManager.Instance == null)
+    {
+        Debug.LogError("GridManager.Instance is null in Tile.Start!");
+    }
+        GridManager.Instance.tileList.Add(gameObject);
     }
 
-    public void Init(bool isOffset){
+    public void Init(bool isOffset)
+    {
         renderer.color = isOffset ? alternateColor : baseColor;
-
     }
-    
-    void OnMouseEnter() {
+
+    void OnMouseEnter()
+    {
         highlight.SetActive(true);
         MenuManager.Instance.showSelectedRes(this);
-        
     }
-    void OnMouseExit() {
+
+    void OnMouseExit()
+    {
         highlight.SetActive(false);
         MenuManager.Instance.showSelectedRes(null);
     }
 
-    void OnMouseOver() {
-        // highlight.SetActive(true);
+    void OnMouseOver()
+    {
         MenuManager.Instance.showSelectedRes(this);
-        
     }
-    
-    public void setVal(int x) {
+
+    public void setVal(int x)
+    {
         value = x;
         maxValue = x;
     }
 
-
-    public void decrement() {
+    public void decrement()
+    {
         value--;
-        if(value == 0) {
+        if (value == 0)
+        {
             this.gameObject.SetActive(false);
             Destroy(this);
+            GridManager.Instance.tileList.Remove(gameObject);
         }
     }
 
-    
-    // public void OnMouseDown()
-    // {
-    //     if (value > 9) {
-    //         value -= 10;
-    //         MenuManager.Instance.showSelectedRes(this);
+    // === SAVE SYSTEM METHODS BELOW ===
 
-    //     }
-    //     else if(value > 0) {
-    //         value = 0;
-    //         MenuManager.Instance.showSelectedRes(this);
-    //     }
-    //     else{
-    //         return;
-    //         }
+    // public TileSaveData GetSaveData()
+    // {
+    //     return new TileSaveData
+    //     {
+    //         x = transform.position.x,
+    //         y = transform.position.y,
+    //         z = transform.position.z,
+    //         value = this.value,
+    //         maxValue = this.maxValue,
+    //         type = this.type
+    //     };
     // }
+
+    // public void LoadFromData(TileSaveData data)
+    // {
+    //     transform.position = new Vector3(data.x, data.y, data.z);
+    //     value = data.value;
+    //     maxValue = data.maxValue;
+    //     type = data.type;
+    // }
+
 }
