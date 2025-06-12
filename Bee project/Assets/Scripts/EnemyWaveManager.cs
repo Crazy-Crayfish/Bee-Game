@@ -15,6 +15,7 @@ public class EnemyWaveManager : MonoBehaviour, IDataPersistence
     [SerializeField] private float timeUntilFirstWave;
     [SerializeField] private Text waveTimerText;
     [SerializeField] private Text waveAlertText;
+    private SfxManager SfxManager;
 
     private float timeUntilNextWave;
 
