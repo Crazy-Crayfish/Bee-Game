@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tutorialManagerScript : MonoBehaviour
+public class tutorialManagerScript : MonoBehaviour, IDataPersistence
 {
 
     
@@ -21,7 +21,22 @@ public class tutorialManagerScript : MonoBehaviour
     public bool beeLeftHive;
     private float startTime;
     
+    public void LoadData(GameData data)
+    {
+        if (data.tutorialDone)
+        {
+            anim.SetInteger("Change", 45);
+            gameObject.SetActive(false);
+        }
+    }
 
+    public void SaveData(ref GameData data) 
+    {
+        if (anim.GetInteger("Change") == 45)
+        {
+            data.tutorialDone = true;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

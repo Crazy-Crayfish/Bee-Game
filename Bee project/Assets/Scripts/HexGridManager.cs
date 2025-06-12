@@ -57,7 +57,10 @@ public class HexGridManager : MonoBehaviour, IDataPersistence
             // newTile.transform.SetParent(this.gameObject.transform, false);
             
             tileList[newTile.gridX, newTile.gridY] = newTile.gameObject;
- 
+            if (tileData.isBuiltOn)
+            {
+                string path = "";
+            }
         }
     }
     public void SaveData(ref GameData data) {
@@ -78,9 +81,9 @@ public class HexGridManager : MonoBehaviour, IDataPersistence
                 tileType = hextile.tileType,
                 isBuiltOn = hextile.isBuiltOn,
                 gridX = hextile.gridX,
-                gridY = hextile.gridY
- 
-                // structureType = hextile.structureType
+                gridY = hextile.gridY,
+
+                structureName = hextile.structure.name
                
             };
            
@@ -318,5 +321,6 @@ public class HexTileSaveData
     public bool isBuiltOn;
     public int gridX;
     public int gridY;
+    public string structureName;
     // public string structureType;  // Save structure info if needed (name or ID)
 }

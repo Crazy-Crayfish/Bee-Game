@@ -33,8 +33,9 @@ public class DataPersistenceManager : MonoBehaviour
    public void NewGame()
    {
         this.gameData = new GameData();
-       IsNewGame = true;
-
+        IsNewGame = true;
+        gameData.tutorialDone = false;
+        
    }
 
    public void LoadGame()

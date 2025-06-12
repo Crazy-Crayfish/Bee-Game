@@ -45,7 +45,7 @@ public class SceneButton : MonoBehaviour
         {
             SaveClearer.Instance.ClearSaves();
         }
-
+        
         IEnumerator LoadAsyncScene()
         {
             AsyncOperation asyncLoad;

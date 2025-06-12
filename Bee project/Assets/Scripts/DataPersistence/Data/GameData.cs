@@ -17,6 +17,8 @@ public class GameData
     public float waveTimer;
     public int waveNum;
     
+    public bool tutorialDone;
+    
     public GameData() {
         // honey = 50;
         // nectar = 0;
