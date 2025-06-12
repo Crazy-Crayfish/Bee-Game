@@ -10,7 +10,6 @@ public class SceneButton : MonoBehaviour
     public bool backward;
     private float progressPercent = 0;
     private bool bLoadDone = false;
-    private SfxManager SfxManager;
     [SerializeField] private GameObject loadScreen;
     [SerializeField] private Text loadProgressText;
     [SerializeField] private bool NewGame;
@@ -36,7 +35,6 @@ public class SceneButton : MonoBehaviour
 
     void OnMouseDown()
     {
-        SfxManager.Instance.playButtonClickSound();
         ChangeScene();
     }
 

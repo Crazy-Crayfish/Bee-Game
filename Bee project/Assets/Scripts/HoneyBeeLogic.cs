@@ -14,7 +14,6 @@ public class HoneyBeeLogic : MonoBehaviour {
     private GameObject hive;
     private GameObject queen;
     public bool inHive;
-    private SfxManager SfxManager;
 
     void Awake() 
     {
@@ -52,12 +51,6 @@ public class HoneyBeeLogic : MonoBehaviour {
                     // GameObject hive = FriendlyUnitCreator.Instance.hive;
                     agent.enabled = (false);
                     gameObject.transform.position = (hive.transform.position + new Vector3(0, -1, -hive.transform.position.z));
-
-                    if (ScreenManager.Instance.inHive) {
-                        SfxManager.Instance.playHivePopSound();
-                    }
-
-
                     agent.enabled = (true);
                     agent.destination = (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
                     inHive = false;
@@ -73,12 +66,6 @@ public class HoneyBeeLogic : MonoBehaviour {
                     
                     agent.enabled = (false);
                     gameObject.transform.position = (queen.transform.position + new Vector3(0, -1, -queen.transform.position.z));
-
-                    if (!ScreenManager.Instance.inHive) {
-                        SfxManager.Instance.playHivePopSound();
-                    }
-
-
                     agent.enabled = (true);
                     agent.destination = (queen.transform.position + new Vector3(0, -2, -queen.transform.position.z));                    
                     inHive = true;
@@ -200,9 +187,6 @@ public class HoneyBeeLogic : MonoBehaviour {
                 {
                     ResourceCounter.Instance.changeNectar(destinationTile.GetComponent<Tile>().value);
                     destinationTile.GetComponent<Tile>().value = 0;
-                    if (!ScreenManager.Instance.inHive) {
-                        SfxManager.Instance.playSlurpSound();
-                    }
                 }
                 
                 else
@@ -210,9 +194,6 @@ public class HoneyBeeLogic : MonoBehaviour {
                     // HONEY BEES COLLECT AT 3X SPEED
                     destinationTile.GetComponent<Tile>().value = destinationTile.GetComponent<Tile>().value - 3;
                     ResourceCounter.Instance.changeNectar(3);
-                    if (!ScreenManager.Instance.inHive) {
-                        SfxManager.Instance.playSlurpSound();
-                    }
                 }
             }
         }
@@ -228,22 +209,18 @@ public class HoneyBeeLogic : MonoBehaviour {
         if (agent.destination.x < gameObject.transform.position.x && renderer.flipX)
         {
             renderer.flipX = false;
-            SfxManager.Instance.playBuzzSound();
         } else if (agent.destination.x > gameObject.transform.position.x && !renderer.flipX) {
-            renderer.flipX = true;  
-            SfxManager.Instance.playBuzzSound();     
+            renderer.flipX = true;       
         }
 
         if (agent.velocity.magnitude > 2 && !animator.GetBool("isMoving")) 
         {
             animator.SetBool("isMoving", true);
            // Debug.Log ("moving");
-           SfxManager.Instance.playBuzzSound();
         }
         else if (agent.velocity.magnitude < 1 && animator.GetBool("isMoving"))
         {
             animator.SetBool("isMoving", false);
-            SfxManager.Instance.playBuzzSound();
         }
     }
 

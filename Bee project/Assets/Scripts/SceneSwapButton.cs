@@ -2,11 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
-
 public class SceneSwapButton : MonoBehaviour
 {
     [SerializeField] private Transform Cam;
-    private SfxManager SfxManager;
     
     // Start is called before the first frame update
         void Start()
@@ -20,7 +18,6 @@ public class SceneSwapButton : MonoBehaviour
     }
     public void ChangeScene()
     {
-        SfxManager.Instance.playButtonClickSound();
         // Debug.Log("change scene");
         Camera_Controller cameraController = Cam.gameObject.GetComponent<Camera_Controller>();
         // cameraController.noMovement();

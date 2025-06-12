@@ -3,13 +3,7 @@ guid: 89e89664f6c0dcc4f9ef3f1f63344eac
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - beeBuzz: {fileID: 8300000, guid: 5d9911e56ca6d524d9cca590db6e6b8a, type: 3}
-  - pop: {fileID: 8300000, guid: 000701c71e1e3114a83480e042f9a8da, type: 3}
-  - click: {fileID: 8300000, guid: 2fae0eeba96f62346bb49e0064d96610, type: 3}
-  - workerAttack: {fileID: 8300000, guid: c960d69203c1fe0419ec47b0f3384eb9, type: 3}
-  - soldierAttack: {fileID: 8300000, guid: 0229f07d768bd4d4daa5f0e3d72ae891, type: 3}
-  - slurp: {fileID: 8300000, guid: 9ca7a5a5c0b1b9f46a2607fcd0f8689b, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
