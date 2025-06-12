@@ -11,7 +11,8 @@ public class GameData
     public List<GameObject> buildings;
     public List<HexTileSaveData> hexTileSaveList;
     public List<EnemySaveData> allEnemyUnits;
-
+    
+    public Sprite queen, production, storage, nursery;
     public int nectar, honey, DNA, wax;
     public float waveTimer;
     public int waveNum;

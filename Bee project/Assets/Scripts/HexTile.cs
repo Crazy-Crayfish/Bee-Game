@@ -1,23 +1,24 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+ 
 public class HexTile : MonoBehaviour
 {
    // [SerializeField] private Color baseColor, alternateColor;
     // [SerializeField] private SpriteRenderer renderer;
     [SerializeField] private GameObject highlight;
-    [SerializeField] private GameObject tileImage;
+    [SerializeField] public GameObject tileImage;
     public int gridX;
     public int gridY;
     public string tileType; // "empty", "queen", "storage", "production", "nursery"
     public bool isBuiltOn;
     public GameObject structure;
-    
+   
     void Awake() {
         HexGridManager.Instance.hextiles.Add(gameObject);
     }
-    
+   
     public void Init(bool isOffset, int x, int y){
        // renderer.color = isOffset ? alternateColor : baseColor;
        tileType = "empty";
@@ -26,21 +27,22 @@ public class HexTile : MonoBehaviour
        gridY = y;
        structure = null;
     }
-
+ 
     // public void changeSprite(Sprite newSprite) {
     //     renderer.sprite = newSprite;
     // }
-
+ 
     public void changeType(GameObject newTilePreFab) {
         // newSprite = newTilePreFab.GetComponent<SpriteRenderer>().sprite;
         tileImage.gameObject.GetComponent<SpriteRenderer>().sprite = newTilePreFab.GetComponent<SpriteRenderer>().sprite; /////////////////////// Renderer is changing sprite but nothing changes visually. Look at renderer docs
         // Debug.Log("x y" + this.gridX + "   " + this.gridY + "    Sprite: " + tileImage.gameObject.GetComponent<SpriteRenderer>().sprite);
-
+       
         tileType =  newTilePreFab.GetComponent<Chamber>().type;
-        
+        HexGridManager.Instance.setPreFab(tileType, newTilePreFab.GetComponent<SpriteRenderer>().sprite);
+       
     }
-    
-
+   
+ 
     void OnMouseEnter() {
         activateHighlight(true);
         HexGridManager.Instance.HoveredTile = this.gameObject;
@@ -52,17 +54,17 @@ public class HexTile : MonoBehaviour
         }
         // Debug.Log("x y" + this.gridX + "   " + this.gridY + "    Sprite: " + this.gameObject.GetComponent<SpriteRenderer>().sprite);
     }
-    
+   
     public void activateHighlight(bool onOff)
     {
         highlight.SetActive(onOff);
     }
-
+ 
     // private void updateHighlights(bool onOff)
     // {
-
+ 
     // }
-
+ 
     void OnMouseExit() {
         activateHighlight(false);
         if (HexGridManager.Instance.DraggedTile != null)
