@@ -5195,8 +5195,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 832941888}
   m_HandleRect: {fileID: 832941886}
   m_Direction: 2
-  m_Value: 0.5000001
-  m_Size: 0.72967696
+  m_Value: 0.4999999
+  m_Size: 0.72967684
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5572,7 +5572,7 @@ MonoBehaviour:
   enemySpiderPreFab: {fileID: 2896820176378235156, guid: a65339d86124f034a9a77b188abd1226, type: 3}
   enemyBadgerPreFab: {fileID: 2896820176378235156, guid: e830e790f07b8c049985ccb5fd54df40, type: 3}
   waveCooldown: 90
-  timeUntilFirstWave: 1000
+  timeUntilFirstWave: 500
   waveTimerText: {fileID: 1685870597}
   waveAlertText: {fileID: 840904846}
 --- !u!1 &1423299589

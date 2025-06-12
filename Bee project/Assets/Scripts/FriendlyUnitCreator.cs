@@ -24,8 +24,8 @@ public class FriendlyUnitCreator : MonoBehaviour
     {
         // make starter workers  
         firstBee = CreateWorker();
-        CreateHoney();
-        CreateSoldier();
+        //CreateHoney();
+        //CreateSoldier();
     }
 
     // Update is called once per frame
