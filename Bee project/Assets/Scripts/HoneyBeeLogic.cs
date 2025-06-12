@@ -183,7 +183,7 @@ public class HoneyBeeLogic : MonoBehaviour {
             if (destinationTile.GetComponent<Tile>() != null && destinationTile.GetComponent<Tile>().value > 0 && Time.frameCount % 60 == 0) // bad time shortcut
             {
                 // FINISH FLOWER
-                if (destinationTile.GetComponent<Tile>().value < 3)
+                if (destinationTile.GetComponent<Tile>().value < 6)
                 {
                     ResourceCounter.Instance.changeNectar(destinationTile.GetComponent<Tile>().value);
                     destinationTile.GetComponent<Tile>().value = 0;
@@ -192,8 +192,8 @@ public class HoneyBeeLogic : MonoBehaviour {
                 else
                 {
                     // HONEY BEES COLLECT AT 3X SPEED
-                    destinationTile.GetComponent<Tile>().value = destinationTile.GetComponent<Tile>().value - 3;
-                    ResourceCounter.Instance.changeNectar(3);
+                    destinationTile.GetComponent<Tile>().value = destinationTile.GetComponent<Tile>().value - 6;
+                    ResourceCounter.Instance.changeNectar(6);
                 }
             }
         }

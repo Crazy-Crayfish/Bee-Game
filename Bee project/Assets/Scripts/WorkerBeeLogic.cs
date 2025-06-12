@@ -255,11 +255,22 @@ public class WorkerBeeLogic : MonoBehaviour {
         if (Vector2.Distance(destinationTile.gameObject.transform.position, 
                              this.gameObject.transform.position) < 0.05)
         {
+            
             // Debug.Log("collecting!!");
             if (destinationTile.GetComponent<Tile>() != null && destinationTile.GetComponent<Tile>().value > 0 && Time.frameCount % 60 == 0) // bad time shortcut
             {
-                destinationTile.GetComponent<Tile>().value = destinationTile.GetComponent<Tile>().value - 1;
-                ResourceCounter.Instance.changeNectar(1);
+                // FINISH FLOWER
+                if (destinationTile.GetComponent<Tile>().value < 6)
+                {
+                    ResourceCounter.Instance.changeNectar(destinationTile.GetComponent<Tile>().value);
+                    destinationTile.GetComponent<Tile>().value = 0;
+                }
+                
+                else
+                {
+                destinationTile.GetComponent<Tile>().value = destinationTile.GetComponent<Tile>().value - 3;
+                ResourceCounter.Instance.changeNectar(3);
+                }
             }
         }
         // maybe make it auto seek out more flowers?
