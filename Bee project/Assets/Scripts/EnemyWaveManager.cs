@@ -33,7 +33,9 @@ public class EnemyWaveManager : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.allEnemyUnits = new List<EnemySaveData>();
-
+        data.waveTimer = timeUntilNextWave;
+        data.waveNum = waveNum;
+        
         foreach (GameObject enemy in UnitSelectionManager.Instance.allEnemiesList)
         {
             if (enemy == null) continue;
@@ -63,7 +65,8 @@ public class EnemyWaveManager : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         if (data.allEnemyUnits == null) return;
-
+        timeUntilNextWave = data.waveTimer;
+        waveNum = data.waveNum;
         foreach (EnemySaveData enemyData in data.allEnemyUnits)
         {
             Vector3 pos = new Vector3(enemyData.x, enemyData.y, enemyData.z);
@@ -97,6 +100,8 @@ public class EnemyWaveManager : MonoBehaviour, IDataPersistence
          if (DataPersistenceManager.instance == null || !DataPersistenceManager.instance.IsNewGame)
     {
         // It's a load operation — skip new unit creation
+        waveAlertText.gameObject.SetActive(false);
+
         return;
     }
         //// CHANGE THESE TO ADJUST DIFFICULTY 

@@ -13,8 +13,9 @@ public class GameData
     public List<EnemySaveData> allEnemyUnits;
 
     public int nectar, honey, DNA, wax;
-
-
+    public float waveTimer;
+    public int waveNum;
+    
     public GameData() {
         // honey = 50;
         // nectar = 0;

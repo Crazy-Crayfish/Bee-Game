@@ -12,6 +12,7 @@ public class SceneButton : MonoBehaviour
     private bool bLoadDone = false;
     [SerializeField] private GameObject loadScreen;
     [SerializeField] private Text loadProgressText;
+    [SerializeField] private bool NewGame;
 
     void Start()
     {
@@ -26,7 +27,6 @@ public class SceneButton : MonoBehaviour
     {
         if (progressPercent > 0) 
         {
-            Debug.Log(progressPercent * 100);
             loadProgressText.text = (progressPercent * 100) + "%";
         }
         loadProgressText.text = (progressPercent * 100) + "%";
@@ -40,29 +40,31 @@ public class SceneButton : MonoBehaviour
 
     public void ChangeScene()
     {
-    // SceneManager.LoadSceneAsync(1);
-    
-    
-    
-    IEnumerator LoadAsyncScene()
-    {
-        AsyncOperation asyncLoad;
-        asyncLoad = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
-        asyncLoad.allowSceneActivation = false;
-        //wait until the asynchronous scene fully loads
-        while (!asyncLoad.isDone)
+        // SceneManager.LoadSceneAsync(1);
+        if (NewGame)
         {
-            progressPercent = Mathf.Clamp01(asyncLoad.progress / .9f);
-            //scene has loaded as much as possible,
-            // the last 10% can't be multi-threaded
-            if (asyncLoad.progress >= 0.9f)
-            {
-                asyncLoad.allowSceneActivation = true;
-            }
-            yield return null;
+            SaveClearer.Instance.ClearSaves();
         }
-        bLoadDone = asyncLoad.isDone;
-    }
+
+        IEnumerator LoadAsyncScene()
+        {
+            AsyncOperation asyncLoad;
+            asyncLoad = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+            asyncLoad.allowSceneActivation = false;
+            //wait until the asynchronous scene fully loads
+            while (!asyncLoad.isDone)
+            {
+                progressPercent = Mathf.Clamp01(asyncLoad.progress / .9f);
+                //scene has loaded as much as possible,
+                // the last 10% can't be multi-threaded
+                if (asyncLoad.progress >= 0.9f)
+                {
+                    asyncLoad.allowSceneActivation = true;
+                }
+                yield return null;
+            }
+            bLoadDone = asyncLoad.isDone;
+        }
     StartCoroutine(LoadAsyncScene()); //call to begin loading scene
 
     loadScreen.SetActive(true);

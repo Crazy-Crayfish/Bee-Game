@@ -54,7 +54,7 @@ public class FileDataHandler
         // write the serialized data to the file
 
         using (FileStream stream = new FileStream(fullPath, FileMode.Create)) {
-
+            Debug.Log(fullPath);
             using (StreamWriter writer = new StreamWriter(stream)) {
 
                 writer.Write(dataToStore);
