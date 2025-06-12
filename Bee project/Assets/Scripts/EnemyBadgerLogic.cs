@@ -8,6 +8,8 @@ public class EnemyBadgerLogic : MonoBehaviour
     Camera cam;
     NavMeshAgent agent;
     GameObject hive;
+    private SfxManager SfxManager;
+    
     void Awake() 
     {
         cam = Camera.main;
@@ -19,7 +21,6 @@ public class EnemyBadgerLogic : MonoBehaviour
         this.GetComponent<EnemyUnit>().health = 450;
         hive = GameObject.Find("Hive");
         // hive = FindObjectOfType<SceneSwapButton>().gameObject;
-
 	}
     // Update is called once per frame
     void Update()
@@ -75,6 +76,9 @@ public class EnemyBadgerLogic : MonoBehaviour
         {
             // ATTACKS ARE 2X AND THEY WILL CAUSE RECOIL
             target.GetComponent<Unit>().health = target.GetComponent<Unit>().health - 50;
+
+            SfxManager.Instance.playBadgerAttackSound();
+
             // Debug.Log ("damaging to " + target.GetComponent<Unit>().health);
         }
     }

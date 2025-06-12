@@ -8,6 +8,8 @@ public class EnemyAntLogic : MonoBehaviour
     Camera cam;
     NavMeshAgent agent;
     GameObject hive;
+    private SfxManager SfxManager;
+
     void Awake() 
     {
         cam = Camera.main;
@@ -71,6 +73,9 @@ public class EnemyAntLogic : MonoBehaviour
         if (target.GetComponent<Unit>().health > 0 && Time.frameCount % 60 == 0)
         {
             target.GetComponent<Unit>().health = target.GetComponent<Unit>().health - 25;
+
+            SfxManager.Instance.playAntAttackSound();
+
             // Debug.Log ("damaging to " + target.GetComponent<Unit>().health);
         }
     }

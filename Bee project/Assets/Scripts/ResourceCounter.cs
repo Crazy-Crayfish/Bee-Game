@@ -19,7 +19,10 @@ public class ResourceCounter : MonoBehaviour
     
     private int hiveLevel;
 
-    [SerializeField] private Text ResourcesText;
+    [SerializeField] private Text ResourcesNectarText;
+    [SerializeField] private Text ResourcesHoneyText;
+    [SerializeField] private Text ResourcesWaxText;
+    
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -56,9 +59,12 @@ public class ResourceCounter : MonoBehaviour
     //Update text resource display
     private void UpdateResText()
     {
-        ResourcesText.text = ("Nectar: " + getNectar() + "/" + getMaxNectar() + "   Honey: " + getHoney() + "/" + getMaxHoney() + "\n   Wax: " + getWax() + "/" + getMaxWax() + "   DNA: " + getDNA() +  "/" + getMaxDNA());
+        //ResourcesText.text = ("Nectar: " + getNectar() + "/" + getMaxNectar() + "   Honey: " + getHoney() + "/" + getMaxHoney() + "\n   Wax: " + getWax() + "/" + getMaxWax() + "   DNA: " + getDNA() +  "/" + getMaxDNA());
+        //ResourcesText.text = ("\t" + getNectar() + "/" + getMaxNectar() + "   \t " + getHoney() + "/" + getMaxHoney() + "   \t " + getWax() + "/" + getMaxWax());
+        ResourcesNectarText.text = (getNectar() + "/" + getMaxNectar());
+        ResourcesHoneyText.text = (getHoney() + "/" + getMaxHoney());
+        ResourcesWaxText.text = (getWax() + "/" + getMaxWax());
     }
-
 
     // nectar
     public int getNectar() {

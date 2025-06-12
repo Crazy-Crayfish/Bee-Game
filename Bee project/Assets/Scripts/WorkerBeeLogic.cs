@@ -14,6 +14,8 @@ public class WorkerBeeLogic : MonoBehaviour {
     private GameObject hive;
     private GameObject queen;
     public string carriedObject;
+    private SfxManager SfxManager; 
+    
     void Awake() 
     {
         animator = GetComponent<Animator>();
@@ -48,6 +50,12 @@ public class WorkerBeeLogic : MonoBehaviour {
                     // GameObject hive = FriendlyUnitCreator.Instance.hive;
                     agent.enabled = (false);
                     gameObject.transform.position = (hive.transform.position + new Vector3(0, -1, -hive.transform.position.z));
+
+                    if (ScreenManager.Instance.inHive) {
+                        SfxManager.Instance.playHivePopSound();
+                    }
+
+
                     agent.enabled = (true);
                     agent.destination = (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
                 }
@@ -62,6 +70,12 @@ public class WorkerBeeLogic : MonoBehaviour {
                     
                     agent.enabled = (false);
                     gameObject.transform.position = (queen.transform.position + new Vector3(0, -1, -queen.transform.position.z));
+
+                    if (!ScreenManager.Instance.inHive) {
+                        SfxManager.Instance.playHivePopSound();
+                    }
+
+
                     agent.enabled = (true);
                     agent.destination = (queen.transform.position + new Vector3(0, -2, -queen.transform.position.z));
                     Debug.Log(gameObject.transform.position);                    
@@ -231,6 +245,7 @@ public class WorkerBeeLogic : MonoBehaviour {
             if (target.GetComponent<EnemyUnit>().health > 0 && Time.frameCount % 60 == 0) // bad time shortcut
             {
                 target.GetComponent<EnemyUnit>().health = target.GetComponent<EnemyUnit>().health - 20;
+                SfxManager.Instance.playWorkerAttackSound();
                 // Debug.Log ("damaging enemy to " + target.GetComponent<EnemyUnit>().health);
             }
         } 
@@ -253,6 +268,11 @@ public class WorkerBeeLogic : MonoBehaviour {
             {
                 destinationTile.GetComponent<Tile>().value = destinationTile.GetComponent<Tile>().value - 1;
                 ResourceCounter.Instance.changeNectar(1);
+
+                if (!ScreenManager.Instance.inHive) {
+                    SfxManager.Instance.playSlurpSound();
+                    //weird bug that constantly played when inside hive
+                }
             }
         }
         // maybe make it auto seek out more flowers?
@@ -267,25 +287,36 @@ public class WorkerBeeLogic : MonoBehaviour {
         if (agent.destination.x < gameObject.transform.position.x && renderer.flipX)
         {
             renderer.flipX = false;
+            SfxManager.Instance.playBuzzSound(); 
         } else if (agent.destination.x > gameObject.transform.position.x && !renderer.flipX) {
-            renderer.flipX = true;       
+            renderer.flipX = true; 
+            SfxManager.Instance.playBuzzSound();      
         }
         if (carriedObject == "egg" && !animator.GetBool("holdingEgg")) 
         {
             animator.SetBool("holdingEgg", true);
+
+            if (ScreenManager.Instance.inHive) {
+                SfxManager.Instance.playPopSound();
+            }
         }
         else if (carriedObject != "egg" && animator.GetBool("holdingEgg")) 
         {
             animator.SetBool("holdingEgg", false);
+            if (ScreenManager.Instance.inHive) {
+                SfxManager.Instance.playPopSound();
+            }
         }      
         if (agent.velocity.magnitude > 2 && !animator.GetBool("isMoving")) 
         {
             animator.SetBool("isMoving", true);
+            SfxManager.Instance.playBuzzSound();
             // Debug.Log (gameObject + " is moving");
         }
         else if (agent.velocity.magnitude < 1 && animator.GetBool("isMoving"))
         {
             animator.SetBool("isMoving", false);
+            SfxManager.Instance.playBuzzSound();
         }
     }
 
