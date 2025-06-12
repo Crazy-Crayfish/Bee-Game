@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 // using UnityEngine.Random;
 
-public class EnemyWaveManager : MonoBehaviour
+public class EnemyWaveManager : MonoBehaviour, IDataPersistence
 {
     public static EnemyWaveManager Instance { get; set; }
     [SerializeField] private GameObject hive;
@@ -20,6 +20,7 @@ public class EnemyWaveManager : MonoBehaviour
 
     private int enemyCount;
     private int waveNum;
+    
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -29,9 +30,75 @@ public class EnemyWaveManager : MonoBehaviour
         }
     }
 
+    public void SaveData(ref GameData data)
+    {
+        data.allEnemyUnits = new List<EnemySaveData>();
+
+        foreach (GameObject enemy in UnitSelectionManager.Instance.allEnemiesList)
+        {
+            if (enemy == null) continue;
+
+            EnemyUnit e = enemy.GetComponent<EnemyUnit>();
+            if (e == null) continue;
+
+            string type = "";
+            if (enemy.name.Contains("Ant")) type = "Ant";
+            else if (enemy.name.Contains("Spider")) type = "Spider";
+            else if (enemy.name.Contains("Badger")) type = "Badger";
+            else continue;
+
+            EnemySaveData saveData = new EnemySaveData
+            {
+                x = enemy.transform.position.x,
+                y = enemy.transform.position.y,
+                z = enemy.transform.position.z,
+                health = e.health,
+                enemyType = type
+            };
+
+            data.allEnemyUnits.Add(saveData);
+        }
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (data.allEnemyUnits == null) return;
+
+        foreach (EnemySaveData enemyData in data.allEnemyUnits)
+        {
+            Vector3 pos = new Vector3(enemyData.x, enemyData.y, enemyData.z);
+            GameObject enemy = null;
+
+            if (enemyData.enemyType == "Ant")
+            {
+                enemy = Instantiate(enemyAntPreFab, pos, Quaternion.identity);
+                enemy.name = "Ant";
+                enemy.GetComponent<EnemyUnit>().health = enemyData.health;
+            }
+            else if (enemyData.enemyType == "Spider")
+            {
+                enemy = Instantiate(enemySpiderPreFab, pos, Quaternion.identity);
+                enemy.name = "Spider";
+                enemy.GetComponent<EnemyUnit>().health = enemyData.health;
+            }
+            else if (enemyData.enemyType == "Badger")
+            {
+                enemy = Instantiate(enemyBadgerPreFab, pos, Quaternion.identity);
+                enemy.name = "Badger";
+                enemy.GetComponent<EnemyUnit>().health = enemyData.health;
+            }
+        }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
+         if (DataPersistenceManager.instance == null || !DataPersistenceManager.instance.IsNewGame)
+    {
+        // It's a load operation — skip new unit creation
+        return;
+    }
         //// CHANGE THESE TO ADJUST DIFFICULTY 
         // waveCooldown = 10.0f;
         // float timeUntilFirstWave = 10.0f; // 2:30
@@ -116,6 +183,7 @@ public class EnemyWaveManager : MonoBehaviour
             var newBadger = Instantiate(enemyBadgerPreFab, (center + randomDirection) + offset, Quaternion.identity);
             // BADGERS HAVE 3X HEALTH BUT 0.5X SPEED
             newBadger.GetComponent<EnemyUnit>().health = 450;
+            newBadger.name = "Badger";
         }
         else
         {
@@ -127,11 +195,13 @@ public class EnemyWaveManager : MonoBehaviour
                 {
                 var newAnt = Instantiate(enemyAntPreFab, (center + randomDirection) + offset, Quaternion.identity);            
                 newAnt.GetComponent<EnemyUnit>().health = 150;
+                newAnt.name = "Ant";
                 }
                 if (waveNum >= 3 && waveNum < 6)
                 {
                     // SPIDERS HAVE 2/3X HEALTH BUT 1.5X SPEED
                     var newSpider = Instantiate(enemySpiderPreFab, (center + randomDirection) + offset, Quaternion.identity);
+                    newSpider.name = "Spider";
                     newSpider.GetComponent<EnemyUnit>().health = 100;
                 }
 
@@ -141,4 +211,12 @@ public class EnemyWaveManager : MonoBehaviour
 
 
     }
+}
+
+[System.Serializable]
+public class EnemySaveData
+{
+    public float x, y, z;
+    public int health;
+    public string enemyType; // "Ant", "Spider", or "Badger"
 }

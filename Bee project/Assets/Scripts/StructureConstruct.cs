@@ -14,6 +14,7 @@ public class StructureConstruct : MonoBehaviour, IPointerDownHandler //, IBeginD
     void Start()
     {
         selected = false;
+
     }
 
     // Update is called once per frame

@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HexGridManager : MonoBehaviour
+public class HexGridManager : MonoBehaviour, IDataPersistence
 {
     
     public static HexGridManager Instance { get; set; }
     // Start is called before the first frame update
     [SerializeField] public int width, height;
-    [SerializeField] private HexTile hexTilePreFab;
+    [SerializeField] private HexTile hexTilePreFab, queen, nursery, production, storage;
     public GameObject[,] tileList;
     public GameObject HoveredTile;
     public GameObject DraggedTile;
     public GameObject GridQueen;
+    public List<GameObject> hextiles;
+    public List<GameObject> buildings;
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -21,7 +23,58 @@ public class HexGridManager : MonoBehaviour
             Instance = this;
         }
     }
+    public void LoadData(GameData data)
+    {
+        Debug.Log("Hexgridmanager received the data");
+        
+        foreach (HexTileSaveData tileData in data.hexTileSaveList)
+        {
+            // Tile prefab = whichPreFab(tileData.type); MUST BE IMPLEMENTED IN ORDER FOR CHAMBERS TO LOAD
+            // if (prefab == null) continue;
+            // hard coded to be hexTilePreFab which should be changed
+
+            if (hexTilePreFab == null) Debug.Log("smth is up");
+            HexTile newTile = Instantiate(hexTilePreFab, new Vector3(tileData.worldX, tileData.worldY, 1.0f), Quaternion.identity);
+            newTile.name = $"HexTile {tileData.worldX} {tileData.worldY}";
+            newTile.tileType = tileData.tileType;
+            newTile.isBuiltOn = tileData.isBuiltOn;
+            newTile.transform.localScale = new Vector3(2f, 2f, 1f);
+            // newTile.transform.SetParent(this.gameObject.transform, false);
+
+
+        }
+    }
+    public void SaveData(ref GameData data) {
+        data.hexTileSaveList = new List<HexTileSaveData>();
+
+        foreach (GameObject obj in hextiles) {
+            var hextile = obj.GetComponent<HexTile>();
+            if (hextile == null) {
+                continue;
+            }
+
+            HexTileSaveData tiledata = new HexTileSaveData {
+                
+                worldX = obj.transform.position.x,
+                worldY = obj.transform.position.y,
+                // z = obj.transform.position.z,
+                tileType = hextile.tileType,
+                isBuiltOn = hextile.isBuiltOn,
+                // structureType = hextile.structureType
+                
+            };
+
+            data.hexTileSaveList.Add(tiledata);
+        }
+
+}
     void Start() {
+
+        if (DataPersistenceManager.instance == null || !DataPersistenceManager.instance.IsNewGame)
+        {
+        // It's a load operation — skip new unit creation
+            return;
+        }
         GenerateGrid();
         HoveredTile = null;
     }
@@ -149,6 +202,7 @@ public class HexGridManager : MonoBehaviour
                 var newBuilding = Instantiate(building, 
                         new Vector3(HoveredTile.transform.position.x,HoveredTile.transform.position.y, -5), 
                                             Quaternion.identity);
+                buildings.Add(newBuilding);
                 
                 HoveredTile.GetComponent<HexTile>().isBuiltOn = true;
                 HoveredTile.GetComponent<HexTile>().structure = newBuilding;
@@ -174,10 +228,12 @@ public class HexGridManager : MonoBehaviour
                 tempX += (float)0.65 * scalar;
             }
             var spawnedTile = Instantiate(hexTilePreFab, new Vector3(tempX,tempY), Quaternion.identity); //this.gameObject.transform.position.x + 
+            // hextiles.Add(spawnedTile);
             spawnedTile.transform.SetParent(this.gameObject.transform, false);
             spawnedTile.Init(isOffSet, x, y);
             tileList[x, y] = spawnedTile.gameObject;
             spawnedTile.name = $"HexTile {x} {y}";
+            
             
 
         }
@@ -201,5 +257,30 @@ public class HexGridManager : MonoBehaviour
 
 
    }
+
+
+//    public HexTile whichPreFab(string tileType) {
+//     switch(tileType) {
+//         case "empty": return hexTilePreFab;
+//         // case "queen": return;
+//         // case "storage": return;
+//         // case "nursery": return;
+//         // case "production": return; 
+
+//     }
+
+//     return hexTilePreFab;
+
+//    }
    
+}
+
+[System.Serializable]
+public class HexTileSaveData
+{
+    public float worldX;
+    public float worldY;
+    public string tileType;
+    public bool isBuiltOn;
+    // public string structureType;  // Save structure info if needed (name or ID)
 }
