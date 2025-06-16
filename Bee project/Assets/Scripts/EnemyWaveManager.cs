@@ -190,19 +190,18 @@ public class EnemyWaveManager : MonoBehaviour, IDataPersistence
             newBadger.GetComponent<EnemyUnit>().health = 450;
             newBadger.name = "Badger";
         }
-        else
-        {
+        // {
             // For each enemy needed, create a new enemy instance offset by a slight random value
             for (int i = 0; i < enemyCount; i++)
             {
                 Vector3 offset = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), 0);
-                if (waveNum < 3)
+                if (waveNum < 3 || i % 3 != 0)
                 {
                 var newAnt = Instantiate(enemyAntPreFab, (center + randomDirection) + offset, Quaternion.identity);            
                 newAnt.GetComponent<EnemyUnit>().health = 150;
                 newAnt.name = "Ant";
                 }
-                if (waveNum >= 3 && waveNum < 6)
+                if (waveNum >= 3 && i % 3 == 0)
                 {
                     // SPIDERS HAVE 2/3X HEALTH BUT 1.5X SPEED
                     var newSpider = Instantiate(enemySpiderPreFab, (center + randomDirection) + offset, Quaternion.identity);
@@ -210,7 +209,7 @@ public class EnemyWaveManager : MonoBehaviour, IDataPersistence
                     newSpider.GetComponent<EnemyUnit>().health = 100;
                 }
 
-            }
+            // }
         }
 
 

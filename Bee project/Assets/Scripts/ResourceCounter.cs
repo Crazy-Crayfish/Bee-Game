@@ -22,9 +22,11 @@ public class ResourceCounter : MonoBehaviour, IDataPersistence
 
     private int hiveLevel;
 
-    [SerializeField] private Text ResourcesText;
+    // [SerializeField] private Text ResourcesText;
     [SerializeField] private Slider HealthBar;
-
+    [SerializeField] private Text ResourcesNectarText;
+    [SerializeField] private Text ResourcesHoneyText;
+    [SerializeField] private Text ResourcesWaxText;
     private void Awake() 
     {
         if (Instance != null && Instance != this) {
@@ -45,9 +47,9 @@ public class ResourceCounter : MonoBehaviour, IDataPersistence
         hiveHP = 500;
         hiveMaxHP = 500;
 
-        honey = 5000;
+        honey = 25;
         nectar = 0;
-        wax = 5000;
+        wax = 50;
         DNA = 0;
         maxHoney = 100;
         maxNectar = 100;
@@ -110,7 +112,12 @@ public class ResourceCounter : MonoBehaviour, IDataPersistence
     //Update text resource display
     private void UpdateResText()
     {
-        ResourcesText.text = ("Nectar: " + getNectar() + "/" + getMaxNectar() + "   Honey: " + getHoney() + "/" + getMaxHoney() + "\n   Wax: " + getWax() + "/" + getMaxWax() + "   DNA: " + getDNA() +  "/" + getMaxDNA());
+        // ResourcesText.text = ("Nectar: " + getNectar() + "/" + getMaxNectar() + "   Honey: " + getHoney() + "/" + getMaxHoney() + "\n   Wax: " + getWax() + "/" + getMaxWax() + "   DNA: " + getDNA() +  "/" + getMaxDNA());
+        //ResourcesText.text = ("Nectar: " + getNectar() + "/" + getMaxNectar() + "   Honey: " + getHoney() + "/" + getMaxHoney() + "\n   Wax: " + getWax() + "/" + getMaxWax() + "   DNA: " + getDNA() +  "/" + getMaxDNA());
+        //ResourcesText.text = ("\t" + getNectar() + "/" + getMaxNectar() + "   \t " + getHoney() + "/" + getMaxHoney() + "   \t " + getWax() + "/" + getMaxWax());
+        ResourcesNectarText.text = (getNectar() + "/" + getMaxNectar());
+        ResourcesHoneyText.text = (getHoney() + "/" + getMaxHoney());
+        ResourcesWaxText.text = (getWax() + "/" + getMaxWax());    
     }
 
 

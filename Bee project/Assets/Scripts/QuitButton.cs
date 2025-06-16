@@ -6,6 +6,7 @@ public class QuitButton : MonoBehaviour
 {
     void OnMouseDown()
     {
+        Debug.Log("quit");
         Application.Quit();
     }
 }

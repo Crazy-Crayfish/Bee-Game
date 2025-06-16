@@ -59,7 +59,11 @@ public class HexGridManager : MonoBehaviour, IDataPersistence
             tileList[newTile.gridX, newTile.gridY] = newTile.gameObject;
             if (tileData.isBuiltOn)
             {
-                string path = "";
+                string path = tileData.structureName;
+                var newBuilding = Instantiate(Resources.Load(path) as GameObject,
+                        new Vector3(newTile.transform.position.x,newTile.transform.position.y, -5),
+                                            Quaternion.identity);
+                buildings.Add(newBuilding);
             }
         }
     }
@@ -72,7 +76,8 @@ public class HexGridManager : MonoBehaviour, IDataPersistence
             if (hextile == null) {
                 continue;
             }
- 
+            // Debug.Log(obj);
+            // Debug.Log(hextile.structure); //.GetComponent<Structure>().prefabName
             HexTileSaveData tiledata = new HexTileSaveData {
                
                 worldX = obj.transform.position.x,
@@ -83,10 +88,17 @@ public class HexGridManager : MonoBehaviour, IDataPersistence
                 gridX = hextile.gridX,
                 gridY = hextile.gridY,
 
-                structureName = hextile.structure.name
-               
+                
+                
             };
-           
+            if (!tiledata.isBuiltOn || hextile.structure == null)
+            {
+                tiledata.structureName = null;
+            }
+            else
+            {
+                tiledata.structureName = hextile.structure.GetComponent<Structure>().prefabName;
+            }
  
             data.hexTileSaveList.Add(tiledata);
        
@@ -272,9 +284,13 @@ public class HexGridManager : MonoBehaviour, IDataPersistence
     GameObject queenTile = Resources.Load("QueenTile", typeof(GameObject)) as GameObject;
     GameObject queen = Resources.Load("Queen", typeof(GameObject)) as GameObject;
     centerTile.GetComponent<HexTile>().changeType(queenTile);
+    
     GameObject queenInstance = Instantiate(queen,
                 new Vector3(centerTile.transform.position.x, centerTile.transform.position.y, -5),
                 Quaternion.identity);
+
+    centerTile.GetComponent<HexTile>().structure = queenInstance;
+    centerTile.GetComponent<HexTile>().isBuiltOn = true;
     GridQueen = queenInstance;
     getNeighborAtPos(centerTile, 0).GetComponent<HexTile>().changeType(queenTile);
     getNeighborAtPos(centerTile, 1).GetComponent<HexTile>().changeType(queenTile);
@@ -282,7 +298,8 @@ public class HexGridManager : MonoBehaviour, IDataPersistence
     getNeighborAtPos(centerTile, 3).GetComponent<HexTile>().changeType(queenTile);
     getNeighborAtPos(centerTile, 4).GetComponent<HexTile>().changeType(queenTile);
     getNeighborAtPos(centerTile, 5).GetComponent<HexTile>().changeType(queenTile);
- 
+    
+    // mark eggs too but not here 
  
    }
  
