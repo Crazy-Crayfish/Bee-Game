@@ -76,12 +76,15 @@ public class EnemyBadgerLogic : MonoBehaviour
             if (Time.frameCount % 60 == 0) 
             {
                 ResourceCounter.Instance.changeHealth(-100);
+                SfxManager.Instance.playBadgerAttackSound();
+
             }
         }
         else if (target.GetComponent<Unit>().health > 0 && Time.frameCount % 60 == 0)
         {
             // ATTACKS ARE 2X AND THEY WILL CAUSE RECOIL
             target.GetComponent<Unit>().health = target.GetComponent<Unit>().health - 50;
+            SfxManager.Instance.playBadgerAttackSound();
             // Debug.Log ("damaging to " + target.GetComponent<Unit>().health);
         }
     }

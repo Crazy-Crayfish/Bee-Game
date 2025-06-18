@@ -15,6 +15,7 @@ public class StartButton : MonoBehaviour
     }
     void OnMouseDown()
     {
+        SfxManager.Instance.playButtonClickSound();
         screen.SetActive(true);
     }
     // // Update is called once per frame

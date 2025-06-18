@@ -18,6 +18,7 @@ public class SceneSwapButton : MonoBehaviour
     }
     public void ChangeScene()
     {
+        SfxManager.Instance.playButtonClickSound();
         // Debug.Log("change scene");
         Camera_Controller cameraController = Cam.gameObject.GetComponent<Camera_Controller>();
         // cameraController.noMovement();

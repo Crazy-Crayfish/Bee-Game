@@ -54,6 +54,9 @@ public class HoneyBeeLogic : MonoBehaviour {
                     agent.enabled = (true);
                     agent.destination = (hive.transform.position + new Vector3(0, -2, -hive.transform.position.z));
                     inHive = false;
+                    if (ScreenManager.Instance.inHive){
+                        SfxManager.Instance.playHivePopSound();
+                    }
                 }
             }
             else
@@ -69,6 +72,9 @@ public class HoneyBeeLogic : MonoBehaviour {
                     agent.enabled = (true);
                     agent.destination = (queen.transform.position + new Vector3(0, -2, -queen.transform.position.z));                    
                     inHive = true;
+                    if (!ScreenManager.Instance.inHive){
+                        SfxManager.Instance.playHivePopSound();
+                    }
                 }
                 // else
                 // {
@@ -186,6 +192,9 @@ public class HoneyBeeLogic : MonoBehaviour {
                 if (destinationTile.GetComponent<Tile>().value < 3)
                 {
                     ResourceCounter.Instance.changeNectar(destinationTile.GetComponent<Tile>().value);
+                    if (!ScreenManager.Instance.inHive){
+                        SfxManager.Instance.playSlurpSound();
+                    }
                     destinationTile.GetComponent<Tile>().value = 0;
                 }
                 
@@ -194,6 +203,9 @@ public class HoneyBeeLogic : MonoBehaviour {
                     // HONEY BEES COLLECT AT 3X SPEED
                     destinationTile.GetComponent<Tile>().value = destinationTile.GetComponent<Tile>().value - 3;
                     ResourceCounter.Instance.changeNectar(3);
+                    if (!ScreenManager.Instance.inHive){
+                        SfxManager.Instance.playSlurpSound();
+                    }
                 }
             }
         }
@@ -209,13 +221,16 @@ public class HoneyBeeLogic : MonoBehaviour {
         if (agent.destination.x < gameObject.transform.position.x && renderer.flipX)
         {
             renderer.flipX = false;
+            SfxManager.Instance.playBuzzSound();
         } else if (agent.destination.x > gameObject.transform.position.x && !renderer.flipX) {
             renderer.flipX = true;       
+            SfxManager.Instance.playBuzzSound();
         }
 
         if (agent.velocity.magnitude > 2 && !animator.GetBool("isMoving")) 
         {
             animator.SetBool("isMoving", true);
+            SfxManager.Instance.playBuzzSound();
            // Debug.Log ("moving");
         }
         else if (agent.velocity.magnitude < 1 && animator.GetBool("isMoving"))

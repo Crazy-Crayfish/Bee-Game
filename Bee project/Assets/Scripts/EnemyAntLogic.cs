@@ -73,11 +73,13 @@ public class EnemyAntLogic : MonoBehaviour
             if (Time.frameCount % 60 == 0) 
             {
                 ResourceCounter.Instance.changeHealth(-25);
+                SfxManager.Instance.playAntAttackSound();
             }
         }
         else if (target.GetComponent<Unit>().health > 0 && Time.frameCount % 60 == 0)
         {
             target.GetComponent<Unit>().health = target.GetComponent<Unit>().health - 25;
+            SfxManager.Instance.playAntAttackSound();
             // Debug.Log ("damaging to " + target.GetComponent<Unit>().health);
         }
     }

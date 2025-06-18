@@ -37,6 +37,7 @@ public class PauseManager : MonoBehaviour
 
     public void PauseGame()
     {
+        SfxManager.Instance.playButtonClickSound();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0;
         isPaused = true;
@@ -44,6 +45,8 @@ public class PauseManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        //button click?? for some reason makes game over load instantly when world scene loads
+        //SfxManager.Instance.playButtonClickSound();
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
         isPaused = false;
@@ -58,6 +61,7 @@ public class PauseManager : MonoBehaviour
     
     public void goToMainMenu()
     {
+        SfxManager.Instance.playButtonClickSound();
         // maybe put a confirm check?
 
         SceneManager.LoadScene(0);

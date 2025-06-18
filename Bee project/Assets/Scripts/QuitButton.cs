@@ -6,7 +6,8 @@ public class QuitButton : MonoBehaviour
 {
     void OnMouseDown()
     {
-        Debug.Log("quit");
+        SfxManager.Instance.playButtonClickSound();
+        //Debug.Log("quit");
         Application.Quit();
     }
 }

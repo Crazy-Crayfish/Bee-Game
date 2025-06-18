@@ -72,6 +72,7 @@ public class EnemySpiderLogic : MonoBehaviour
         if (target.GetComponent<Unit>().health > 0 && Time.frameCount % 60 == 0)
         {
             target.GetComponent<Unit>().health = target.GetComponent<Unit>().health - 25;
+            SfxManager.Instance.playSpiderAttackSound();
             // Debug.Log ("damaging to " + target.GetComponent<Unit>().health);
         }
     }
